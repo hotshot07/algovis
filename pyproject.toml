@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "algovis"
-version = "0.1.0"
-description = ""
+version = "0.1.0001"
+description = "README.md"
 authors = ["hotshot07 <aroram@tcd.ie>"]
 
 [tool.poetry.dependencies]
