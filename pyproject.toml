@@ -1,8 +1,18 @@
 [tool.poetry]
 name = "algovis"
 version = "0.1.0001"
-description = "README.md"
+description = "Python library for visualising algorithms"
+readme = "README.md"
 authors = ["hotshot07 <aroram@tcd.ie>"]
+maintainers = ["hotshot07 <aroram@tcd.ie>"]
+repository = "https://github.com/hotshot07/algovis"
+license = "GNU AGPL"
+keywords = ["Poetry",
+            "Visualization",
+            "Algorithms",
+            "Sorting",
+            "Searching"]
+
 
 [tool.poetry.dependencies]
 python = "^3.7.0"
