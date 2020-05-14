@@ -6,7 +6,7 @@ readme = "README.md"
 authors = ["hotshot07 <aroram@tcd.ie>"]
 maintainers = ["hotshot07 <aroram@tcd.ie>"]
 repository = "https://github.com/hotshot07/algovis"
-license = "GNU AGPL"
+license = "AGPL-3.0"
 keywords = ["Poetry",
             "Visualization",
             "Algorithms",

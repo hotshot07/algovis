@@ -1,10 +1,3 @@
-__version__ = '0.1.0001'
+__version__ = '0.1.2'
 
-
-def HelloWorld():
-    print("Hello :) This is my first package")
-    name = 'Mayank'
-    print(f"{name}")
-
-
-HelloWorld()
+import algovis.sorting
