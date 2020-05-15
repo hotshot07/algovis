@@ -1,7 +1,9 @@
 from algovis import sorting
 
-my_list = [6, 3, 21, 1, 6, 98, 0, 2]
+my_list = [1, 1, 1, 1, 1, 1, 1, 1]
 bs_object = sorting.BubbleSort(my_list)
-answer = bs_object.sort(reverse=True)
+#answer = bs_object.sort(iterations=True)
 
-print(answer)
+p = bs_object.evaluate(reverse=False, iterations=10)
+
+print(p)
