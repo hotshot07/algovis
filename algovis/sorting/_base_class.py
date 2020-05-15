@@ -1,5 +1,5 @@
-# This module contains all the
-# functions common to sorting algorithms
+# This module contains the functions
+# common to sorting algorithms
 
 class BaseClass:
     def __init__(self, datalist):
