@@ -1,9 +1,16 @@
 from ._base_class import BaseClass
 from ._timer import Timer
+#from ._animation import *
 import copy
 
 # TODO
 # visualize
+
+# To be shifted to _animation
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+import numpy as np
+import random
 
 
 class BubbleSort(BaseClass):
@@ -171,3 +178,50 @@ class BubbleSort(BaseClass):
             "Average Time:": _average_time
         }
         return eval_dict
+
+    def _anim_algo_gen(my_list):
+
+        length_of_list = len(my_list)
+
+        has_swapped = True
+
+        number_of_iterations = 0
+
+        while has_swapped:
+            has_swapped = False
+
+            for i in range(length_of_list - number_of_iterations - 1):
+                if my_list[i] > my_list[i + 1]:
+                    my_list[i], my_list[i + 1] = my_list[i + 1], my_list[i]
+                    has_swapped = True
+
+            number_of_iterations += 1
+            yield my_list
+
+    def _update_fig(_vis_list, rects, iteration, text):
+        for rect, val in zip(rects, _vis_list):
+            rect.set_height(val)
+        iteration[0] += 1
+        text.set_text("# of operations: {}".format(iteration[0]))
+
+    def visualize(self):
+
+        _vis_list = copy.deepcopy(self._datalist)
+
+        plt.style.use('dark_background')
+
+        fig, ax = plt.subplots()
+
+        ax.set_title("Bubble Sort")
+
+        bar_rects = ax.bar(range(len(_vis_list)), _vis_list, align="edge")
+
+        text = ax.text(0.02, 0.95, "", transform=ax.transAxes)
+
+        iteration = [0]
+
+        anim = animation.FuncAnimation(fig, func=BubbleSort._update_fig,
+                                       fargs=(bar_rects, iteration, text), frames=BubbleSort._anim_algo_gen(_vis_list), interval=250,
+                                       repeat=False)
+
+        plt.show()

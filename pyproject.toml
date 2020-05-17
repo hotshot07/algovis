@@ -16,6 +16,7 @@ keywords = ["Poetry",
 
 [tool.poetry.dependencies]
 python = "^3.7.0"
+matplotlib = "^3.2.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^4.6"
