@@ -1,27 +1,27 @@
-# Algovis
+![Alogvis](/algovis_img.PNG?raw=true) 
 
 Algovis is a library with which you can learn how to code data structures and algorithms in Python
 
 It will have most of the prominent sorting, searching and graph algorithms with visualisations.
 
-Currently the library has 
+Currently the library has
 
-## Sorting
+# Sorting
 
 - Bubble Sort
 
-## Getting Started
+# Getting Started
 
 I would highly suggest making a virtual environment as this library is still in beta
 
 For making a virtual environment, we can use virtualenv
 
 ```python
-#installing virtualenv
+# installing virtualenv
 
 $pip3 install virtualenv
 
-#making a test folder
+# making a test folder
 
 $mkdir test
 
@@ -29,17 +29,17 @@ $mkdir test
 
 $ cd test
 
-#making a virtual env (you can replace envname with whatever name you like)
+# making a virtual env (you can replace envname with whatever name you like)
 
-$virtualenv -p python3 envname
+$virtualenv - p python3 envname
 
-#activating it
+# activating it
 
-$ source envname/bin/activate
+$ source envname / bin / activate
 
-#installing algovis
+# installing algovis
 
-$ pip3 install algovis 
+$ pip3 install algovis
 ```
 
 You can only access algovis inside this virtual environment. To leave this virtualenv, type
@@ -48,18 +48,18 @@ You can only access algovis inside this virtual environment. To leave this virtu
 $deactivate
 ```
 
-## Using this library
+# Using this library
 
 I have designed the library this way so that supporting making changes to it is easy
 
 ```python
-#Using bubblesort in algovis
+# Using bubblesort in algovis
 
-#import the sorting module from library
+# import the sorting module from library
 
 from algovis import sorting
 
-#importing random library to fill it the list with random integers
+# importing random library to fill it the list with random integers
 
 import random
 
@@ -67,7 +67,7 @@ import random
 
 my_list = [random.randint(0, 100) for i in range(50)]
 
-# Making a bubble sort class object 
+# Making a bubble sort class object
 # It only accepts lists, raises an exception otherwise
 
 bs_object = sorting.BubbleSort(my_list)
@@ -76,12 +76,12 @@ bs_object = sorting.BubbleSort(my_list)
 # The class has 3 functions
 
 # .sort() with 2 optional parameters reverse and steps, both boolean
-# reverse sorts the list in descending order and steps shows every iteration 
+# reverse sorts the list in descending order and steps shows every iteration
 # of the bubble sort algotithm
 # default of reverse if False
 # default of steps is False
 
-desc_sort = bs_object.sort(reverse = True, steps = True) 
+desc_sort = bs_object.sort(reverse=True, steps=True)
 
 # .evaluate() with 2 optional parameters reverse and iterations
 # .evaluate() returns a dictionary giving a dictionary of minimum,
@@ -91,9 +91,9 @@ desc_sort = bs_object.sort(reverse = True, steps = True)
 # iterations is the number of times you want to run the algo
 # default is 1
 
-eval_algo0 = bs_ojbect.evaluate(iterations = 100)
+eval_algo0 = bs_object.evaluate(iterations=100)
 
-eval_algo1 = bs_ojbect.evaluate(reverse = True, iterations = 500)
+eval_algo1 = bs_object.evaluate(reverse=True, iterations=500)
 
 # .visualize() makes the visualization of the list you gave getting sorted
 # in ascending order
@@ -102,4 +102,4 @@ vis_algo = bs_object.visualize()
 
 ```
 
- [ Last updated on 18th May 2020 ]
+    [Last updated on 18th May 2020]

@@ -1,8 +1,10 @@
 # timer.py
 import time
 
+
 class TimerError(Exception):
     """A custom exception used to report errors in use of Timer class"""
+
 
 class Timer:
     def __init__(self):

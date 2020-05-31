@@ -1,10 +1,7 @@
 from ._base_class import BaseClass
 from ._timer import Timer
-#from ._animation import *
+# from ._animation import *
 import copy
-
-# TODO
-# visualize
 
 # To be shifted to _animation
 import matplotlib.pyplot as plt
@@ -25,13 +22,9 @@ class BubbleSort(BaseClass):
         self._datalist = datalist
 
     def _ascending_sort(self, steps):
-
         _asc_list = copy.deepcopy(self._datalist)
-
         _length_of_list = len(_asc_list)
-
         _has_swapped = True
-
         _number_of_iterations = 0
 
         while _has_swapped:
@@ -40,7 +33,6 @@ class BubbleSort(BaseClass):
             for i in range(_length_of_list - _number_of_iterations - 1):
                 if _asc_list[i] > _asc_list[i + 1]:
                     _asc_list[i], _asc_list[i + 1] = _asc_list[i + 1], _asc_list[i]
-
                     _has_swapped = True
 
             _number_of_iterations += 1
