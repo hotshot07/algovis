@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "algovis"
-version = "0.1.2"
+version = "0.1.3"
 description = "Python library for visualising algorithms"
 readme = "README.md"
 authors = ["hotshot07 <aroram@tcd.ie>"]
