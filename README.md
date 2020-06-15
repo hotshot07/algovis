@@ -1,4 +1,4 @@
-![Alogvis](/algovis_img.PNG?raw=true) 
+![Alogvis]( /algovis_img.PNG?raw=true)
 
 Algovis is a library with which you can learn how to code data structures and algorithms in Python
 
@@ -78,16 +78,20 @@ bs_object = sorting.BubbleSort(my_list)
 # .sort() with 2 optional parameters reverse and steps, both boolean
 # reverse sorts the list in descending order and steps shows every iteration
 # of the bubble sort algotithm
+
 # default of reverse if False
 # default of steps is False
+# return type: Dictionary
 
 desc_sort = bs_object.sort(reverse=True, steps=True)
 
 # .evaluate() with 2 optional parameters reverse and iterations
 # .evaluate() returns a dictionary giving a dictionary of minimum,
 # maximum and average time to sort the list in seconds
+
 # reverse option sorts it in descending order
 # default is False
+
 # iterations is the number of times you want to run the algo
 # default is 1
 
@@ -97,9 +101,10 @@ eval_algo1 = bs_object.evaluate(reverse=True, iterations=500)
 
 # .visualize() makes the visualization of the list you gave getting sorted
 # in ascending order
+# it has one option, reverse which is a boolean
 
-vis_algo = bs_object.visualize()
+vis_algo = bs_object.visualize(reverse=True)
 
 ```
 
-    [Last updated on 18th May 2020]
+    [Last updated on 16th June 2020]

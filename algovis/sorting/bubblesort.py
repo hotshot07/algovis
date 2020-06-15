@@ -1,9 +1,9 @@
+"""
+Author: Mayank Arora (hotshot07)
+"""
 from ._base_class import BaseClass
 from ._timer import Timer
-# from ._animation import *
 import copy
-
-# To be shifted to _animation
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import numpy as np
@@ -19,10 +19,11 @@ class BubbleSort(BaseClass):
 
     def __init__(self, datalist):
         super().__init__(datalist)
-        self._datalist = datalist
+        self.__datalist = datalist
 
+    # A generator for the ascending bubble sort algorithm
     def __ascending_sort_algo(self):
-        _asc_list = copy.deepcopy(self._datalist)
+        _asc_list = copy.deepcopy(self.__datalist)
         _length_of_list = len(_asc_list)
         _has_swapped = True
         _number_of_iterations = 0
@@ -38,8 +39,9 @@ class BubbleSort(BaseClass):
             _number_of_iterations += 1
             yield _asc_list
 
+    # A generator for the descending bubble sort algorithm
     def __descending_sort_algo(self):
-        _desc_list = copy.deepcopy(self._datalist)
+        _desc_list = copy.deepcopy(self.__datalist)
         _length_of_list = len(_desc_list)
         _has_swapped = True
         _number_of_iterations = 0
@@ -56,6 +58,7 @@ class BubbleSort(BaseClass):
             _number_of_iterations += 1
             yield _desc_list
 
+    # The function that is called by sort method
     def __sort_it(self, reverse, steps):
         _iteration_dict = {}
         iterations = 0
@@ -73,12 +76,16 @@ class BubbleSort(BaseClass):
             print()
             print("Iteration    List")
             for _iter, _list in _iteration_dict.items():
-                print("     " + str(_iter) + "       " + str(_list))
+                print("    " + str(_iter) + "        " + str(_list))
 
+            print()
         return _iteration_dict
 
-    def _time_eval_asc(self, iterations):
-        _time_list = copy.deepcopy(self._datalist)
+    # Evaluating time of ascending bubble sort
+    # Didn't use generators as I dont wanna waste time in dealing
+    # with overheads
+    def __time_eval_asc(self, iterations):
+        _time_list = copy.deepcopy(self.__datalist)
         _length_of_list = len(_time_list)
         _timing_list = []
 
@@ -103,12 +110,13 @@ class BubbleSort(BaseClass):
             stop = timer.stop()
             _timing_list.append(stop)
             iterations -= 1
-            _time_list = copy.deepcopy(self._datalist)
+            _time_list = copy.deepcopy(self.__datalist)
 
         return _timing_list
 
-    def _time_eval_desc(self, iterations):
-        _time_list = copy.deepcopy(self._datalist)
+    # Evaluating time of descending bubble sort
+    def __time_eval_desc(self, iterations):
+        _time_list = copy.deepcopy(self.__datalist)
         _length_of_list = len(_time_list)
         _timing_list = []
 
@@ -133,19 +141,26 @@ class BubbleSort(BaseClass):
             stop = timer.stop()
             _timing_list.append(stop)
             iterations -= 1
-            _time_list = copy.deepcopy(self._datalist)
+            _time_list = copy.deepcopy(self.__datalist)
 
         return _timing_list
 
+    # Helper function for the animation
+    def __update_fig(self, _vis_list, rects, iteration, text):
+        for rect, val in zip(rects, _vis_list):
+            rect.set_height(val)
+        iteration[0] += 1
+        text.set_text("# of operations: {}".format(iteration[0]))
+
     def sort(self, reverse=False, steps=False):
         _sorted_object = self.__sort_it(reverse, steps)
-        return _sorted_object
+        return list(_sorted_object.values())[-1]
 
     def evaluate(self, reverse=False, iterations=1):
         if reverse:
-            _timing_list = BubbleSort._time_eval_desc(self, iterations)
+            _timing_list = self.__time_eval_desc(iterations)
         else:
-            _timing_list = BubbleSort._time_eval_asc(self, iterations)
+            _timing_list = self.__time_eval_asc(iterations)
 
         _minimum_time = str("{:.10f}s".format(min(_timing_list)))
         _maximum_time = str("{:.10f}s".format(max(_timing_list)))
@@ -158,38 +173,21 @@ class BubbleSort(BaseClass):
         }
         return eval_dict
 
-    def _anim_algo_gen(my_list):
-        length_of_list = len(my_list)
-        has_swapped = True
-        number_of_iterations = 0
-
-        while has_swapped:
-            has_swapped = False
-
-            for i in range(length_of_list - number_of_iterations - 1):
-                if my_list[i] > my_list[i + 1]:
-                    my_list[i], my_list[i + 1] = my_list[i + 1], my_list[i]
-                    has_swapped = True
-
-            number_of_iterations += 1
-            yield my_list
-
-    def _update_fig(_vis_list, rects, iteration, text):
-        for rect, val in zip(rects, _vis_list):
-            rect.set_height(val)
-        iteration[0] += 1
-        text.set_text("# of operations: {}".format(iteration[0]))
-
-    def visualize(self):
-        _vis_list = copy.deepcopy(self._datalist)
+    def visualize(self, reverse=False):
+        _vis_list = copy.deepcopy(self.__datalist)
         plt.style.use('dark_background')
         fig, ax = plt.subplots()
         ax.set_title("Bubble Sort")
         bar_rects = ax.bar(range(len(_vis_list)), _vis_list, align="edge")
         text = ax.text(0.02, 0.95, "", transform=ax.transAxes)
         iteration = [0]
-        anim = animation.FuncAnimation(fig, func=BubbleSort._update_fig,
-                                       fargs=(bar_rects, iteration, text), frames=BubbleSort._anim_algo_gen(_vis_list), interval=250,
-                                       repeat=False)
+        if not reverse:
+            anim = animation.FuncAnimation(fig, func=self.__update_fig,
+                                           fargs=(bar_rects, iteration, text), frames=self.__ascending_sort_algo(), interval=250,
+                                           repeat=False)
+        else:
+            anim = animation.FuncAnimation(fig, func=self.__update_fig,
+                                           fargs=(bar_rects, iteration, text), frames=self.__descending_sort_algo(), interval=250,
+                                           repeat=False)
 
         plt.show()
