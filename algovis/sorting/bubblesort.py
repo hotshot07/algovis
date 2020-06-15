@@ -21,7 +21,7 @@ class BubbleSort(BaseClass):
         super().__init__(datalist)
         self._datalist = datalist
 
-    def _ascending_sort(self, steps):
+    def __ascending_sort_algo(self):
         _asc_list = copy.deepcopy(self._datalist)
         _length_of_list = len(_asc_list)
         _has_swapped = True
@@ -36,22 +36,12 @@ class BubbleSort(BaseClass):
                     _has_swapped = True
 
             _number_of_iterations += 1
+            yield _asc_list
 
-            if steps:
-                print(f'Iteration: {_number_of_iterations}')
-                print(f'List:', *_asc_list)
-                print('\n')
-
-        return _asc_list
-
-    def _descending_sort(self, steps):
-
+    def __descending_sort_algo(self):
         _desc_list = copy.deepcopy(self._datalist)
-
         _length_of_list = len(_desc_list)
-
         _has_swapped = True
-
         _number_of_iterations = 0
 
         while _has_swapped:
@@ -64,26 +54,36 @@ class BubbleSort(BaseClass):
                     _has_swapped = True
 
             _number_of_iterations += 1
+            yield _desc_list
 
-            if steps:
-                print(f'Iteration: {_number_of_iterations}')
-                print(f'List:', * _desc_list)
-                print('\n')
+    def __sort_it(self, reverse, steps):
+        _iteration_dict = {}
+        iterations = 0
 
-        return _desc_list
+        if not reverse:
+            for _yielded_list in self.__ascending_sort_algo():
+                iterations += 1
+                _iteration_dict[iterations] = copy.deepcopy(_yielded_list)
+        else:
+            for _yielded_list in self.__descending_sort_algo():
+                iterations += 1
+                _iteration_dict[iterations] = copy.deepcopy(_yielded_list)
+
+        if steps:
+            print()
+            print("Iteration    List")
+            for _iter, _list in _iteration_dict.items():
+                print("     " + str(_iter) + "       " + str(_list))
+
+        return _iteration_dict
 
     def _time_eval_asc(self, iterations):
-
         _time_list = copy.deepcopy(self._datalist)
-
         _length_of_list = len(_time_list)
-
         _timing_list = []
 
         while iterations:
-
             _has_swapped = True
-
             _number_of_iterations = 0
 
             timer = Timer()
@@ -102,25 +102,18 @@ class BubbleSort(BaseClass):
 
             stop = timer.stop()
             _timing_list.append(stop)
-
             iterations -= 1
-
             _time_list = copy.deepcopy(self._datalist)
 
         return _timing_list
 
     def _time_eval_desc(self, iterations):
-
         _time_list = copy.deepcopy(self._datalist)
-
         _length_of_list = len(_time_list)
-
         _timing_list = []
 
         while iterations:
-
             _has_swapped = True
-
             _number_of_iterations = 0
 
             timer = Timer()
@@ -138,21 +131,15 @@ class BubbleSort(BaseClass):
                 _number_of_iterations += 1
 
             stop = timer.stop()
-
             _timing_list.append(stop)
-
             iterations -= 1
             _time_list = copy.deepcopy(self._datalist)
 
         return _timing_list
 
     def sort(self, reverse=False, steps=False):
-        if reverse:
-            _desc_sorted = BubbleSort._descending_sort(self, steps)
-            return _desc_sorted
-        else:
-            _asc_sorted = BubbleSort._ascending_sort(self, steps)
-            return _asc_sorted
+        _sorted_object = self.__sort_it(reverse, steps)
+        return _sorted_object
 
     def evaluate(self, reverse=False, iterations=1):
         if reverse:
@@ -172,11 +159,8 @@ class BubbleSort(BaseClass):
         return eval_dict
 
     def _anim_algo_gen(my_list):
-
         length_of_list = len(my_list)
-
         has_swapped = True
-
         number_of_iterations = 0
 
         while has_swapped:
@@ -197,21 +181,13 @@ class BubbleSort(BaseClass):
         text.set_text("# of operations: {}".format(iteration[0]))
 
     def visualize(self):
-
         _vis_list = copy.deepcopy(self._datalist)
-
         plt.style.use('dark_background')
-
         fig, ax = plt.subplots()
-
         ax.set_title("Bubble Sort")
-
         bar_rects = ax.bar(range(len(_vis_list)), _vis_list, align="edge")
-
         text = ax.text(0.02, 0.95, "", transform=ax.transAxes)
-
         iteration = [0]
-
         anim = animation.FuncAnimation(fig, func=BubbleSort._update_fig,
                                        fargs=(bar_rects, iteration, text), frames=BubbleSort._anim_algo_gen(_vis_list), interval=250,
                                        repeat=False)
