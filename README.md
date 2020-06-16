@@ -1,4 +1,4 @@
-![Alogvis]( /algovis_img.PNG?raw=true)
+![Algovis](/algovis_img.PNG?raw=true)
 
 Algovis is a library with which you can learn how to code data structures and algorithms in Python
 
