@@ -1,10 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-# title
-# list
-# generator
-
 
 def __update_fig(passed_list, rects, iteration, text):
     for rect, val in zip(rects, passed_list):

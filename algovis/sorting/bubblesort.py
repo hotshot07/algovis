@@ -5,8 +5,6 @@ from ._base_class import BaseClass
 from ._timer import Timer
 from ._animation import AnimateAlgorithm
 import copy
-import matplotlib.pyplot as plt
-import matplotlib.animation as animation
 
 
 class BubbleSort(BaseClass):
@@ -172,5 +170,3 @@ class BubbleSort(BaseClass):
             AnimateAlgorithm("Bubble Sort", _vis_list, self.__ascending_sort_algo(), interval)
         else:
             AnimateAlgorithm("Bubble Sort", _vis_list, self.__descending_sort_algo(), interval)
-
-        return
