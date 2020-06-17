@@ -1,3 +1,5 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/hotshot07/algovis/badge/master?s=197e9c6e50413744c0a2c43785a6dee096ee1a4d)](https://www.codefactor.io/repository/github/hotshot07/algovis/overview/master)
+
 ![Algovis](/algovis_img.PNG?raw=true)
 
 Algovis is a library with which you can learn how to code data structures and algorithms in Python

@@ -3,6 +3,7 @@ Author: Mayank Arora (hotshot07)
 """
 from ._base_class import BaseClass
 from ._timer import Timer
+from ._animation import AnimateAlgorithm
 import copy
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
@@ -143,13 +144,6 @@ class BubbleSort(BaseClass):
 
         return _timing_list
 
-    # Helper function for the animation
-    def __update_fig(self, _vis_list, rects, iteration, text):
-        for rect, val in zip(rects, _vis_list):
-            rect.set_height(val)
-        iteration[0] += 1
-        text.set_text("# of operations: {}".format(iteration[0]))
-
     def sort(self, reverse=False, steps=False):
         _sorted_object = self.__sort_it(reverse, steps)
         return list(_sorted_object.values())[-1]
@@ -171,21 +165,12 @@ class BubbleSort(BaseClass):
         }
         return eval_dict
 
-    def visualize(self, reverse=False):
+    def visualize(self, reverse=False, interval=250):
         _vis_list = copy.deepcopy(self.__datalist)
-        plt.style.use('dark_background')
-        fig, ax = plt.subplots()
-        ax.set_title("Bubble Sort")
-        bar_rects = ax.bar(range(len(_vis_list)), _vis_list, align="edge")
-        text = ax.text(0.02, 0.95, "", transform=ax.transAxes)
-        iteration = [0]
-        if not reverse:
-            anim = animation.FuncAnimation(fig, func=self.__update_fig,
-                                           fargs=(bar_rects, iteration, text), frames=self.__ascending_sort_algo(), interval=250,
-                                           repeat=False)
-        else:
-            anim = animation.FuncAnimation(fig, func=self.__update_fig,
-                                           fargs=(bar_rects, iteration, text), frames=self.__descending_sort_algo(), interval=250,
-                                           repeat=False)
 
-        plt.show()
+        if not reverse:
+            AnimateAlgorithm("Bubble Sort", _vis_list, self.__ascending_sort_algo(), interval)
+        else:
+            AnimateAlgorithm("Bubble Sort", _vis_list, self.__descending_sort_algo(), interval)
+
+        return

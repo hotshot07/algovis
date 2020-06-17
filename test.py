@@ -1,7 +1,7 @@
 from algovis import sorting
 import random
 
-my_list = [random.randint(0, 100) for i in range(50)]
+my_list = [random.randint(0, 1000) for i in range(50)]
 
 bs_object = sorting.BubbleSort(my_list)
 
@@ -15,4 +15,4 @@ evalu_obj = bs_object.evaluate(reverse=False, iterations=1000)
 
 print(evalu_obj)
 
-p = bs_object.visualize(reverse=True)
+p = bs_object.visualize()
