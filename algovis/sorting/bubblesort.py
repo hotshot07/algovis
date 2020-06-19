@@ -18,6 +18,9 @@ class BubbleSort(BaseClass):
         super().__init__(datalist)
         self.__datalist = datalist
 
+    def __repr__(self):
+        return f'algovis.sorting.bubblesort.BubbleSort({self.__datalist})'
+
     # A generator for the ascending bubble sort algorithm
     def __ascending_sort_algo(self):
         _asc_list = copy.deepcopy(self.__datalist)
@@ -170,3 +173,7 @@ class BubbleSort(BaseClass):
             AnimateAlgorithm("Bubble Sort", _vis_list, self.__ascending_sort_algo(), interval)
         else:
             AnimateAlgorithm("Bubble Sort", _vis_list, self.__descending_sort_algo(), interval)
+
+    @classmethod
+    def info(cls):
+        print("This is information about Bubble Sort Algorithm")

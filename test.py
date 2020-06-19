@@ -5,14 +5,17 @@ my_list = [random.randint(0, 1000) for i in range(50)]
 
 bs_object = sorting.BubbleSort(my_list)
 
-ascending_sort = bs_object.sort(steps=True)
+print(bs_object)
 
-descending_sort = bs_object.sort(reverse=True)
 
-print(descending_sort)
+#ascending_sort = bs_object.sort(steps=True)
 
-evalu_obj = bs_object.evaluate(reverse=False, iterations=1000)
+#descending_sort = bs_object.sort(reverse=True)
 
-print(evalu_obj)
+# print(descending_sort)
 
-p = bs_object.visualize()
+#evalu_obj = bs_object.evaluate(reverse=False, iterations=1000)
+
+# print(evalu_obj)
+
+#p = bs_object.visualize()
