@@ -5,9 +5,8 @@ import matplotlib.animation as animation
 def __update_fig(passed_list, rects, iteration, text):
     for rect, val in zip(rects, passed_list):
         rect.set_height(val)
-        iteration[0] += 1
-        # no idea why it is being updated by 50 ugh
-        text.set_text(f"# of operations: {int(iteration[0]/50)}")
+    iteration[0] += 1
+    text.set_text(f"# of iterations: {iteration[0]}")
 
 def AnimateAlgorithm(title, passed_list, passed_generator, interval):
 

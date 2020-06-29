@@ -1,6 +1,8 @@
 """
 Author: Mayank Arora (hotshot07)
 """
+
+
 from ._base_class import BaseClass
 from ._timer import Timer
 from ._animation import AnimateAlgorithm
