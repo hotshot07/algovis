@@ -1,21 +1,23 @@
 from algovis import sorting
 import random
 
-my_list = [random.randint(0, 1000) for i in range(50)]
+my_list = [random.randint(0, 20) for i in range(10)]
 
-bs_object = sorting.BubbleSort(my_list)
+#my_list = [1 for x in range(10)]
 
-print(bs_object)
+bs_object = sorting.SelectionSort(my_list)
 
-
-#ascending_sort = bs_object.sort(steps=True)
-
-#descending_sort = bs_object.sort(reverse=True)
-
+# print(bs_object)
+#
+#
+ascending_sort = bs_object.sort(reverse = True, steps=True)
+#
+# descending_sort = bs_object.sort(reverse=True)
+#
 # print(descending_sort)
-
-#evalu_obj = bs_object.evaluate(reverse=False, iterations=1000)
-
+#
+# evalu_obj = bs_object.evaluate(reverse=False, iterations=1000)
+#
 # print(evalu_obj)
-
-#p = bs_object.visualize()
+#
+# p = bs_object.visualize()
