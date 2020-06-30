@@ -76,24 +76,87 @@ class InsertionSort(BaseClass):
         return _iteration_dict
 
 
+    def __time_eval_asc(self, iterations):
+        _time_list = copy.deepcopy(self.__datalist)
+        _length_of_list = len(_time_list)
+        _timing_list = []
+
+        while iterations:
+            timer = Timer()
+            timer.start()
+
+            for i in range(1, _length_of_list):
+
+                _key = _time_list[i]
+                j = i - 1
+
+                while j>=0 and _key < _time_list[j]:
+                    _time_list[j+1] = _time_list[j]
+                    j -= 1
+
+                _time_list[j+1] = _key
+
+            stop = timer.stop()
+            _timing_list.append(stop)
+            iterations -= 1
+            _time_list = copy.deepcopy(self.__datalist)
+
+        return _timing_list
+
+    def __time_eval_desc(self, iterations):
+        _time_list = copy.deepcopy(self.__datalist)
+        _length_of_list = len(_time_list)
+        _timing_list = []
+
+        while iterations:
+            timer = Timer()
+            timer.start()
+
+            for i in range(1, _length_of_list):
+
+                _key = _time_list[i]
+                j = i - 1
+
+                while j>=0 and _key > _time_list[j]:
+                    _time_list[j+1] = _time_list[j]
+                    j -= 1
+
+                _time_list[j+1] = _key
+
+            stop = timer.stop()
+            _timing_list.append(stop)
+            iterations -= 1
+            _time_list = copy.deepcopy(self.__datalist)
+
+        return _timing_list
+
+
     def sort(self, reverse=False, steps=False):
         _sorted_object = self.__sort_it(reverse, steps)
         return list(_sorted_object.values())[-1]
 
+    def evaluate(self, reverse=False, iterations=1):
+        if reverse:
+            _timing_list = self.__time_eval_desc(iterations)
+        else:
+            _timing_list = self.__time_eval_asc(iterations)
+
+        _minimum_time = str("{:.10f}s".format(min(_timing_list)))
+        _maximum_time = str("{:.10f}s".format(max(_timing_list)))
+        _average_time = str("{:.10f}s".format(sum(_timing_list) / iterations))
+
+        eval_dict = {
+            "Minimum Time:": _minimum_time,
+            "Maximum Time:": _maximum_time,
+            "Average Time:": _average_time
+        }
+        return eval_dict
 
 
+    def visualize(self, reverse=False, interval=250):
+        _vis_list = copy.deepcopy(self.__datalist)
 
-
-
-        #     for i in range(1, len(arr)):
-        #
-        # key = arr[i]
-        #
-        # # Move elements of arr[0..i-1], that are
-        # # greater than key, to one position ahead
-        # # of their current position
-        # j = i-1
-        # while j >= 0 and key < arr[j] :
-        #         arr[j + 1] = arr[j]
-        #         j -= 1
-        # arr[j + 1] = key
+        if not reverse:
+            AnimateAlgorithm("Bubble Sort", _vis_list, self.__ascending_sort_algo(), interval)
+        else:
+            AnimateAlgorithm("Bubble Sort", _vis_list, self.__descending_sort_algo(), interval)

@@ -1,8 +1,6 @@
 """
 Author: Mayank Arora (hotshot07)
 """
-
-
 from ._base_class import BaseClass
 from ._timer import Timer
 from ._animation import AnimateAlgorithm
@@ -87,11 +85,11 @@ class BubbleSort(BaseClass):
         _timing_list = []
 
         while iterations:
+            timer = Timer()
+            timer.start()
             _has_swapped = True
             _number_of_iterations = 0
 
-            timer = Timer()
-            timer.start()
 
             while _has_swapped:
                 _has_swapped = False
