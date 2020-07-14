@@ -19,114 +19,114 @@ class InsertionSort(BaseClass):
         return f'algovis.sorting.insertionsort.InsertionSort({self.__datalist})'
 
     def __ascending_sort_algo(self):
-        _asc_list = copy.deepcopy(self.__datalist)
-        _length_of_list = len(_asc_list)
+        asc_list = copy.deepcopy(self.__datalist)
+        length_of_list = len(_asc_list)
 
-        for i in range(1, _length_of_list):
+        for i in range(1, length_of_list):
 
-            _key = _asc_list[i]
+            key = asc_list[i]
             j = i - 1
 
-            while j>=0 and _key < _asc_list[j]:
-                 _asc_list[j+1] = _asc_list[j]
+            while j >= 0 and key < asc_list[j]:
+                 asc_list[j+1] = asc_list[j]
                  j -= 1
 
-            _asc_list[j+1] = _key
+            asc_list[j+1] = _key
 
-            yield _asc_list
+            yield asc_list
 
     def __descending_sort_algo(self):
-        _desc_list = copy.deepcopy(self.__datalist)
-        _length_of_list = len(_desc_list)
+        desc_list = copy.deepcopy(self.__datalist)
+        length_of_list = len(desc_list)
 
-        for i in range(1, _length_of_list):
+        for i in range(1, length_of_list):
 
-            _key = _desc_list[i]
+            key = desc_list[i]
             j = i - 1
 
-            while j>=0 and _key > _desc_list[j]:
-                 _desc_list[j+1] = _desc_list[j]
+            while j>=0 and key > desc_list[j]:
+                 desc_list[j+1] = desc_list[j]
                  j -= 1
 
-            _desc_list[j+1] = _key
+            desc_list[j+1] = key
 
-            yield _desc_list
+            yield desc_list
 
 
     def __sort_it(self, reverse, steps):
-        _iteration_dict = {}
+        iteration_dict = {}
         iterations = 0
 
         if not reverse:
-            for _yielded_list in self.__ascending_sort_algo():
+            for yielded_list in self.__ascending_sort_algo():
                 iterations += 1
-                _iteration_dict[iterations] = copy.deepcopy(_yielded_list)
+                iteration_dict[iterations] = copy.deepcopy(_yielded_list)
         else:
-            for _yielded_list in self.__descending_sort_algo():
+            for yielded_list in self.__descending_sort_algo():
                 iterations += 1
-                _iteration_dict[iterations] = copy.deepcopy(_yielded_list)
+                iteration_dict[iterations] = copy.deepcopy(_yielded_list)
 
         if steps:
             print()
             print("Iteration    List")
-            for _iter, _list in _iteration_dict.items():
-                print("    " + str(_iter) + "        " + str(_list))
+            for iter, list in iteration_dict.items():
+                print("    " + str(iter) + "        " + str(list))
 
             print()
-        return _iteration_dict
+        return iteration_dict
 
 
     def __time_eval_asc(self, iterations):
-        _time_list = copy.deepcopy(self.__datalist)
-        _length_of_list = len(_time_list)
-        _timing_list = []
+        time_list = copy.deepcopy(self.__datalist)
+        length_of_list = len(time_list)
+        timing_list = []
 
         while iterations:
             timer = Timer()
             timer.start()
 
-            for i in range(1, _length_of_list):
+            for i in range(1, length_of_list):
 
-                _key = _time_list[i]
+                key = time_list[i]
                 j = i - 1
 
-                while j>=0 and _key < _time_list[j]:
-                    _time_list[j+1] = _time_list[j]
+                while j>=0 and _key < time_list[j]:
+                    time_list[j+1] = time_list[j]
                     j -= 1
 
-                _time_list[j+1] = _key
+                time_list[j+1] = key
 
             stop = timer.stop()
-            _timing_list.append(stop)
+            timing_list.append(stop)
             iterations -= 1
-            _time_list = copy.deepcopy(self.__datalist)
+            time_list = copy.deepcopy(self.__datalist)
 
-        return _timing_list
+        return timing_list
 
     def __time_eval_desc(self, iterations):
-        _time_list = copy.deepcopy(self.__datalist)
-        _length_of_list = len(_time_list)
-        _timing_list = []
+        time_list = copy.deepcopy(self.__datalist)
+        length_of_list = len(time_list)
+        timing_list = []
 
         while iterations:
             timer = Timer()
             timer.start()
 
-            for i in range(1, _length_of_list):
+            for i in range(1, length_of_list):
 
-                _key = _time_list[i]
+                key = _time_list[i]
                 j = i - 1
 
-                while j>=0 and _key > _time_list[j]:
-                    _time_list[j+1] = _time_list[j]
+                while j>=0 and key > time_list[j]:
+                    time_list[j+1] = time_list[j]
                     j -= 1
 
-                _time_list[j+1] = _key
+                time_list[j+1] = key
 
             stop = timer.stop()
-            _timing_list.append(stop)
+            timing_list.append(stop)
             iterations -= 1
-            _time_list = copy.deepcopy(self.__datalist)
+            time_list = copy.deepcopy(self.__datalist)
 
         return _timing_list
 
@@ -157,6 +157,6 @@ class InsertionSort(BaseClass):
         _vis_list = copy.deepcopy(self.__datalist)
 
         if not reverse:
-            AnimateAlgorithm("Bubble Sort", _vis_list, self.__ascending_sort_algo(), interval)
+            AnimateAlgorithm("Insertion Sort", _vis_list, self.__ascending_sort_algo(), interval)
         else:
-            AnimateAlgorithm("Bubble Sort", _vis_list, self.__descending_sort_algo(), interval)
+            AnimateAlgorithm("Insertion Sort", _vis_list, self.__descending_sort_algo(), interval)

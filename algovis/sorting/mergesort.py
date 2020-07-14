@@ -54,7 +54,7 @@ class MergeSort(BaseClass):
         yield _passed_list
 
 
-    def __asc_animate_sort_it(self):
+    def _asc_animate_sort_it(self):
         _passed_list = copy.deepcopy(self.__datalist)
         for i in self._merge_algo(_passed_list, 0, len(_passed_list)-1):
             yield i
@@ -66,9 +66,9 @@ class MergeSort(BaseClass):
         _vis_list = copy.deepcopy(self.__datalist)
 
         if not reverse:
-            AnimateAlgorithm("Merge Sort", _vis_list, self.__asc_animate_sort_it(), interval)
+            AnimateAlgorithm("Merge Sort", _vis_list, self._asc_animate_sort_it(), interval)
         else:
-            AnimateAlgorithm("Merge Sort", _vis_list, self.__descending_sort_algo(), interval)
+            AnimateAlgorithm("Merge Sort", _vis_list, self._descending_sort_algo(), interval)
 
 
 

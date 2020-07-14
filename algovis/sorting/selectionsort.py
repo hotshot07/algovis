@@ -13,97 +13,97 @@ class SelectionSort(BaseClass):
         self.__datalist = datalist
 
     def __repr__(self):
-        return f'algovis.sorting.selectionSort.SelectionSort({self.__datalist})'
+        return f'algovis.sorting.selectionsort.SelectionSort({self.__datalist})'
 
     def __ascending_sort_algo(self):
-        _asc_list = copy.deepcopy(self.__datalist)
-        _length_of_list = len(_asc_list)
+        asc_list = copy.deepcopy(self.__datalist)
+        length_of_list = len(asc_list)
 
-        for i in range(_length_of_list):
+        for i in range(length_of_list):
             #minimum unsorted value
-            _min_val = _asc_list[i]
-            _min_idx = i
-            for j in range(i, _length_of_list):
-                if _asc_list[j] < _min_val:
-                    _min_val = _asc_list[j]
-                    _min_idx = j
+            min_val = asc_list[i]
+            min_idx = i
+            for j in range(i, length_of_list):
+                if asc_list[j] < min_val:
+                    min_val = asc_list[j]
+                    min_idx = j
 
-            _asc_list[i], _asc_list[_min_idx]  = _asc_list[_min_idx], _asc_list[i]
-            yield _asc_list
+            asc_list[i], asc_list[_min_idx]  = asc_list[_min_idx], asc_list[i]
+            yield asc_list
 
     def __descending_sort_algo(self):
-        _asc_list = copy.deepcopy(self.__datalist)
-        _length_of_list = len(_asc_list)
+        asc_list = copy.deepcopy(self.__datalist)
+        length_of_list = len(asc_list)
 
-        for i in range(_length_of_list):
+        for i in range(length_of_list):
             #minimum unsorted value
-            _max_val = _asc_list[i]
-            _max_idx = i
-            for j in range(i, _length_of_list):
-                if _asc_list[j] > _max_val:
-                    _max_val = _asc_list[j]
-                    _max_idx = j
+            max_val = asc_list[i]
+            max_idx = i
+            for j in range(i, length_of_list):
+                if asc_list[j] > max_val:
+                    max_val = asc_list[j]
+                    max_idx = j
 
-            _asc_list[i], _asc_list[_max_idx]  = _asc_list[_max_idx], _asc_list[i]
-            yield _asc_list
+            asc_list[i], asc_list[_max_idx]  = asc_list[_max_idx], asc_list[i]
+            yield asc_list
 
     def __sort_it(self, reverse, steps):
-            _iteration_dict = {}
+            iteration_dict = {}
             iterations = 0
 
             if not reverse:
-                for _yielded_list in self.__ascending_sort_algo():
+                for yielded_list in self.__ascending_sort_algo():
                     iterations += 1
-                    _iteration_dict[iterations] = copy.deepcopy(_yielded_list)
+                    iteration_dict[iterations] = copy.deepcopy(yielded_list)
             else:
-                for _yielded_list in self.__descending_sort_algo():
+                for yielded_list in self.__descending_sort_algo():
                     iterations += 1
-                    _iteration_dict[iterations] = copy.deepcopy(_yielded_list)
+                    iteration_dict[iterations] = copy.deepcopy(yielded_list)
 
             if steps:
                 print()
                 print("Iteration    List")
-                for _iter, _list in _iteration_dict.items():
+                for iter, list in iteration_dict.items():
                     print("    " + str(_iter) + "        " + str(_list))
 
                 print()
-            return _iteration_dict
+            return iteration_dict
 
 
     def __time_eval_asc(self, iterations):
-        _time_list = copy.deepcopy(self.__datalist)
-        _length_of_list = len(_time_list)
-        _timing_list = []
+        time_list = copy.deepcopy(self.__datalist)
+        length_of_list = len(time_list)
+        timing_list = []
 
         while iterations:
 
             timer = Timer()
             timer.start()
 
-            for i in range(_length_of_list):
+            for i in range(length_of_list):
                 #minimum unsorted value
-                _min_val = _time_list[i]
-                _min_idx = i
-                for j in range(i, _length_of_list):
-                    if _time_list[j] < _min_val:
-                        _min_val = _time_list[j]
-                        _min_idx = j
+                min_val = time_list[i]
+                min_idx = i
+                for j in range(i, length_of_list):
+                    if time_list[j] < min_val:
+                        min_val = time_list[j]
+                        min_idx = j
 
-                _time_list[i], _time_list[_min_idx]  = _time_list[_min_idx], _time_list[i]
+                time_list[i], time_list[_min_idx]  = time_list[_min_idx], time_list[i]
 
             stop = timer.stop()
-            _timing_list.append(stop)
+            timing_list.append(stop)
             iterations -= 1
-            _time_list = copy.deepcopy(self.__datalist)
+            time_list = copy.deepcopy(self.__datalist)
 
-        return _timing_list
+        return timing_list
 
 
 
     def __time_eval_desc(self, iterations):
-        _time_list = copy.deepcopy(self.__datalist)
-        _length_of_list = len(_time_list)
-        _timing_list = []
+        time_list = copy.deepcopy(self.__datalist)
+        length_of_list = len(_time_list)
+        timing_list = []
 
         while iterations:
 
@@ -112,21 +112,21 @@ class SelectionSort(BaseClass):
 
             for i in range(_length_of_list):
                 #minimum unsorted value
-                _max_val = _time_list[i]
-                _max_idx = i
-                for j in range(i, _length_of_list):
-                    if _time_list[j] > _max_val:
-                        _max_val = _time_list[j]
-                        _max_idx = j
+                max_val = time_list[i]
+                max_idx = i
+                for j in range(i, length_of_list):
+                    if time_list[j] > max_val:
+                        max_val = time_list[j]
+                        max_idx = j
 
-                _time_list[i], _time_list[_max_idx]  = _time_list[_max_idx], _time_list[i]
+                time_list[i], time_list[_max_idx]  = time_list[_max_idx], time_list[i]
 
             stop = timer.stop()
-            _timing_list.append(stop)
+            timing_list.append(stop)
             iterations -= 1
-            _time_list = copy.deepcopy(self.__datalist)
+            time_list = copy.deepcopy(self.__datalist)
 
-        return _timing_list
+        return timing_list
 
 
 

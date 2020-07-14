@@ -18,127 +18,127 @@ class BubbleSort(BaseClass):
 
     # A generator for the ascending bubble sort algorithm
     def __ascending_sort_algo(self):
-        _asc_list = copy.deepcopy(self.__datalist)
-        _length_of_list = len(_asc_list)
-        _has_swapped = True
-        _number_of_iterations = 0
+        asc_list = copy.deepcopy(self.__datalist)
+        length_of_list = len(asc_list)
+        has_swapped = True
+        number_of_iterations = 0
 
-        while _has_swapped:
-            _has_swapped = False
+        while has_swapped:
+            has_swapped = False
 
-            for i in range(_length_of_list - _number_of_iterations - 1):
-                if _asc_list[i] > _asc_list[i + 1]:
-                    _asc_list[i], _asc_list[i + 1] = _asc_list[i + 1], _asc_list[i]
-                    _has_swapped = True
+            for i in range(length_of_list - number_of_iterations - 1):
+                if asc_list[i] > asc_list[i + 1]:
+                    asc_list[i], asc_list[i + 1] = asc_list[i + 1], asc_list[i]
+                    has_swapped = True
 
-            _number_of_iterations += 1
-            yield _asc_list
+            number_of_iterations += 1
+            yield asc_list
 
     # A generator for the descending bubble sort algorithm
     def __descending_sort_algo(self):
-        _desc_list = copy.deepcopy(self.__datalist)
-        _length_of_list = len(_desc_list)
-        _has_swapped = True
-        _number_of_iterations = 0
+        desc_list = copy.deepcopy(self.__datalist)
+        length_of_list = len(desc_list)
+        has_swapped = True
+        number_of_iterations = 0
 
-        while _has_swapped:
-            _has_swapped = False
+        while has_swapped:
+            has_swapped = False
 
-            for i in range(_length_of_list - _number_of_iterations - 1):
-                if _desc_list[i] < _desc_list[i + 1]:
-                    _desc_list[i], _desc_list[i + 1] = _desc_list[i + 1], _desc_list[i]
+            for i in range(length_of_list - number_of_iterations - 1):
+                if desc_list[i] < desc_list[i + 1]:
+                    desc_list[i], desc_list[i + 1] = desc_list[i + 1], desc_list[i]
 
-                    _has_swapped = True
+                    has_swapped = True
 
-            _number_of_iterations += 1
-            yield _desc_list
+            number_of_iterations += 1
+            yield desc_list
 
     # The function that is called by sort method
     def __sort_it(self, reverse, steps):
-        _iteration_dict = {}
+        iteration_dict = {}
         iterations = 0
 
         if not reverse:
-            for _yielded_list in self.__ascending_sort_algo():
+            for yielded_list in self.__ascending_sort_algo():
                 iterations += 1
-                _iteration_dict[iterations] = copy.deepcopy(_yielded_list)
+                iteration_dict[iterations] = copy.deepcopy(yielded_list)
         else:
-            for _yielded_list in self.__descending_sort_algo():
+            for yielded_list in self.__descending_sort_algo():
                 iterations += 1
-                _iteration_dict[iterations] = copy.deepcopy(_yielded_list)
+                iteration_dict[iterations] = copy.deepcopy(yielded_list)
 
         if steps:
-            print()
-            print("Iteration    List")
-            for _iter, _list in _iteration_dict.items():
-                print("    " + str(_iter) + "        " + str(_list))
+            # print()
+            # print("Iteration    List")
+            # for iter, list in iteration_dict.items():
+            #     print("    " + str(iter) + "        " + str(list))
 
-            print()
-        return _iteration_dict
+            # print()
+            super()._print_evaluate(iteration_dict)
+        return iteration_dict
 
     # Evaluating time of ascending bubble sort
-    # Didn't use generators as I dont wanna waste time in dealing
-    # with overheads
+    # Didn't use generators as I dont want to waste time in
+    # function overheads
     def __time_eval_asc(self, iterations):
-        _time_list = copy.deepcopy(self.__datalist)
-        _length_of_list = len(_time_list)
-        _timing_list = []
+        time_list = copy.deepcopy(self.__datalist)
+        length_of_list = len(time_list)
+        timing_list = []
 
         while iterations:
             timer = Timer()
             timer.start()
-            _has_swapped = True
-            _number_of_iterations = 0
+            has_swapped = True
+            number_of_iterations = 0
 
+            while has_swapped:
+                has_swapped = False
 
-            while _has_swapped:
-                _has_swapped = False
+                for i in range(length_of_list - number_of_iterations - 1):
+                    if time_list[i] > time_list[i + 1]:
+                        time_list[i], time_list[i + 1] = time_list[i + 1], time_list[i]
 
-                for i in range(_length_of_list - _number_of_iterations - 1):
-                    if _time_list[i] > _time_list[i + 1]:
-                        _time_list[i], _time_list[i + 1] = _time_list[i + 1], _time_list[i]
+                        has_swapped = True
 
-                        _has_swapped = True
-
-                _number_of_iterations += 1
+                number_of_iterations += 1
 
             stop = timer.stop()
-            _timing_list.append(stop)
+            timing_list.append(stop)
             iterations -= 1
-            _time_list = copy.deepcopy(self.__datalist)
+            time_list = copy.deepcopy(self.__datalist)
 
-        return _timing_list
+        return timing_list
 
     # Evaluating time of descending bubble sort
     def __time_eval_desc(self, iterations):
-        _time_list = copy.deepcopy(self.__datalist)
-        _length_of_list = len(_time_list)
-        _timing_list = []
+        time_list = copy.deepcopy(self.__datalist)
+        length_of_list = len(time_list)
+        timing_list = []
 
         while iterations:
-            _has_swapped = True
-            _number_of_iterations = 0
+            has_swapped = True
+            number_of_iterations = 0
 
             timer = Timer()
             timer.start()
 
-            while _has_swapped:
-                _has_swapped = False
+            while has_swapped:
+                has_swapped = False
 
                 for i in range(_length_of_list - _number_of_iterations - 1):
-                    if _time_list[i] < _time_list[i + 1]:
-                        _time_list[i], _time_list[i + 1] = _time_list[i + 1], _time_list[i]
+                    if time_list[i] < time_list[i + 1]:
+                        time_list[i], time_list[i + 1] = time_list[i + 1], time_list[i]
 
-                        _has_swapped = True
+                        has_swapped = True
 
-                _number_of_iterations += 1
+                number_of_iterations += 1
 
             stop = timer.stop()
-            _timing_list.append(stop)
+            timing_list.append(stop)
             iterations -= 1
-            _time_list = copy.deepcopy(self.__datalist)
+            time_list = copy.deepcopy(self.__datalist)
 
-        return _timing_list
+        return timing_list
 
     def sort(self, reverse=False, steps=False):
         _sorted_object = self.__sort_it(reverse, steps)
