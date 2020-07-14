@@ -58,6 +58,8 @@ class BubbleSort(BaseClass):
         iteration_dict = {}
         iterations = 0
 
+        iteration_dict[iterations] = self.__datalist
+
         if not reverse:
             for yielded_list in self.__ascending_sort_algo():
                 iterations += 1
@@ -68,13 +70,8 @@ class BubbleSort(BaseClass):
                 iteration_dict[iterations] = copy.deepcopy(yielded_list)
 
         if steps:
-            # print()
-            # print("Iteration    List")
-            # for iter, list in iteration_dict.items():
-            #     print("    " + str(iter) + "        " + str(list))
+            super()._print_steps(iteration_dict)
 
-            # print()
-            super()._print_evaluate(iteration_dict)
         return iteration_dict
 
     # Evaluating time of ascending bubble sort
@@ -125,7 +122,7 @@ class BubbleSort(BaseClass):
             while has_swapped:
                 has_swapped = False
 
-                for i in range(_length_of_list - _number_of_iterations - 1):
+                for i in range(length_of_list - number_of_iterations - 1):
                     if time_list[i] < time_list[i + 1]:
                         time_list[i], time_list[i + 1] = time_list[i + 1], time_list[i]
 
@@ -150,16 +147,17 @@ class BubbleSort(BaseClass):
         else:
             _timing_list = self.__time_eval_asc(iterations)
 
-        _minimum_time = str("{:.10f}s".format(min(_timing_list)))
-        _maximum_time = str("{:.10f}s".format(max(_timing_list)))
-        _average_time = str("{:.10f}s".format(sum(_timing_list) / iterations))
+        _minimum_time = min(_timing_list)
+        _maximum_time = max(_timing_list)
+        _average_time = int(sum(_timing_list) / iterations)
 
         eval_dict = {
-            "Minimum Time:": _minimum_time,
-            "Maximum Time:": _maximum_time,
-            "Average Time:": _average_time
+            "Minimum Time": _minimum_time,
+            "Maximum Time": _maximum_time,
+            "Average Time": _average_time
         }
-        return eval_dict
+
+        return super()._print_evaluate(eval_dict)
 
     def visualize(self, reverse=False, interval=250):
         _vis_list = copy.deepcopy(self.__datalist)
@@ -171,34 +169,37 @@ class BubbleSort(BaseClass):
 
     @classmethod
     def info(cls):
-        information = """
-           Bubble Sort
+        path_to_information = "algovis/sorting/_markdown_files/bubblesort.md"
+        return super()._print_info(path_to_information)
 
-In Bubble Sort  we look at pairs of adjacent elements in an array,
-one pair at a time, and swap their positions if the first element is
-larger than the second, or simply move on if it isn't.
+    @classmethod
+    def code(cls):
+        my_code = """
+        def bubbleSort(arr):
 
-        ---Time Complexity---
-        "Worse case: O(n^2)
-        "Average case: O(n^2)
-        "Best case: O(n)
+            length_of_list = len(arr) 
+           
+            # Traverse through all array elements 
+            for i in range(length_of_list): 
+                swapped = False
+          
+                # Last i elements are already in place 
+                for j in range(0, length_of_list- i -1): 
+           
+                    # traverse the array from 0 to 
+                    # length_of_list-i-1. Swap if the element  
+                    # found is greater than the 
+                    # next element 
+                    if arr[j] > arr[j+1] : 
+                        arr[j], arr[j+1] = arr[j+1], arr[j] 
+                        swapped = True
+          
+                # If no two elements were swapped 
+                # by inner loop, then break 
+                if swapped == False: 
+                    break
 
-        ---Space Complexity---
-        O(n) total, O(1) auxiliary
+            return arr
+        """
 
-        ---Algorithm---
-        procedure bubbleSort(A : list of sortable items)
-            n := length(A)
-            repeat
-                swapped := false
-                    for i := 1 to n - 1 inclusive do
-                        if A[i - 1] > A[i] then
-                        swap(A[i - 1], A[i])
-                        swapped = true
-                        end if
-                    end for
-                    n := n - 1
-                until not swapped
-        end procedure"""
-
-        return information
+        return super()._print_code(my_code)

@@ -53,14 +53,10 @@ class MergeSort(BaseClass):
         yield from self.__ascending_sort_merge_algo(_passed_list, start, mid, end)
         yield _passed_list
 
-
     def _asc_animate_sort_it(self):
         _passed_list = copy.deepcopy(self.__datalist)
-        for i in self._merge_algo(_passed_list, 0, len(_passed_list)-1):
+        for i in self._merge_algo(_passed_list, 0, len(_passed_list) - 1):
             yield i
-
-
-
 
     def visualize(self, reverse=False, interval=250):
         _vis_list = copy.deepcopy(self.__datalist)
@@ -69,41 +65,3 @@ class MergeSort(BaseClass):
             AnimateAlgorithm("Merge Sort", _vis_list, self._asc_animate_sort_it(), interval)
         else:
             AnimateAlgorithm("Merge Sort", _vis_list, self._descending_sort_algo(), interval)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# _iteration_dict = {}
-# iterations = 0
-#
-# if not reverse:
-#     for _yielded_list in self.__ascending_sort_algo():
-#         iterations += 1
-#         _iteration_dict[iterations] = copy.deepcopy(_yielded_list)
-# else:
-#     for _yielded_list in self.__descending_sort_algo():
-#         iterations += 1
-#         _iteration_dict[iterations] = copy.deepcopy(_yielded_list)
-
-# if steps:
-#     print()
-#     print("Iteration    List")
-#     for _iter, _list in _iteration_dict.items():
-#         print("    " + str(_iter) + "        " + str(_list))
-#
-#     print()
-# return _iteration_dict
