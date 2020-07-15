@@ -33,7 +33,7 @@ class SelectionSort(BaseClass):
                     min_val = asc_list[j]
                     min_idx = j
 
-            asc_list[i], asc_list[_min_idx] = asc_list[_min_idx], asc_list[i]
+            asc_list[i], asc_list[min_idx] = asc_list[min_idx], asc_list[i]
             yield asc_list
 
     # A generator for the descending selection sort algorithm
@@ -52,7 +52,7 @@ class SelectionSort(BaseClass):
                     max_val = asc_list[j]
                     max_idx = j
 
-            asc_list[i], asc_list[_max_idx] = asc_list[_max_idx], asc_list[i]
+            asc_list[i], asc_list[max_idx] = asc_list[max_idx], asc_list[i]
             yield asc_list
 
     # The function that is called by sort method
@@ -78,7 +78,7 @@ class SelectionSort(BaseClass):
                 iterations += 1
                 iteration_dict[iterations] = copy.deepcopy(yielded_list)
 
-         if steps:
+        if steps:
             super()._print_steps(iteration_dict)
 
         return iteration_dict
@@ -109,7 +109,7 @@ class SelectionSort(BaseClass):
                         min_val = time_list[j]
                         min_idx = j
 
-                time_list[i], time_list[_min_idx] = time_list[_min_idx], time_list[i]
+                time_list[i], time_list[min_idx] = time_list[min_idx], time_list[i]
 
             stop = timer.stop()
             timing_list.append(stop)

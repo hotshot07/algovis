@@ -33,7 +33,7 @@ class InsertionSort(BaseClass):
                 asc_list[j + 1] = asc_list[j]
                 j -= 1
 
-            asc_list[j + 1] = _key
+            asc_list[j + 1] = key
 
             yield asc_list
 
@@ -187,7 +187,7 @@ class InsertionSort(BaseClass):
             "Average Time": _average_time
         }
 
-        return super()._print_evaluate(eval_dict)
+        return super()._print_evaluate(_eval_dict)
 
     # visualize method to visualise the sorting happeneing
     # Takes in 2 arguments reverse and interval
