@@ -10,7 +10,7 @@ from rich.markdown import Markdown
 
 
 class BaseClass:
-    #checks for the datalist passed
+    # checks for the datalist passed
     def __init__(self, datalist):
         if not isinstance(datalist, list):
             raise TypeError('parameter must be a list datatype')
@@ -35,8 +35,8 @@ class BaseClass:
         console.print(table)
 
     # _print_steps takes in eval_dict dictionary and prints the different metrics
-    def _print_evaluate(self, eval_dict):
-        table = Table(title="Evaluattion")
+    def _print_evaluate(self, eval_dict, name):
+        table = Table(title=name + " Evaluation")
         table.add_column("Metric", justify="center", style="cyan")
         table.add_column("Time (ns)", style="magenta", justify="center", no_wrap=False)
         table.add_column("Time (sec)", style="magenta", justify="center", no_wrap=False)

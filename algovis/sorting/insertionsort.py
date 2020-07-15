@@ -187,7 +187,7 @@ class InsertionSort(BaseClass):
             "Average Time": _average_time
         }
 
-        return super()._print_evaluate(_eval_dict)
+        return super()._print_evaluate(_eval_dict, "Insertion Sort")
 
     # visualize method to visualise the sorting happeneing
     # Takes in 2 arguments reverse and interval

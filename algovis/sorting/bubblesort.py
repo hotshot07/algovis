@@ -191,7 +191,7 @@ class BubbleSort(BaseClass):
             "Average Time": _average_time
         }
 
-        return super()._print_evaluate(_eval_dict)
+        return super()._print_evaluate(_eval_dict, "Bubble Sort")
 
     # visualize method to visualise the sorting happeneing
     # Takes in 2 arguments reverse and interval

@@ -82,8 +82,8 @@ class MergeSort(BaseClass):
             yield from self.__descending_sort_merge_algo(passed_list, start, mid, end)
         yield passed_list
 
-
     # generator passed to visualize method, yields a list after every iteration
+
     def __animate_sort_it(self, reverse=False):
         passed_list = copy.deepcopy(self.__datalist)
         for i in self.__merge_algo(passed_list, 0, len(passed_list) - 1, reverse):
@@ -106,13 +106,88 @@ class MergeSort(BaseClass):
 
         return iteration_dict
 
+    # for evaluation
+    # using https://stackoverflow.com/questions/7063697/why-is-my-mergesort-so-slow-in-python
+    # Making mergesort faster
+    # I have used this because I wanted the above codes to be 'cleaner'
+    # but this one to be as fast as possible
+    def __fast_merge_asc(self, array1, array2):
+        merged_array = []
+        while array1 or array2:
+            if not array1:
+                merged_array.append(array2.pop())
+            elif (not array2) or array1[-1] > array2[-1]:
+                merged_array.append(array1.pop())
+            else:
+                merged_array.append(array2.pop())
+        merged_array.reverse()
+        return merged_array
+
+    def __fast_merge_desc(self, array1, array2):
+        merged_array = []
+        while array1 or array2:
+            if not array1:
+                merged_array.append(array2.pop())
+            elif (not array2) or array1[-1] < array2[-1]:
+                merged_array.append(array1.pop())
+            else:
+                merged_array.append(array2.pop())
+        merged_array.reverse()
+        return merged_array
+
+    def __no_len_ms(self, array, reverse):
+        n = len(array)
+        if n <= 1:
+            return array
+        mid = int(n / 2)
+        left = array[:mid]
+        right = array[mid:]
+        if not reverse:
+            return self.__fast_merge_asc(self.__no_len_ms(left, reverse), self.__no_len_ms(right, reverse))
+        else:
+            return self.__fast_merge_desc(self.__no_len_ms(left, reverse), self.__no_len_ms(right, reverse))
+
+    def __eval_helper(self, reverse, iterations):
+        timing_list = []
+
+        while iterations:
+            time_list = copy.deepcopy(self.__datalist)
+
+            timer = Timer()
+            timer.start()
+
+            self.__no_len_ms(time_list, reverse)
+
+            stop = timer.stop()
+            timing_list.append(stop)
+
+            iterations -= 1
+
+        return timing_list
+
     # sort method calls __sort_it, which works more or less like the ones in bubble
     # or insertion, the difference being that the reverse option is passed to
     # __merge_algo, which decides based on reverse which generator to call
     # __ascending_sort_merge_algo or __descending_sort_merge_algo
+
     def sort(self, reverse=False, steps=False):
         _sorted_object = self.__sort_it(reverse, steps)
         return list(_sorted_object.values())[-1]
+
+    def evaluate(self, reverse=False, iterations=1):
+        _timing_list = self.__eval_helper(reverse, iterations)
+
+        _minimum_time = min(_timing_list)
+        _maximum_time = max(_timing_list)
+        _average_time = int(sum(_timing_list) / iterations)
+
+        _eval_dict = {
+            "Minimum Time": _minimum_time,
+            "Maximum Time": _maximum_time,
+            "Average Time": _average_time
+        }
+
+        return super()._print_evaluate(_eval_dict, "Merge Sort")
 
     # visualize method in quicksort calls __animate_sort_it
 
