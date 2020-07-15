@@ -17,6 +17,9 @@ class BubbleSort(BaseClass):
         return f'algovis.sorting.bubblesort.BubbleSort({self.__datalist})'
 
     # A generator for the ascending bubble sort algorithm
+    # self is passed and it yields list after every iteration
+    # till the list is sorted
+
     def __ascending_sort_algo(self):
         asc_list = copy.deepcopy(self.__datalist)
         length_of_list = len(asc_list)
@@ -35,6 +38,8 @@ class BubbleSort(BaseClass):
             yield asc_list
 
     # A generator for the descending bubble sort algorithm
+    # works in same way as the ascending sort algorithm
+
     def __descending_sort_algo(self):
         desc_list = copy.deepcopy(self.__datalist)
         length_of_list = len(desc_list)
@@ -54,10 +59,17 @@ class BubbleSort(BaseClass):
             yield desc_list
 
     # The function that is called by sort method
+    # It checks which generator to call and if we have to show steps
+    # It stores every iteration of yielded list in a dictionary
+    # If steps is true, then _print_steps is called from BaseClass
+    # and the dictionary iteration_dict is passed to it
+    # function returns iteration_dict
+
     def __sort_it(self, reverse, steps):
         iteration_dict = {}
         iterations = 0
 
+        # the 0th iteration is basically the passed list
         iteration_dict[iterations] = self.__datalist
 
         if not reverse:
@@ -77,6 +89,9 @@ class BubbleSort(BaseClass):
     # Evaluating time of ascending bubble sort
     # Didn't use generators as I dont want to waste time in
     # function overheads
+    # returns a list of time taken to sort the list
+    # the number of emelemts in the list will be equal to number of iterations
+    # default number of iterations is 1
     def __time_eval_asc(self, iterations):
         time_list = copy.deepcopy(self.__datalist)
         length_of_list = len(time_list)
@@ -107,6 +122,7 @@ class BubbleSort(BaseClass):
         return timing_list
 
     # Evaluating time of descending bubble sort
+    # works in same way as __time_eval_asc method
     def __time_eval_desc(self, iterations):
         time_list = copy.deepcopy(self.__datalist)
         length_of_list = len(time_list)
@@ -137,9 +153,27 @@ class BubbleSort(BaseClass):
 
         return timing_list
 
+    # Sort method
+    # Takes in 2 arguments reverse and steps
+    # if reverse is true, it sorts it in reverse order
+    # if steps is true, it shows the steps of every iteration
+    # it returns the last element in the dictionary, which
+    # is the sorted list
+
     def sort(self, reverse=False, steps=False):
         _sorted_object = self.__sort_it(reverse, steps)
         return list(_sorted_object.values())[-1]
+
+    # Evauate method
+    # Takes in 2 arguments reverse and iterations
+    # if reverse is true, it sorts it in reverse order
+    # default of iterations is 1
+    # default of reverse is false
+    # it uses the __time_eval_asc or __time_eval_desc
+    # accordingly and gets a _timing list consisting
+    # of time(in nanosecond) it took to sort the list
+    # the dictionary _eval_dict is passed to _print_evaluate
+    # present in BaseClass to print it
 
     def evaluate(self, reverse=False, iterations=1):
         if reverse:
@@ -151,13 +185,19 @@ class BubbleSort(BaseClass):
         _maximum_time = max(_timing_list)
         _average_time = int(sum(_timing_list) / iterations)
 
-        eval_dict = {
+        _eval_dict = {
             "Minimum Time": _minimum_time,
             "Maximum Time": _maximum_time,
             "Average Time": _average_time
         }
 
-        return super()._print_evaluate(eval_dict)
+        return super()._print_evaluate(_eval_dict)
+
+    # visualize method to visualise the sorting happeneing
+    # Takes in 2 arguments reverse and interval
+    # AnimateAlgorithm from _animation is used to generate figures
+    # if reverse is true, AnimateAlgorithm calls the  __descending_sort_algo() generator
+    # interval is used to set the speed of visualization, 250 is default.
 
     def visualize(self, reverse=False, interval=250):
         _vis_list = copy.deepcopy(self.__datalist)
@@ -167,11 +207,17 @@ class BubbleSort(BaseClass):
         else:
             AnimateAlgorithm("Bubble Sort", _vis_list, self.__descending_sort_algo(), interval)
 
+    # info class method
+    # path to the markdown file is passed here
+    # and _print_info from BaseClass is used to render it
+
     @classmethod
     def info(cls):
         path_to_information = "algovis/sorting/_markdown_files/bubblesort.md"
         return super()._print_info(path_to_information)
 
+    # code class method
+    # _print_code from BaseClass is used to render it
     @classmethod
     def code(cls):
         my_code = """

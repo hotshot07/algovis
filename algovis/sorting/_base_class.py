@@ -1,6 +1,7 @@
 # This module contains the functions
-# common to sorting algorithms
+# common to all sorting algorithms
 
+# rich library is used to print data in terminal
 from rich import print as rprint
 from rich.console import Console
 from rich.table import Table
@@ -9,6 +10,7 @@ from rich.markdown import Markdown
 
 
 class BaseClass:
+    #checks for the datalist passed
     def __init__(self, datalist):
         if not isinstance(datalist, list):
             raise TypeError('parameter must be a list datatype')
@@ -20,6 +22,7 @@ class BaseClass:
             if not isinstance(_element, int):
                 raise TypeError('parameter can only contain int datatype')
 
+    # _print_steps takes in dictionary and prints the table of iterations
     def _print_steps(self, step_dict):
         table = Table(title="Steps")
         table.add_column("Iteration", justify="center", style="cyan")
@@ -31,6 +34,7 @@ class BaseClass:
         console = Console()
         console.print(table)
 
+    # _print_steps takes in eval_dict dictionary and prints the different metrics
     def _print_evaluate(self, eval_dict):
         table = Table(title="Evaluattion")
         table.add_column("Metric", justify="center", style="cyan")
@@ -43,6 +47,7 @@ class BaseClass:
         console = Console()
         console.print(table)
 
+    # takes in path to the markdown file and renders it
     def _print_info(path_to_information):
         console = Console()
         with open(path_to_information) as readme:
@@ -50,6 +55,7 @@ class BaseClass:
 
         console.print(information)
 
+    # takes in code as a string and displays it in terminal
     def _print_code(my_code):
         syntax = Syntax(my_code, "python", theme="monokai", line_numbers=True)
         console = Console()

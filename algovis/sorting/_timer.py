@@ -1,4 +1,4 @@
-# timer.py
+# timer.py from realpython tutorial
 import time
 
 
