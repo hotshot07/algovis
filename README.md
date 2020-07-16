@@ -1,5 +1,4 @@
-[![CodeFactor](https://www.codefactor.io/repository/github/hotshot07/algovis/badge/master?s=197e9c6e50413744c0a2c43785a6dee096ee1a4d)](https://www.codefactor.io/repository/github/hotshot07/algovis/overview/master)
-
+![PyPI](https://img.shields.io/pypi/v/algovis) [![CodeFactor](https://www.codefactor.io/repository/github/hotshot07/algovis/badge/master?s=197e9c6e50413744c0a2c43785a6dee096ee1a4d)](https://www.codefactor.io/repository/github/hotshot07/algovis/overview/master) [![Downloads](https://pepy.tech/badge/algovis)](https://pepy.tech/project/algovis) <!-- ![PyPI - Downloads](https://img.shields.io/pypi/dm/algovis) --> ![GitHub last commit](https://img.shields.io/github/last-commit/hotshot07/algovis) ![PyPI - License](https://img.shields.io/pypi/l/algovis) ![Twitter Follow](https://img.shields.io/twitter/follow/gamesetmatch07?style=social) 
 ![Algovis](/algovis_img.PNG?raw=true)
 
 Algovis is a library with which you can learn how to code data structures and algorithms in Python
@@ -22,7 +21,7 @@ Currently the library has
 
 # Getting Started
 
-I would suggest making a virtual environment as this library is still in
+I would highly suggest making a virtual environment. A virtual environment is a tool that helps to keep dependencies required by different projects separate by creating isolated python virtual environments for them.
 
 ```bash
 # making a test folder
@@ -33,7 +32,7 @@ $mkdir test_algovis
 
 $cd test_algovis
 
-# making a virtual env (you can replace envname with whatever name you like)
+# making a virtual environment (you can replace envname with whatever name you like)
 
 $python3 -m venv envname
 

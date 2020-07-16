@@ -5,7 +5,7 @@ repo_url: https://github.com/hotshot07/algovis
 
 nav:
     - Home: 'index.md'
-    - Sorting: 
+    - Sorting:
       - Bubble Sort: 'sorting/bubblesort.md'
       - Insertion Sort: 'sorting/insertionsort.md'
       - Selection Sort: 'sorting/selectionsort.md'
