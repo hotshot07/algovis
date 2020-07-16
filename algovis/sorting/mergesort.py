@@ -1,8 +1,3 @@
-"""
-Author: Mayank Arora (hotshot07)
-"""
-
-
 from ._base_class import BaseClass
 from ._timer import Timer
 from ._animation import AnimateAlgorithm
@@ -144,8 +139,7 @@ class MergeSort(BaseClass):
         right = array[mid:]
         if not reverse:
             return self.__fast_merge_asc(self.__no_len_ms(left, reverse), self.__no_len_ms(right, reverse))
-        else:
-            return self.__fast_merge_desc(self.__no_len_ms(left, reverse), self.__no_len_ms(right, reverse))
+        return self.__fast_merge_desc(self.__no_len_ms(left, reverse), self.__no_len_ms(right, reverse))
 
     def __eval_helper(self, reverse, iterations):
         timing_list = []
@@ -195,3 +189,8 @@ class MergeSort(BaseClass):
         _vis_list = copy.deepcopy(self.__datalist)
 
         AnimateAlgorithm("Merge Sort", _vis_list, self.__animate_sort_it(reverse), interval)
+
+    @classmethod
+    def info(cls):
+        path_to_information = "algovis/sorting/_markdown_files/mergesort.md"
+        return super()._print_info(path_to_information)

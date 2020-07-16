@@ -1,0 +1,21 @@
+site_name: Algovis
+site_author: Mayank
+
+repo_url: https://github.com/hotshot07/algovis
+
+nav:
+    - Home: 'index.md'
+    - Sorting: 
+      - Bubble Sort: 'sorting/bubblesort.md'
+      - Insertion Sort: 'sorting/insertionsort.md'
+      - Selection Sort: 'sorting/selectionsort.md'
+      - Merge Sort: 'sorting/mergesort.md'
+      - Quick Sort: 'sorting/quicksort.md'
+    - Searching:
+      - Linear Search: 'searching/linearsearch.md'
+      - Binary Search: 'searching/binarysearch.md'
+    - About:
+      - Author: 'about/about.md'
+      - License : 'about/license.md'
+
+theme: readthedocs

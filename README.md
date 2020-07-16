@@ -8,51 +8,52 @@ It will have most of the prominent sorting, searching and graph algorithms with 
 
 Currently the library has
 
-# Sorting
+### Sorting
 
 - Bubble Sort
+- Insertion Sort
+- Selection Sort
+- Merge Sort
+- Quick Sort
+
+### Searching
+- Linear Search
+- Binary Search
 
 # Getting Started
 
-I would highly suggest making a virtual environment as this library is still in beta
+I would suggest making a virtual environment as this library is still in
 
-For making a virtual environment, we can use virtualenv
-
-```python
-# installing virtualenv
-
-$pip3 install virtualenv
-
+```bash
 # making a test folder
 
-$mkdir test
+$mkdir test_algovis
 
 # make it the current directory
 
-$ cd test
+$cd test_algovis
 
 # making a virtual env (you can replace envname with whatever name you like)
 
-$virtualenv - p python3 envname
+$python3 -m venv envname
 
 # activating it
 
-$ source envname / bin / activate
+$source envname/bin/activate
 
 # installing algovis
 
-$ pip3 install algovis
+$pip3 install algovis
 ```
 
 You can only access algovis inside this virtual environment. To leave this virtualenv, type
 
-```python
+```bash
 $deactivate
 ```
 
-# Using this library
+# Using the library
 
-I have designed the library this way so that supporting making changes to it is easy
 
 ```python
 # Using bubblesort in algovis
@@ -78,7 +79,8 @@ bs_object = sorting.BubbleSort(my_list)
 # The class has 3 functions
 
 # .sort() with 2 optional parameters reverse and steps, both boolean
-# reverse sorts the list in descending order and steps shows every iteration
+# reverse sorts the list in descending order
+# steps shows every iteration
 # of the bubble sort algotithm
 
 # default of reverse if False

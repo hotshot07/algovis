@@ -2,7 +2,6 @@
 # common to all sorting algorithms
 
 # rich library is used to print data in terminal
-from rich import print as rprint
 from rich.console import Console
 from rich.table import Table
 from rich.syntax import Syntax
