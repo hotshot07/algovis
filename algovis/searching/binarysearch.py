@@ -72,8 +72,8 @@ class BinarySearch(BaseClass):
         table = Table(title="Binary search steps")
         table.add_column("Iteration", justify="center", style="cyan")
         table.add_column("Left index", justify="center", style="cyan")
-        table.add_column("Right index", justify="center", style="cyan")
         table.add_column("Middle index", justify="center", style="cyan")
+        table.add_column("Right index", justify="center", style="cyan")
         table.add_column("List", style="magenta", justify="center", no_wrap=False)
 
         for iteration in list_of_iterations:
@@ -82,7 +82,7 @@ class BinarySearch(BaseClass):
             right_ix = str(iteration[2])
             middle_ix = str(iteration[3])
             list_ = " ".join(str(i) for i in iteration[4])
-            table.add_row(iter_, left_ix, right_ix, middle_ix, list_)
+            table.add_row(iter_, left_ix, middle_ix, right_ix, list_)
 
         if index == -1:
             table.add_row(" ", " ", " ", " ", f"[bold red]{number} NOT FOUND in this list [/bold red]")
@@ -101,3 +101,51 @@ class BinarySearch(BaseClass):
         else:
             console = Console()
             return console.print(_search_result)
+
+    def evaluate(self, number, iterations=1):
+
+        _eval_list = copy.deepcopy(self.__datalist)
+
+        _timing_list = []
+
+        _eval_iter = iterations
+
+        while _eval_iter:
+            timer = Timer()
+            timer.start()
+
+            left_index = 0
+            right_index = len(_eval_list) - 1
+
+            while left_index <= right_index:
+
+                middle_index = left_index + (right_index - left_index) // 2
+
+                if _eval_list[middle_index] == number:
+                    _stop = timer.stop()
+                    _timing_list.append(_stop)
+                    break
+
+                elif _eval_list[middle_index] < number:
+                    left_index = middle_index + 1
+
+                else:
+                    right_index = middle_index - 1
+
+            if _eval_list[middle_index] != number:
+                _stop = timer.stop()
+                _timing_list.append(_stop)
+
+            _eval_iter -= 1
+
+        _minimum_time = min(_timing_list)
+        _maximum_time = max(_timing_list)
+        _average_time = int(sum(_timing_list) / iterations)
+
+        _eval_dict = {
+            "Minimum Time": _minimum_time,
+            "Maximum Time": _maximum_time,
+            "Average Time": _average_time
+        }
+
+        return super()._print_evaluate(_eval_dict, "Binary Search")
