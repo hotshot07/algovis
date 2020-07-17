@@ -40,7 +40,7 @@ class LinearSearch(BaseClass):
             if not search_str:
                 search_str = f"[bold red]{number} NOT FOUND in this list [/bold red]"
 
-            return search_str
+            return search_str, 0
 
     def __print_steps(self, step_dict):
         table = Table(title=" Linear search steps")
@@ -59,9 +59,8 @@ class LinearSearch(BaseClass):
 
         if steps:
             return self.__print_steps(_search_result)
-        else:
-            console = Console()
-            return console.print(_search_result)
+        console = Console()
+        return console.print(_search_result)
 
     def evaluate(self, number, iterations=1):
 
