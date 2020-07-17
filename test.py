@@ -1,8 +1,8 @@
-from algovis import sorting
+from algovis import searching
 import random
 
 
-my_list = [random.randint(0, 100) for i in range(20)]
+my_list = [random.randint(0, 10) for i in range(20)]
 
 # bs_object1 = sorting.MergeSort(my_list)
 
@@ -22,6 +22,8 @@ my_list = [random.randint(0, 100) for i in range(20)]
 
 # bs_object1.info()
 
-bs_object1 = sorting.QuickSort(my_list)
+bs_object1 = searching.LinearSearch(my_list)
 
-bs_object1.sort()
+print(my_list)
+
+bs_object1.search(10, steps=False)
