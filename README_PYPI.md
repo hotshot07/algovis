@@ -1,7 +1,4 @@
-![PyPI](https://img.shields.io/pypi/v/algovis) [![CodeFactor](https://www.codefactor.io/repository/github/hotshot07/algovis/badge/master?s=197e9c6e50413744c0a2c43785a6dee096ee1a4d)](https://www.codefactor.io/repository/github/hotshot07/algovis/overview/master) [![Downloads](https://pepy.tech/badge/algovis)](https://pepy.tech/project/algovis) <!-- ![PyPI - Downloads](https://img.shields.io/pypi/dm/algovis) --> ![GitHub last commit](https://img.shields.io/github/last-commit/hotshot07/algovis) ![PyPI - License](https://img.shields.io/pypi/l/algovis) ![Twitter Follow](https://img.shields.io/twitter/follow/gamesetmatch07?style=social) 
-![Algovis](/algovis_img.PNG?raw=true)
-
-Algovis is a python library made for visualizing algorithms
+![PyPI](https://img.shields.io/pypi/v/algovis) [![CodeFactor](https://www.codefactor.io/repository/github/hotshot07/algovis/badge/master?s=197e9c6e50413744c0a2c43785a6dee096ee1a4d)](https://www.codefactor.io/repository/github/hotshot07/algovis/overview/master) [![Downloads](https://pepy.tech/badge/algovis)](https://pepy.tech/project/algovis) ![GitHub last commit](https://img.shields.io/github/last-commit/hotshot07/algovis) ![PyPI - License](https://img.shields.io/pypi/l/algovis) ![Twitter Follow](https://img.shields.io/twitter/follow/gamesetmatch07?style=social) 
 
 Algovis is a python library made for visualizing algorithms
 
@@ -138,4 +135,3 @@ This project is licensed under the GNU Affero General Public License v3 (AGPL-3.
 
 * my caffeine addiction
 
-        [Last updated on 17th July, 2020]
