@@ -148,4 +148,8 @@ class BinarySearch(BaseClass):
             "Average Time": _average_time
         }
 
+        print()
+        self.search(number, steps=False)
+        print()
+
         return super()._print_evaluate(_eval_dict, "Binary Search")
