@@ -2,28 +2,14 @@ from algovis import searching
 import random
 
 
-my_list = [random.randint(0, 10) for i in range(20)]
-
-# bs_object1 = sorting.MergeSort(my_list)
-
-# #bs_object1.sort(steps=True, reverse=True)
-
-# bs_object1.evaluate(iterations=100, reverse=True)
-
-# # bs_object1.evaluate(iterations=3)
-
-# bs_object2 = sorting.BubbleSort(my_list)
-
-# bs_object2.evaluate(iterations=100)
-
-# bs_object1.sort(steps=True)
-
-# bs_object1.code()
-
-# bs_object1.info()
+my_list = [random.randint(0, 10000000) for i in range(200000)]
 
 bs_object1 = searching.LinearSearch(my_list)
 
-print(my_list)
+# print(my_list)
 
-bs_object1.search(10, steps=False)
+bs_object1.evaluate(750, iterations=25)
+
+bs_object1.info()
+
+bs_object1.code()

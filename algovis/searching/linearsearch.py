@@ -1,4 +1,6 @@
-from ._base_class import BaseClass
+from ._base_class_search import BaseClass
+from ._timer import Timer
+
 from rich.console import Console
 from rich.table import Table
 import copy
@@ -57,7 +59,59 @@ class LinearSearch(BaseClass):
 
         if steps:
             return self.__print_steps(_search_result)
-
         else:
             console = Console()
             return console.print(_search_result)
+
+    def evaluate(self, number, iterations=1):
+
+        _eval_list = copy.deepcopy(self.__datalist)
+        _length_of_list = len(_eval_list)
+
+        _timing_list = []
+
+        _eval_iter = iterations
+
+        while _eval_iter:
+            timer = Timer()
+            timer.start()
+
+            for _index, _value in enumerate(_eval_list):
+                if _value == number:
+                    _stop = timer.stop()
+                    _timing_list.append(_stop)
+                    break
+                elif _index == _length_of_list - 1:
+                    _stop = timer.stop()
+                    _timing_list.append(_stop)
+                    break
+
+            _eval_iter -= 1
+
+        _minimum_time = min(_timing_list)
+        _maximum_time = max(_timing_list)
+        _average_time = int(sum(_timing_list) / iterations)
+
+        _eval_dict = {
+            "Minimum Time": _minimum_time,
+            "Maximum Time": _maximum_time,
+            "Average Time": _average_time
+        }
+
+        print()
+        self.search(number, steps=False)
+        print()
+        return super()._print_evaluate(_eval_dict, "Linear Search")
+
+    @classmethod
+    def info(cls):
+        _path_to_information = "algovis/searching/_markdown_files/linearsearch.md"
+        super()._print_info(_path_to_information)
+
+    @classmethod
+    def code(cls):
+        ls_code = """ 
+        for value in listi:
+            print(value)
+        """
+        super()._print_code(ls_code)
