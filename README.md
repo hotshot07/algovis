@@ -1,6 +1,6 @@
 ![PyPI](https://img.shields.io/pypi/v/algovis) [![CodeFactor](https://www.codefactor.io/repository/github/hotshot07/algovis/badge/master?s=197e9c6e50413744c0a2c43785a6dee096ee1a4d)](https://www.codefactor.io/repository/github/hotshot07/algovis/overview/master) [![Downloads](https://pepy.tech/badge/algovis)](https://pepy.tech/project/algovis) <!-- ![PyPI - Downloads](https://img.shields.io/pypi/dm/algovis) --> ![GitHub last commit](https://img.shields.io/github/last-commit/hotshot07/algovis) ![PyPI - License](https://img.shields.io/pypi/l/algovis) ![Twitter Follow](https://img.shields.io/twitter/follow/gamesetmatch07?style=social)
 
-![Algovis](/algovis_img.PNG?raw=true)
+![Algovis](img/algovis_img.PNG?raw=true)
 
 Algovis is a python library made for visualizing algorithms
 
@@ -69,26 +69,28 @@ from algovis import sorting
 
 import random
 
-# Making a list of 50 random integers in range of 0 to 100
+# Making a list of 20 random integers in range of 0 to 100
 
-my_list = [random.randint(0, 100) for i in range(50)]
+my_list = [random.randint(0, 100) for i in range(20)]
 
 # Making a BubbleSort class object
 # It only accepts lists, raises an exception otherwise
 
 bs_object = sorting.BubbleSort(my_list)
 
+```
+
+Every sorting algorithm has 5 methods
+* info()
+* sort(reverse = False, steps = False)
+* evaluate(iterations = 1)
+* code()
+* visualize(interval = 250)
+
+
+
+```python
 # bs_object is now an object of the bubblesort class
-# The class has 3 functions
-
-# .sort() with 2 optional parameters reverse and steps, both boolean
-# reverse sorts the list in descending order
-# steps shows every iteration
-# of the bubble sort algotithm
-
-# default of reverse if False
-# default of steps is False
-# return type: Dictionary
 
 desc_sort = bs_object.sort(reverse=True, steps=True)
 

@@ -16,7 +16,7 @@ It is a stable sorting algorithm.
 
 
 ### Algorithm
-```
+```R
 procedure bubbleSort(A : list of sortable items)
     n := length(A)
     repeat
