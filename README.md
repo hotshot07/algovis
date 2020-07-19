@@ -1,4 +1,4 @@
-![PyPI](https://img.shields.io/pypi/v/algovis) [![CodeFactor](https://www.codefactor.io/repository/github/hotshot07/algovis/badge/master?s=197e9c6e50413744c0a2c43785a6dee096ee1a4d)](https://www.codefactor.io/repository/github/hotshot07/algovis/overview/master) [![Downloads](https://pepy.tech/badge/algovis)](https://pepy.tech/project/algovis) <!-- ![PyPI - Downloads](https://img.shields.io/pypi/dm/algovis) --> ![GitHub last commit](https://img.shields.io/github/last-commit/hotshot07/algovis) ![PyPI - License](https://img.shields.io/pypi/l/algovis) ![Twitter Follow](https://img.shields.io/twitter/follow/gamesetmatch07?style=social)
+[![CodeFactor](https://www.codefactor.io/repository/github/hotshot07/algovis/badge/master?s=197e9c6e50413744c0a2c43785a6dee096ee1a4d)](https://www.codefactor.io/repository/github/hotshot07/algovis/overview/master) ![PyPI](https://img.shields.io/pypi/v/algovis) [![Downloads](https://pepy.tech/badge/algovis)](https://pepy.tech/project/algovis) <!-- ![PyPI - Downloads](https://img.shields.io/pypi/dm/algovis) --> ![GitHub last commit](https://img.shields.io/github/last-commit/hotshot07/algovis) ![PyPI - License](https://img.shields.io/pypi/l/algovis) ![Twitter Follow](https://img.shields.io/twitter/follow/gamesetmatch07?style=social)
 
 ![Algovis](img/algovis_img.PNG?raw=true)
 
@@ -70,8 +70,9 @@ from algovis import sorting
 import random
 
 # Making a list of 20 random integers in range of 0 to 100
+# using list comprehension 
 
-my_list = [random.randint(0, 100) for i in range(20)]
+my_list = [i+1 for i in range(20)]
 
 # Making a BubbleSort class object
 # It only accepts lists, raises an exception otherwise
@@ -132,9 +133,13 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 * **Mayank Arora** *(hotshot07)* 
 
+
+## Acknowlegments
+* 
+
 ## License
 
 This project is licensed under the GNU Affero General Public License v3 (AGPL-3.0) - see the [LICENSE](LICENSE) file for details
 
 
-        [Last updated on 17th July, 2020]
+    [Last updated on 17th July, 2020]
