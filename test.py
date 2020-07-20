@@ -7,7 +7,7 @@ my_list = [20 - i for i in range(20)]
 
 bs_object = sorting.QuickSort(my_list)
 
-bs_object.sort(pivot="last", steps=True)
+print(bs_object.sort(pivot="last", steps=False))
 
 # bs_object.sort(pivot="random")
 

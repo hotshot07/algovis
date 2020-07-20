@@ -82,8 +82,6 @@ class QuickSort(BaseClass):
             temp_list.append(" ".join(str(x) for x in array))
             iteration_list.append(temp_list)
 
-            # iteration_dict[iterations] = copy.deepcopy(yielded_list)
-
         if steps:
             self.__print_steps_quick(iteration_list)
 
