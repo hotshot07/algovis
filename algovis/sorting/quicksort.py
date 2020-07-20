@@ -41,36 +41,32 @@ class QuickSort(BaseClass):
     def quicksort(self, arr, start, stop, choice):
         if start < stop:
             arr = self.choose_pivot(arr, start, stop, choice)
+
             pivot = start
-            yield arr
-            i = start - 1
-            j = stop + 1
-            while True:
-                while True:
-                    i = i + 1
-                    if arr[i] >= arr[pivot]:
-                        break
-                while True:
-                    j = j - 1
-                    if arr[j] <= arr[pivot]:
-                        break
-                if i >= j:
-                    break
-                else:
+            elem_pivot = arr[pivot]  # pivot
+            i = start + 1  # a variable to memorize where the
+            # partition in the array starts from.
+            for j in range(start + 1, stop + 1):
+
+                # if the current element is smaller or equal to pivot,
+                # shift it to the left side of the partition.
+                if arr[j] <= arr[pivot]:
                     arr[i], arr[j] = arr[j], arr[i]
-                    yield arr
+                    i = i + 1
+            arr[pivot], arr[i - 1] = arr[i - 1], arr[pivot]
+            pivot = i - 1
 
-            yield arr
-            yield from self.quicksort(arr, start, j, choice)
-            yield from self.quicksort(arr, j + 1, stop, choice)
+            yield elem_pivot, arr[start:stop + 1]
+            yield from self.quicksort(arr, start, pivot - 1, choice)
+            yield from self.quicksort(arr, pivot + 1, stop, choice)
 
-    def sort(self):
+    def sort(self, pivot="first"):
         A = copy.deepcopy(self.__datalist)
         print(A)
-        for i in self.quicksort(A, 0, len(self.__datalist) - 1, "random"):
+        for i in self.quicksort(A, 0, len(self.__datalist) - 1, pivot):
             print(i)
 
-    def visualize(self, reverse=False, interval=50):
+    def visualize(self, reverse=False, interval=50, pivot="first"):
         _vis_list = copy.deepcopy(self.__datalist)
 
-        AnimateAlgorithm("Quick Sort", _vis_list, self.quicksort(_vis_list, 0, len(_vis_list) - 1, "random"), interval)
+        AnimateAlgorithm("Quick Sort", _vis_list, self.quicksort(_vis_list, 0, len(_vis_list) - 1, pivot, vis=True), interval)

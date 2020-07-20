@@ -35,7 +35,7 @@ def AnimateAlgorithm(title, passed_list, passed_generator, interval):
                                    repeat=False)
 
     # fig.figsize = (20, 3)  # width:20, height:3
-#plt.bar(range(len(my_dict)), my_dict.values(), align='edge', width=0.3)
+    #plt.bar(range(len(my_dict)), my_dict.values(), align='edge', width=0.3)
     #plt.xticks(range(math.floor(min(passed_list)), math.ceil(max(passed_list))))
     #plt.yticks(range(math.floor(min(passed_list)), math.ceil(max(passed_list))))
     plt.show()
