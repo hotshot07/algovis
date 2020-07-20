@@ -35,7 +35,7 @@ class QuickSort(BaseClass):
         else:
             return arr
 
-    def __quicksort(self, arr, start, stop, choice, vis=False):
+    def __quicksort(self, arr, start, stop, choice, reverse, vis=False):
         if start < stop:
             arr = self.__choose_pivot(arr, start, stop, choice)
             pivot = start
@@ -50,11 +50,19 @@ class QuickSort(BaseClass):
 
                 # if the current element is smaller or equal to pivot,
                 # shift it to the left side of the partition.
-                if arr[j] <= arr[pivot]:
-                    arr[i], arr[j] = arr[j], arr[i]
-                    if vis:
-                        yield arr
-                    i = i + 1
+                if reverse:
+                    if arr[j] >= arr[pivot]:
+                        arr[i], arr[j] = arr[j], arr[i]
+                        if vis:
+                            yield arr
+                        i = i + 1
+                else:
+                    if arr[j] <= arr[pivot]:
+                        arr[i], arr[j] = arr[j], arr[i]
+                        if vis:
+                            yield arr
+                        i = i + 1
+
             arr[pivot], arr[i - 1] = arr[i - 1], arr[pivot]
             pivot = i - 1
 
@@ -62,8 +70,8 @@ class QuickSort(BaseClass):
                 yield arr
             else:
                 yield elem_pivot, arr[start:stop + 1], arr
-            yield from self.__quicksort(arr, start, pivot - 1, choice, vis)
-            yield from self.__quicksort(arr, pivot + 1, stop, choice, vis)
+            yield from self.__quicksort(arr, start, pivot - 1, choice, reverse, vis)
+            yield from self.__quicksort(arr, pivot + 1, stop, choice, reverse, vis)
 
     def __sort_it(self, reverse, steps, pivot):
         passed_list = copy.deepcopy(self.__datalist)
@@ -73,7 +81,7 @@ class QuickSort(BaseClass):
         zeroth_iter = " ".join(str(x) for x in passed_list)
         iteration_list.append([str(0), str(" "), zeroth_iter, zeroth_iter])
 
-        for elem_pivot, array_in_cons, array in self.__quicksort(passed_list, 0, len(passed_list) - 1, pivot):
+        for elem_pivot, array_in_cons, array in self.__quicksort(passed_list, 0, len(passed_list) - 1, pivot, reverse):
             temp_list = []
             iterations += 1
             temp_list.append(str(iterations))
@@ -113,4 +121,4 @@ class QuickSort(BaseClass):
     def visualize(self, reverse=False, interval=50, pivot="first"):
         _vis_list = copy.deepcopy(self.__datalist)
 
-        AnimateAlgorithm("Quick Sort", _vis_list, self.__quicksort(_vis_list, 0, len(_vis_list) - 1, pivot, vis=True), interval)
+        AnimateAlgorithm("Quick Sort", _vis_list, self.__quicksort(_vis_list, 0, len(_vis_list) - 1, pivot, reverse, vis=True), interval, operations=True)
