@@ -73,27 +73,36 @@ class QuickSort(BaseClass):
             yield from self.__quicksort(arr, start, pivot - 1, choice, reverse, vis)
             yield from self.__quicksort(arr, pivot + 1, stop, choice, reverse, vis)
 
-    def __sort_it(self, reverse, steps, pivot):
-        passed_list = copy.deepcopy(self.__datalist)
+    def __sort_it(self, reverse, steps, pivot, eval_=False):
 
-        iteration_list = []
-        iterations = 0
-        zeroth_iter = " ".join(str(x) for x in passed_list)
-        iteration_list.append([str(0), str(" "), zeroth_iter, zeroth_iter])
+        if not eval_:
+            passed_list = copy.deepcopy(self.__datalist)
 
-        for elem_pivot, array_in_cons, array in self.__quicksort(passed_list, 0, len(passed_list) - 1, pivot, reverse):
-            temp_list = []
-            iterations += 1
-            temp_list.append(str(iterations))
-            temp_list.append(str(elem_pivot))
-            temp_list.append(" ".join(str(x) for x in array_in_cons))
-            temp_list.append(" ".join(str(x) for x in array))
-            iteration_list.append(temp_list)
+            iteration_list = []
+            iterations = 0
+            zeroth_iter = " ".join(str(x) for x in passed_list)
+            iteration_list.append([str(0), str(" "), zeroth_iter, zeroth_iter])
 
-        if steps:
-            self.__print_steps_quick(iteration_list)
+            for elem_pivot, array_in_cons, array in self.__quicksort(passed_list, 0, len(passed_list) - 1, pivot, reverse):
+                temp_list = []
+                iterations += 1
+                temp_list.append(str(iterations))
+                temp_list.append(str(elem_pivot))
+                temp_list.append(" ".join(str(x) for x in array_in_cons))
+                temp_list.append(" ".join(str(x) for x in array))
+                iteration_list.append(temp_list)
 
-        return iteration_list
+            if steps:
+                self.__print_steps_quick(iteration_list)
+
+            return iteration_list
+        else:
+            passed_list = copy.deepcopy(self.__datalist)
+
+            for elem_pivot, array_in_cons, array in self.__quicksort(passed_list, 0, len(passed_list) - 1, pivot, reverse):
+                pass
+
+            return
 
     def __print_steps_quick(self, list_of_iterations):
         table = Table(title="Quick Sort steps")
@@ -112,13 +121,60 @@ class QuickSort(BaseClass):
         console = Console()
         console.print(table)
 
+    def __eval_helper(self, reverse, pivot, iterations):
+        timing_list = []
+        steps = False
+        while iterations:
+
+            timer = Timer()
+            timer.start()
+
+            self.__sort_it(reverse, steps, pivot, eval_=True)
+
+            stop = timer.stop()
+            timing_list.append(stop)
+
+            iterations -= 1
+
+        return timing_list
+
     def sort(self, reverse=False, steps=False, pivot="first"):
         pivot = pivot.lower()
 
         _sorted_object = self.__sort_it(reverse, steps, pivot)
         return _sorted_object[-1][-1]
 
+    def evaluate(self, reverse=False, pivot="first", iterations=1):
+        pivot = pivot.lower()
+
+        _timing_list = self.__eval_helper(reverse, pivot, iterations)
+
+        _minimum_time = min(_timing_list)
+        _maximum_time = max(_timing_list)
+        _average_time = int(sum(_timing_list) / iterations)
+
+        _eval_dict = {
+            "Minimum Time": _minimum_time,
+            "Maximum Time": _maximum_time,
+            "Average Time": _average_time
+        }
+
+        return super()._print_evaluate(_eval_dict, "Quick Sort")
+
     def visualize(self, reverse=False, interval=50, pivot="first"):
         _vis_list = copy.deepcopy(self.__datalist)
 
         AnimateAlgorithm("Quick Sort", _vis_list, self.__quicksort(_vis_list, 0, len(_vis_list) - 1, pivot, reverse, vis=True), interval, operations=True)
+
+    @classmethod
+    def info(cls):
+        path_to_information = "algovis/sorting/_markdown_files/bubblesort.md"
+        return super()._print_info(path_to_information)
+
+    @classmethod
+    def code(cls):
+        my_code = """
+
+        """
+
+        return super()._print_code(my_code)
