@@ -68,7 +68,7 @@ class BinarySearch(BaseClass):
 
             return f"[bold red]{number} NOT FOUND in this list [/bold red]", 0
 
-    def __print_steps(self, list_of_iterations, index, number):
+    def __print_steps(self, list_of_iterations, result, number):
         table = Table(title="Binary search steps")
         table.add_column("Iteration", justify="center", style="cyan")
         table.add_column("Left index", justify="center", style="cyan")
@@ -84,7 +84,7 @@ class BinarySearch(BaseClass):
             list_ = " ".join(str(i) for i in iteration[4])
             table.add_row(iter_, left_ix, middle_ix, right_ix, list_)
 
-        if index == -1:
+        if result == -1:
             table.add_row(" ", " ", " ", " ", f"[bold red]{number} NOT FOUND in this list [/bold red]")
         else:
             table.add_row(" ", " ", " ", " ", f"[bold green]FOUND {number} at index {index}[/bold green]")
@@ -94,10 +94,10 @@ class BinarySearch(BaseClass):
 
     def search(self, number, steps=False):
 
-        _search_result, index = self.__search_helper(number, steps)
+        _search_result, result = self.__search_helper(number, steps)
 
         if steps:
-            return self.__print_steps(_search_result, index, number)
+            return self.__print_steps(_search_result, result, number)
         else:
             console = Console()
             return console.print(_search_result)

@@ -34,6 +34,7 @@ class BaseClass:
         console.print(table)
 
     # _print_steps takes in eval_dict dictionary and prints the different metrics
+
     def _print_evaluate(self, eval_dict, name):
         table = Table(title=name + " Evaluation")
         table.add_column("Metric", justify="center", style="cyan")

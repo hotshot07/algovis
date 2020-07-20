@@ -104,7 +104,7 @@ class MergeSort(BaseClass):
     # for evaluation
     # using https://stackoverflow.com/questions/7063697/why-is-my-mergesort-so-slow-in-python
     # Making mergesort faster
-    # I have used this because I wanted the above codes to be 'cleaner'
+    # I have used this as I wanted the methods above to be 'cleaner'
     # but this one to be as fast as possible
     def __fast_merge_asc(self, array1, array2):
         merged_array = []
