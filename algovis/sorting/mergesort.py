@@ -188,7 +188,7 @@ class MergeSort(BaseClass):
     def visualize(self, reverse=False, interval=250):
         _vis_list = copy.deepcopy(self.__datalist)
 
-        AnimateAlgorithm("Merge Sort", _vis_list, self.__animate_sort_it(reverse), interval)
+        AnimateAlgorithm("Merge Sort", _vis_list, self.__animate_sort_it(reverse), interval, operations=True)
 
     @classmethod
     def info(cls):
