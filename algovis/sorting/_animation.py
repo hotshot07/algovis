@@ -40,8 +40,12 @@ def AnimateAlgorithm(title, passed_list, passed_generator, interval, operations=
 
     iteration = [0]
 
-    anim = animation.FuncAnimation(fig, func=__update_fig,
-                                   fargs=(bar_rects, iteration, text, operations), frames=passed_generator, interval=interval,
-                                   repeat=False)
+    anim_sorting = animation.FuncAnimation(fig, func=__update_fig,
+                                           fargs=(bar_rects, iteration, text, operations), frames=passed_generator, interval=interval,
+                                           repeat=False)
 
-    plt.show()
+    Writer = animation.writers['ffmpeg']
+    writer = Writer(fps=15, metadata=dict(artist='Me'), bitrate=1800)
+    anim_sorting.save(f"{title}.mp4", writer=writer)
+
+    # plt.show()

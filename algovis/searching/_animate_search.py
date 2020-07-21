@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+from matplotlib.ticker import MaxNLocator
 import random
 
 
@@ -9,12 +10,12 @@ class AnimateBinarySearch():
 
     def update_fig(self, color_, ax, passed_list, low_text, mid_text, high_text):
         if color_[1][0] == -1:
-            ax.bar(range(len(passed_list)), passed_list, align="center", color=['w'] * len(passed_list))
+            ax.bar(range(len(passed_list)), passed_list, align="edge", color=['w'] * len(passed_list))
             low_text.set_text(f"low: Not Found")
             mid_text.set_text(f"mid: Not Found")
             high_text.set_text(f"high: Not Found")
         else:
-            ax.bar(range(len(passed_list)), passed_list, align="center", color=color_[0])
+            ax.bar(range(len(passed_list)), passed_list, align="edge", color=color_[0])
             low_text.set_text(f"low: {passed_list[color_[1][0]]}")
             mid_text.set_text(f"mid: {passed_list[color_[1][1]]}")
             high_text.set_text(f"high: {passed_list[color_[1][2]]}")
@@ -55,15 +56,17 @@ class AnimateBinarySearch():
 
     def AnimateAlgorithm(self, passed_list, x, interval):
         plt.style.use('dark_background')
-        fig, ax = plt.subplots(figsize=(20, 10))
+        fig, ax = plt.subplots(figsize=(10, 5))
         ax.set_xlim(0, len(passed_list))
-        ax.set_ylim(0, int(1.08 * max(passed_list)))
+        ax.set_ylim(0, int(1.15 * max(passed_list)))
         color_ = ['w'] * len(passed_list)
-        ax.bar(range(len(passed_list)), passed_list, align="center", color=color_)
-        text1 = ax.text(0.02, 0.95, "blue: max and min index \nred: mid index", transform=ax.transAxes)
-        low_text = ax.text(0.02, 0.92, "low: ", transform=ax.transAxes)
-        mid_text = ax.text(0.02, 0.90, "mid: ", transform=ax.transAxes)
-        high_text = ax.text(0.02, 0.88, "mid: ", transform=ax.transAxes)
+        ax.bar(range(len(passed_list)), passed_list, align="edge", color=color_)
+        text1 = ax.text(0.02, 0.92, "blue: max and min index \nred: mid index", transform=ax.transAxes)
+        low_text = ax.text(0.02, 0.88, "low: ", transform=ax.transAxes)
+        mid_text = ax.text(0.02, 0.84, "mid: ", transform=ax.transAxes)
+        high_text = ax.text(0.02, 0.80, "mid: ", transform=ax.transAxes)
+        ax.set_xlabel('index')
+        ax.xaxis.set_major_locator(MaxNLocator(integer=True))
         anim = animation.FuncAnimation(fig, func=self.update_fig,
                                        fargs=(ax, passed_list, low_text, mid_text, high_text), frames=self.color_maker(passed_list, x), interval=interval,
                                        repeat=False)
@@ -74,50 +77,59 @@ class AnimateBinarySearch():
 class AnimateLinearSearch():
 
     def __init__(self, passed_list, number, interval):
+        self.color_list = ['w'] * len(passed_list)
         self.AnimateAlgorithm(passed_list, number, interval)
 
-    def linear_search(self, arr, x):
+    def color_maker(self, arr, x):
         for index, number in enumerate(arr):
             if number != x:
-                yield index, number, 1
+                if index == len(arr) - 1:
+                    self.color_list = ['w'] * len(passed_list)
+                    yield index, -1
+                    return
+                else:
+                    self.color_list[index] = 'b'
+                    yield index, 0
             else:
-                yield index, number, 0
-
-    def color_maker(self, arr, x):
-        for tup in self.linear_search(arr, x):
-            color_list = []
-            index = tup[0]
-            if tup[2] == 1:
-                blue = ['b'] * (index + 1)
-                white = ['w'] * (len(arr) - index - 1)
-                color_list = blue + white
-                yield color_list, tup
-            else:
-                blue = ['b'] * index
-                red = ['r']
-                white = ['w'] * (len(arr) - index - 1)
-                color_list = blue + red + white
-                yield color_list, tup
+                self.color_list[index] = 'r'
+                yield index, 0
                 return
 
-    def update_fig(self, color_, ax, passed_list, at_index, value):
-        ax.bar(range(len(passed_list)), passed_list, align="center", color=color_[0])
-        at_index.set_text(f"At index: {color_[1][0]}")
-        value.set_text(f"value: {color_[1][1]}")
+    def update_fig(self, index_, ax, passed_list, at_index, value):
+        ax.bar(range(len(passed_list)), passed_list, align="edge", color=self.color_list)
+        at_index.set_text(f"At index: {index_[0]}")
+        if index_[1] == -1:
+            value.set_text(f"value: NOT FOUND")
+        else:
+            value.set_text(f"value: {passed_list[index_[0]]}")
 
     def AnimateAlgorithm(self, passed_list, x, interval):
         plt.style.use('dark_background')
-        fig, ax = plt.subplots(figsize=(20, 10))
+        fig, ax = plt.subplots(figsize=(10, 5))
         ax.set_xlim(0, len(passed_list))
-        ax.set_ylim(0, int(1.08 * max(passed_list)))
-        color_ = ['w'] * len(passed_list)
-        ax.bar(range(len(passed_list)), passed_list, align="center", color=color_)
-        #text1 = ax.text(0.02, 0.95, "blue: current \nred: number", transform=ax.transAxes)
-        at_index = ax.text(0.02, 0.92, "at index: ", transform=ax.transAxes)
-        value = ax.text(0.02, 0.90, "value: ", transform=ax.transAxes)
+        ax.set_ylim(0, int(1.15 * max(passed_list)))
+        ax.bar(range(len(passed_list)), passed_list, align="edge", color=self.color_list)
+        ax.set_xlabel('index')
+        ax.xaxis.set_major_locator(MaxNLocator(integer=True))
+        at_index = ax.text(0.02, 0.96, "at index: ", transform=ax.transAxes)
+        value = ax.text(0.02, 0.92, "value: ", transform=ax.transAxes)
 
+        # Hardcoding if first value in the list is x
+        # For some reason the generator and function animation
+        # wouldn't work if only one value is yielded and execution is
+        # stopped
+        if passed_list[0] == x:
+            at_index.set_text(f"At index: 0")
+            value.set_text(f"value: {x}")
+            self.color_list[0] = 'r'
+            ax.bar(range(len(passed_list)), passed_list, align="edge", color=self.color_list)
+            plt.show()
+            return
+
+        # disabling the cache frame data slightly increased the speed of linear search
+        # need to optimize this bit further
         anim = animation.FuncAnimation(fig, func=self.update_fig,
                                        fargs=(ax, passed_list, at_index, value), frames=self.color_maker(passed_list, x), interval=interval,
-                                       repeat=False)
+                                       repeat=False, cache_frame_data=False)
 
         plt.show()
