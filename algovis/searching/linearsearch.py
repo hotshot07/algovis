@@ -1,5 +1,6 @@
 from ._base_class_search import BaseClass
 from ._timer import Timer
+from ._animate_search import AnimateLinearSearch
 
 from rich.console import Console
 from rich.table import Table
@@ -101,6 +102,9 @@ class LinearSearch(BaseClass):
         self.search(number, steps=False)
         print()
         return super()._print_evaluate(_eval_dict, "Linear Search")
+
+    def visualize(self, number, interval=1000):
+        AnimateLinearSearch(self.__datalist, number, interval)
 
     @classmethod
     def info(cls):
