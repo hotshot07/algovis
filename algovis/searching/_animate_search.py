@@ -15,9 +15,9 @@ class AnimateBinarySearch():
         color_ = ['w'] * len(passed_list)
         ax.bar(range(len(passed_list)), passed_list, align="center", color=color_)
         text1 = ax.text(0.02, 0.95, "blue: max and min index \nred: mid index", transform=ax.transAxes)
-        low_text = ax.text(0.02, 0.93, "low: ", transform=ax.transAxes)
-        mid_text = ax.text(0.02, 0.91, "mid: ", transform=ax.transAxes)
-        high_text = ax.text(0.02, 0.89, "mid: ", transform=ax.transAxes)
+        low_text = ax.text(0.02, 0.92, "low: ", transform=ax.transAxes)
+        mid_text = ax.text(0.02, 0.90, "mid: ", transform=ax.transAxes)
+        high_text = ax.text(0.02, 0.88, "mid: ", transform=ax.transAxes)
         anim = animation.FuncAnimation(fig, func=self.update_fig,
                                        fargs=(ax, passed_list, low_text, mid_text, high_text), frames=self.color_maker(passed_list, x), interval=interval,
                                        repeat=False)
@@ -25,10 +25,16 @@ class AnimateBinarySearch():
         plt.show()
 
     def update_fig(self, color_, ax, passed_list, low_text, mid_text, high_text):
-        ax.bar(range(len(passed_list)), passed_list, align="center", color=color_[0])
-        low_text.set_text(f"low: {passed_list[color_[1][0]]}")
-        mid_text.set_text(f"mid: {passed_list[color_[1][1]]}")
-        high_text.set_text(f"high: {passed_list[color_[1][2]]}")
+        if color_[1][0] == -1:
+            ax.bar(range(len(passed_list)), passed_list, align="center", color=['w'] * len(passed_list))
+            low_text.set_text(f"low: Not Found")
+            mid_text.set_text(f"mid: Not Found")
+            high_text.set_text(f"high: Not Found")
+        else:
+            ax.bar(range(len(passed_list)), passed_list, align="center", color=color_[0])
+            low_text.set_text(f"low: {passed_list[color_[1][0]]}")
+            mid_text.set_text(f"mid: {passed_list[color_[1][1]]}")
+            high_text.set_text(f"high: {passed_list[color_[1][2]]}")
 
     def binary_search(self, arr, x):
         arr = sorted(arr)
@@ -50,6 +56,7 @@ class AnimateBinarySearch():
     def color_maker(self, arr, x):
         for tup in self.binary_search(arr, x):
             color_list = []
+            # print(tup)
             for i in range(len(arr)):
                 if i in tup:
                     if tup[1] == i:
