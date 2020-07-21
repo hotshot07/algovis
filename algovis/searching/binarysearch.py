@@ -1,5 +1,6 @@
 from ._base_class_search import BaseClass
 from ._timer import Timer
+from ._animate_search import AnimateBinarySearch
 
 from rich.console import Console
 from rich.table import Table
@@ -87,7 +88,7 @@ class BinarySearch(BaseClass):
         if result == -1:
             table.add_row(" ", " ", " ", " ", f"[bold red]{number} NOT FOUND in this list [/bold red]")
         else:
-            table.add_row(" ", " ", " ", " ", f"[bold green]FOUND {number} at index {index}[/bold green]")
+            table.add_row(" ", " ", " ", " ", f"[bold green]FOUND {number} at index {result}[/bold green]")
 
         console = Console()
         console.print(table)
@@ -153,3 +154,6 @@ class BinarySearch(BaseClass):
         print()
 
         return super()._print_evaluate(_eval_dict, "Binary Search")
+
+    def visualize(self, number, interval=1000):
+        AnimateBinarySearch(self.__datalist, number, interval)

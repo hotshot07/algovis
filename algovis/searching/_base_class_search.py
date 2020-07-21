@@ -12,14 +12,14 @@ class BaseClass:
     # checks for the datalist passed
     def __init__(self, datalist):
         if not isinstance(datalist, list):
-            raise TypeError('parameter must be a list datatype')
+            raise TypeError('Parameter must be a list datatype')
 
         if not datalist:
-            raise ValueError('list cannot be empty')
+            raise ValueError('List cannot be empty')
 
         for _element in datalist:
             if not isinstance(_element, int):
-                raise TypeError('parameter can only contain int datatype')
+                raise TypeError('Parameter can only contain int datatype')
 
     # _print_steps takes in eval_dict dictionary and prints the different metrics
 

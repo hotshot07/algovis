@@ -48,8 +48,9 @@ class QuickSort(BaseClass):
             # partition in the array starts from.
             for j in range(start + 1, stop + 1):
 
-                # if the current element is smaller or equal to pivot,
-                # shift it to the left side of the partition.
+                # if not reverse and the current element is smaller or equal to pivot,
+                # shift it to the left side of the partition else vice versa
+
                 if reverse:
                     if arr[j] >= arr[pivot]:
                         arr[i], arr[j] = arr[j], arr[i]
@@ -168,7 +169,7 @@ class QuickSort(BaseClass):
 
     @classmethod
     def info(cls):
-        path_to_information = "algovis/sorting/_markdown_files/bubblesort.md"
+        path_to_information = "algovis/sorting/_markdown_files/quicksort.md"
         return super()._print_info(path_to_information)
 
     @classmethod

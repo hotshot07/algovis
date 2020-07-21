@@ -1,9 +1,13 @@
 from algovis import sorting
+from algovis import searching
 import random
 
-my_list = [i for i in range(1000)]
+my_list = [random.randint(0, 100) for i in range(200)]
 
 
-bs = sorting.BubbleSort(my_list)
+bs = searching.BinarySearch(my_list)
 
-bs.visualize(reverse=True)
+bs.visualize(93)
+# bs = sorting.BubbleSort(my_list)
+
+# bs.visualize(reverse=True, interval=50)

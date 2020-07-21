@@ -106,6 +106,7 @@ class MergeSort(BaseClass):
     # Making mergesort faster
     # I have used this as I wanted the methods above to be 'cleaner'
     # but this one to be as fast as possible
+    # breaking the DRY principle as it just wasn't working for some reason
     def __fast_merge_asc(self, array1, array2):
         merged_array = []
         while array1 or array2:
@@ -194,3 +195,11 @@ class MergeSort(BaseClass):
     def info(cls):
         path_to_information = "algovis/sorting/_markdown_files/mergesort.md"
         return super()._print_info(path_to_information)
+
+    @classmethod
+    def code(cls):
+        my_code = """
+
+        """
+
+        return super()._print_code(my_code)

@@ -14,21 +14,28 @@ def __update_fig(passed_list, rects, iteration, text, operations):
 
 def AnimateAlgorithm(title, passed_list, passed_generator, interval, operations=False):
 
+    # checking is list had a negative element
+    for elem in passed_list:
+        if elem < 0:
+            raise ValueError("List cannot contain negative elements")
+
     plt.style.use('dark_background')
 
     fig, ax = plt.subplots(figsize=(10, 5))
 
     ax.set_title(title)
 
+    # setting the x and y limits
     ax.set_xlim(0, len(passed_list))
 
-    ax.set_ylim(0, int(1.05 * max(passed_list)))
+    ax.set_ylim(0, int(1.09 * max(passed_list)))
 
-    # ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+    # making x axis labels evenly spaced and integers
     ax.xaxis.set_major_locator(MaxNLocator(integer=True))
 
     bar_rects = ax.bar(range(len(passed_list)), passed_list, align="center")
 
+    # the text that'll be changed
     text = ax.text(0.02, 0.95, "", transform=ax.transAxes)
 
     iteration = [0]
