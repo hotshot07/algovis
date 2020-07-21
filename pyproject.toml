@@ -1,8 +1,9 @@
 [tool.poetry]
 name = "algovis"
-version = "0.1.3"
+version = "0.1.4"
 description = "A Python library for visualising algorithms"
 readme = "README_PYPI.md"
+documentation = "https://algovisdocs.netlify.app"
 authors = ["hotshot07 <aroram@tcd.ie>"]
 maintainers = ["hotshot07 <aroram@tcd.ie>"]
 repository = "https://github.com/hotshot07/algovis"

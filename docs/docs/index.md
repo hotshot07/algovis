@@ -41,4 +41,4 @@ bs_object.visualize(interval=100)
 
 ```
 
-![gif](https://media.giphy.com/media/j3nLvYXv8BIlBkrcAq/source.mp4)
+![gif](https://media.giphy.com/media/j3nLvYXv8BIlBkrcAq/giphy.gif)

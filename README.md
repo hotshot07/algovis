@@ -1,4 +1,4 @@
-[![CodeFactor](https://www.codefactor.io/repository/github/hotshot07/algovis/badge/master?s=197e9c6e50413744c0a2c43785a6dee096ee1a4d)](https://www.codefactor.io/repository/github/hotshot07/algovis/overview/master) ![PyPI](https://img.shields.io/pypi/v/algovis) [![Downloads](https://pepy.tech/badge/algovis)](https://pepy.tech/project/algovis) <!-- ![PyPI - Downloads](https://img.shields.io/pypi/dm/algovis) --> ![GitHub last commit](https://img.shields.io/github/last-commit/hotshot07/algovis) ![PyPI - License](https://img.shields.io/pypi/l/algovis) ![Twitter Follow](https://img.shields.io/twitter/follow/gamesetmatch07?style=social)
+[![CodeFactor](https://www.codefactor.io/repository/github/hotshot07/algovis/badge/master?s=197e9c6e50413744c0a2c43785a6dee096ee1a4d)](https://www.codefactor.io/repository/github/hotshot07/algovis/overview/master) ![PyPI](https://img.shields.io/pypi/v/algovis) [![Downloads](https://pepy.tech/badge/algovis)](https://pepy.tech/project/algovis) <!-- ![PyPI - Downloads](https://img.shields.io/pypi/dm/algovis) --> ![GitHub last commit](https://img.shields.io/github/last-commit/hotshot07/algovis) ![PyPI - License](https://img.shields.io/pypi/l/algovis) ![Twitter Follow](https://img.shields.io/twitter/follow/gamesetmatch07?style=social) [![Netlify Status](https://api.netlify.com/api/v1/badges/f4cede18-f2c6-4299-abc1-92b8a8ef9995/deploy-status)](https://app.netlify.com/sites/algovisdocs/deploys)
 
 ![Algovis](img/algovis_img.PNG?raw=true)
 
@@ -124,18 +124,13 @@ vis_algo = bs_object.visualize(reverse=True)
 * [Rich](https://pypi.org/project/rich/) - Rich is a Python library for rich text and beautiful formatting in the terminal.
 
 
-<!-- ## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us. -->
-
-
 ## Author
 
 * **Mayank Arora** *(hotshot07)* 
 
 
-## Acknowlegments
-* 
+## Acknowledgements
+* my caffeine addiction
 
 ## License
 
