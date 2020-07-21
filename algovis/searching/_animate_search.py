@@ -8,22 +8,27 @@ class AnimateBinarySearch():
         self.AnimateAlgorithm(passed_list, number, interval)
 
     def AnimateAlgorithm(self, passed_list, x, interval):
-        passed_list = sorted(passed_list)
         plt.style.use('dark_background')
         fig, ax = plt.subplots(figsize=(20, 10))
         ax.set_xlim(0, len(passed_list))
         ax.set_ylim(0, int(1.08 * max(passed_list)))
         color_ = ['w'] * len(passed_list)
         ax.bar(range(len(passed_list)), passed_list, align="center", color=color_)
-        ax.text(0.02, 0.95, "blue: max and min index \nred: mid index", transform=ax.transAxes)
+        text1 = ax.text(0.02, 0.95, "blue: max and min index \nred: mid index", transform=ax.transAxes)
+        low_text = ax.text(0.02, 0.93, "low: ", transform=ax.transAxes)
+        mid_text = ax.text(0.02, 0.91, "mid: ", transform=ax.transAxes)
+        high_text = ax.text(0.02, 0.89, "mid: ", transform=ax.transAxes)
         anim = animation.FuncAnimation(fig, func=self.update_fig,
-                                       fargs=(ax, passed_list), frames=self.color_maker(passed_list, x), interval=interval,
+                                       fargs=(ax, passed_list, low_text, mid_text, high_text), frames=self.color_maker(passed_list, x), interval=interval,
                                        repeat=False)
 
         plt.show()
 
-    def update_fig(self, color_, ax, passed_list):
-        ax.bar(range(len(passed_list)), passed_list, align="center", color=color_)
+    def update_fig(self, color_, ax, passed_list, low_text, mid_text, high_text):
+        ax.bar(range(len(passed_list)), passed_list, align="center", color=color_[0])
+        low_text.set_text(f"low: {passed_list[color_[1][0]]}")
+        mid_text.set_text(f"mid: {passed_list[color_[1][1]]}")
+        high_text.set_text(f"high: {passed_list[color_[1][2]]}")
 
     def binary_search(self, arr, x):
         arr = sorted(arr)
@@ -45,7 +50,6 @@ class AnimateBinarySearch():
     def color_maker(self, arr, x):
         for tup in self.binary_search(arr, x):
             color_list = []
-
             for i in range(len(arr)):
                 if i in tup:
                     if tup[1] == i:
@@ -58,4 +62,4 @@ class AnimateBinarySearch():
                     color = "w"
                     color_list.append(color)
 
-            yield color_list
+            yield color_list, tup
