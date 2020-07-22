@@ -1,19 +1,48 @@
+"""Linear search module in sorting package.
+
+The module is used to demonstrate the working of linear search algorithm
+
+Exported methods:
+    search
+    evaluate
+    visualize
+    info
+    code
+
+Helper methods:
+    __search_helper
+    __print_steps
+
+Example usage:
+    search_object = searching.LinearSearch(list)
+    search_object.search(int)
+"""
+
+import copy
+
+from rich.console import Console
+from rich.table import Table
+
 from ._base_class_search import BaseClass
 from ._timer import Timer
 from ._animate_search import AnimateLinearSearch
 
-from rich.console import Console
-from rich.table import Table
-import copy
 
 class LinearSearch(BaseClass):
+    """Linear Search class which is contains methods for analyzing Linear Search
 
+    Attributes:
+        _datalist (list): List of ints provided by the user
+    """ 
     def __init__(self, datalist):
+        """Initializes Linear Search class with datalist to perform operations on
+          
+        """
         super().__init__(datalist)
-        self.__datalist = datalist
+        self._datalist = datalist
 
     def __search_helper(self, number, steps):
-        search_list = copy.deepcopy(self.__datalist)
+        search_list = copy.deepcopy(self._datalist)
 
         if steps:
             search_dict = {}
@@ -65,7 +94,7 @@ class LinearSearch(BaseClass):
 
     def evaluate(self, number, iterations=1):
 
-        _eval_list = copy.deepcopy(self.__datalist)
+        _eval_list = copy.deepcopy(self._datalist)
         _length_of_list = len(_eval_list)
 
         _timing_list = []
@@ -98,23 +127,24 @@ class LinearSearch(BaseClass):
             "Average Time": _average_time
         }
 
+        # print statements for better formatting
         print()
         self.search(number, steps=False)
         print()
         return super()._print_evaluate(_eval_dict, "Linear Search")
 
     def visualize(self, number, interval=1000):
-        AnimateLinearSearch(self.__datalist, number, interval)
+        AnimateLinearSearch(self._datalist, number, interval)
 
     @classmethod
     def info(cls):
         _path_to_information = "algovis/searching/_markdown_files/linearsearch.md"
-        super()._print_info(_path_to_information)
+        super()._print_info(cls, _path_to_information)
 
     @classmethod
     def code(cls):
-        ls_code = """ 
+        ls_code = """
         for value in listi:
             print(value)
         """
-        super()._print_code(ls_code)
+        super()._print_code(cls, ls_code)

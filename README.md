@@ -15,6 +15,7 @@ Currently the library has these algorithms
 - Quick Sort
 
 #### Searching
+
 - Linear Search
 - Binary Search
 
@@ -44,7 +45,7 @@ $source envname/bin/activate
 
 ```
 
-You can only access algovis inside this virtual environment. To leave this virtualenv, type
+You can only access algovis inside this virtual environment. To leave this virtualenv when you're done trying out the library, type
 
 ```bash
 $deactivate
@@ -66,7 +67,7 @@ from algovis import sorting
 # importing random library to fill it a list with random integers
 import random
 
-# Making a list of 20 random integers in range of 0 to 100
+# Making a list of 100 integers from 1-100
 # using list comprehension 
 my_list = [i+1 for i in range(100)]
 
@@ -100,9 +101,11 @@ qs_object = sorting.QuickSort(my_list)
 #sorting in reverse with steps
 qs_object.sort(steps = True, reverse = True, pivot = "first")
 
-#you can see the pivot placed correctly in the 'array in consideration' column
+# you can see the pivot placed correctly in the 'array in consideration' column
+# the whole array at that iteration is shown in 'array' column
 ```
-###### Output
+
+##### Output
 ![qs-sort](img/qs-steps.png)
 
 
@@ -115,10 +118,9 @@ qs_object.sort(steps = True, reverse = True, pivot = "first")
 bs_object = sorting.BubbleSort(my_list)
 
 # calling the evaluate method
-# parameters [iterations = 1, reverse = False]
 bs_object.evaluate(iterations = 100)
 ```
-###### Output
+##### Output
 ![eval-img](img/bs-eval.png)
 
 
@@ -128,10 +130,11 @@ bs_object.evaluate(iterations = 100)
 ```python
 #assuming you already have any sorting object, just call
 bs_object.info()
-```
-###### Output
-![info-img](img/bs-info.png)
 
+# here i've used the bs_object used earlier in the code 
+```
+##### Output
+![info-img](img/bs-info.png)
 
 
 
@@ -140,6 +143,8 @@ bs_object.info()
 ```python
 #assuming you already have any sorting object, just call
 bs_object.code()
+
+# here i've used the bs_object used earlier in the code
 ```
 ###### Output
 ![code-img](img/bs-code.png)
