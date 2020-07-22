@@ -57,82 +57,115 @@ $pip3 install algovis
 ```
 ### Using the library
 
+#### Visualize method
 
 ```python
-# Using bubblesort in algovis
-
 # import the sorting module from library
-
 from algovis import sorting
 
 # importing random library to fill it a list with random integers
-
 import random
 
 # Making a list of 20 random integers in range of 0 to 100
 # using list comprehension 
+my_list = [i+1 for i in range(100)]
 
-my_list = [i+1 for i in range(20)]
+# shuffling the list using random module
+random.shuffle(my_list)
 
 # Making a BubbleSort class object
-# It only accepts lists, raises an exception otherwise
-
 bs_object = sorting.BubbleSort(my_list)
 
+# calling the visualize method
+bs_object.visualize(interval= 100)
 ```
-
-Every sorting algorithm has 5 methods
-* info()
-* sort(reverse = False, steps = False)
-* evaluate(iterations = 1)
-* code()
-* visualize(interval = 250)
+##### Output
+![gif](https://media.giphy.com/media/j3nLvYXv8BIlBkrcAq/giphy.gif)
 
 
+
+
+#### Sort method
 
 ```python
-# bs_object is now an object of the bubblesort class
+# lets work on a shorter example now
+my_list = [i + 1 for i in range(10)]
 
-desc_sort = bs_object.sort(reverse=True, steps=True)
+# shuffling the list using random module
+random.shuffle(my_list)
 
-# .evaluate() with 2 optional parameters reverse and iterations
-# .evaluate() returns a dictionary giving a dictionary of minimum,
-# maximum and average time to sort the list in seconds
+#making a quicksort object
+qs_object = sorting.QuickSort(my_list)
 
-# reverse option sorts it in descending order
-# default is False
+#sorting in reverse with steps
+qs_object.sort(steps = True, reverse = True, pivot = "first")
 
-# iterations is the number of times you want to run the algo
-# default is 1
-
-eval_algo0 = bs_object.evaluate(iterations=100)
-
-eval_algo1 = bs_object.evaluate(reverse=True, iterations=500)
-
-# .visualize() makes the visualization of the list you gave getting sorted
-# in ascending order
-# it has one option, reverse which is a boolean
-
-vis_algo = bs_object.visualize(reverse=True)
-
+#you can see the pivot placed correctly in the 'array in consideration' column
 ```
+###### Output
+![qs-sort](img/qs-steps.png)
 
-## Built With
+
+
+
+
+#### Evaluate method
+```python
+# Making a BubbleSort class object
+bs_object = sorting.BubbleSort(my_list)
+
+# calling the evaluate method
+# parameters [iterations = 1, reverse = False]
+bs_object.evaluate(iterations = 100)
+```
+###### Output
+![eval-img](img/bs-eval.png)
+
+
+
+
+#### Info method
+```python
+#assuming you already have any sorting object, just call
+bs_object.info()
+```
+###### Output
+![info-img](img/bs-info.png)
+
+
+
+
+
+#### code method
+```python
+#assuming you already have any sorting object, just call
+bs_object.code()
+```
+###### Output
+![code-img](img/bs-code.png)
+
+
+
+
+My terminal config is iTerm2 + ohmyzsh + powerlevel10k with dark backgroud. Colors may appear different in your terminal output. It's recommended to change the terminal color to something darker
+
+### Built With
 
 * [Poetry](https://python-poetry.org/) - Python packaging and dependency management tool
 * [Matplotlib](https://pypi.org/project/matplotlib/) - Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python.  
 * [Rich](https://pypi.org/project/rich/) - Rich is a Python library for rich text and beautiful formatting in the terminal.
 
+### Doumentation
+The documentation is built with MKdocs using material theme and is hosted on netlify. You can access is from [here](https://algovisdocs.netlify.app/) 
 
-## Author
+### Author
 
 * **Mayank Arora** *(hotshot07)* 
 
-
-## Acknowledgements
+### Acknowledgements
 * my caffeine addiction
 
-## License
+### License
 
 This project is licensed under the GNU Affero General Public License v3 (AGPL-3.0) - see the [LICENSE](LICENSE) file for details
 
