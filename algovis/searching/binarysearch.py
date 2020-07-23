@@ -15,7 +15,7 @@ Helper methods:
 
 Example usage:
     search_object = searching.Binary(list)
-    search_object.
+    search_object.search(42)
 """
 import copy
 
@@ -24,7 +24,7 @@ from rich.table import Table
 
 from ._base_class_search import BaseClass
 from ._timer import Timer
-from ._animate_search import AnimateBinarySearch
+from ._animate_search import _AnimateBinarySearch
 
 
 class BinarySearch(BaseClass):
@@ -43,8 +43,9 @@ class BinarySearch(BaseClass):
         """Helper method to perform search.
 
         It makes a deepcopy of the datalist to prevent overrides. If the optional
-        steps arguemt is true it returns a list of lists of all the iterations (multiple values)
-        else it returns a f-string in 'rich' format
+        steps arguemt is true it returns a tuple of lists of list of all the iterations (multiple values)
+        and index of 'number'(if present else)-1.
+        Else it returns a f-string in 'rich' format
 
         Args:
             number (int): The number that we have to search
@@ -52,7 +53,7 @@ class BinarySearch(BaseClass):
 
         Returns:
             If steps is true, a tuple of (list of lists, index of element) is returned else a tuple of
-            (f-string,index of element) integer is returned. If element is not found, index is -1
+            (f-string,index of element) is returned. If element is not found, index is -1
 
             (list_of_iterations, index): A tuple of (list of lists, index_of_searched_element)
             (f-string, index): A tuple of (f-string, index_of_searched_element)
@@ -148,6 +149,16 @@ class BinarySearch(BaseClass):
         console.print(table)
 
     def search(self, number, steps=False):
+        """Performs iterative binary search on the list and prints the result
+        to the console.
+
+        Set optional parameter 'steps' to True if you want to print the iterations
+        table to console
+
+        Args:
+            number (int): The number to be searched
+            steps (bool): Optional; (default: False)
+        """
 
         _search_result, index = self.__search_helper(number, steps)
 
@@ -158,11 +169,29 @@ class BinarySearch(BaseClass):
             return console.print(_search_result)
 
     def evaluate(self, number, iterations=1):
+        """Prints the time taken to perform binary search in nanoseconds and seconds
+        to the console.
+
+        Set optional parameter 'iterations' to the number of times you want to
+        perform binary search on the list
+
+        Args:
+            number (int): The number to be searched
+            iterations (int): Optional; (default: 1)
+
+        Raises:
+            TypeError: When user inputs anything other than an int for number
+                       or iteration
+        """
+
+        if not isinstance(number, int):
+            raise TypeError('Number can only be int datatype')
+
+        if not isinstance(iterations, int):
+            raise TypeError('Iterations can only be int datatype')
 
         _eval_list = copy.deepcopy(self._datalist)
-
         _timing_list = []
-
         _eval_iter = iterations
 
         while _eval_iter:
@@ -184,6 +213,7 @@ class BinarySearch(BaseClass):
                 else:
                     right_index = middle_index - 1
 
+            # if we don't find the number and reach the end
             if _eval_list[middle_index] != number:
                 _stop = timer.stop()
                 _timing_list.append(_stop)
@@ -207,4 +237,35 @@ class BinarySearch(BaseClass):
         return super()._print_evaluate(_eval_dict, "Binary Search")
 
     def visualize(self, number, interval=1000):
-        AnimateBinarySearch(self._datalist, number, interval)
+        """Shows a matplotlib visualization of binary search performed on the list
+        user passed
+
+        Set optional parameter 'interval' to change the delay between frames
+        in milliseconds.
+
+        Args:
+            number (int): The number to be searched
+            interval (int): Optional; (default: 1000)
+                            Delay between frames in milliseconds
+
+        Raises:
+            TypeError: An error when user inputs anything other than int for number
+                       or interval
+        """
+
+        # Instantiating the AnimateBinarySearch class whose init method calls the
+        # AnimateAlgorithm function which performs the animation
+        _AnimateBinarySearch(self._datalist, number, interval)
+
+    @classmethod
+    def info(cls):
+        """Class method that provides information on binary search."""
+        _path_to_information = "algovis/searching/_markdown_files/binarysearch.md"
+        super()._print_info(cls, _path_to_information)
+
+    @classmethod
+    def code(cls):
+        """Class method that prints the function for binary search algorithm in console."""
+        ls_code = """
+        print(i)"""
+        super()._print_code(cls, ls_code)

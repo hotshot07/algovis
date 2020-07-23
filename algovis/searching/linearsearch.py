@@ -15,7 +15,7 @@ Helper methods:
 
 Example usage:
     search_object = searching.LinearSearch(list)
-    search_object.search(int)
+    search_object.search(7)
 """
 
 import copy
@@ -25,7 +25,7 @@ from rich.table import Table
 
 from ._base_class_search import BaseClass
 from ._timer import Timer
-from ._animate_search import AnimateLinearSearch
+from ._animate_search import _AnimateLinearSearch
 
 
 class LinearSearch(BaseClass):
@@ -109,10 +109,10 @@ class LinearSearch(BaseClass):
         console.print(table)
 
     def search(self, number, steps=False):
-        """Searches if number is in the list and prints the result on the console.
+        """Searches if number is in the list and prints the result to the console.
 
-        Set optional parameter 'steps' to True if you would like to see the iterations
-        table in linear search
+        Set optional parameter 'steps' to True if you want to print the iterations
+        table to console
 
         Args:
             number (int): The number to be searched
@@ -130,8 +130,8 @@ class LinearSearch(BaseClass):
         return console.print(_search_result)
 
     def evaluate(self, number, iterations=1):
-        """Prints the time taken to perform linear search in nanoseconds and seconds
-           to the console.
+        """Performs linear search on the list and prints the result to the
+           console.
 
         Set optional parameter 'iterations' to the number of times you want to
         perform linear search on the list
@@ -194,10 +194,11 @@ class LinearSearch(BaseClass):
         return super()._print_evaluate(_eval_dict, "Linear Search")
 
     def visualize(self, number, interval=50):
-        """Shows a matplotlib visualization of linear search
+        """Shows a matplotlib visualization of linear search on the list
+           user passed
 
-        Set optional parameter 'interval' to the number of times you want to
-        perform linear search on the list
+        Set optional parameter 'interval' to change the delay between frames
+        in milliseconds.
 
         Args:
             number (int): The number to be searched
@@ -216,7 +217,10 @@ class LinearSearch(BaseClass):
 
         # Instantiating the AnimateLinearSearch class whose init method calls the
         # AnimateAlgorithm function which performs the animation
-        AnimateLinearSearch(self._datalist, number, interval)
+
+        # ISSUE: It gets extremely slow on values more than 25
+        # any way to optimize??
+        _AnimateLinearSearch(self._datalist, number, interval)
 
     @classmethod
     def info(cls):

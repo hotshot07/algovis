@@ -19,7 +19,7 @@ class BaseClass:
     """
 
     def __init__(self, datalist):
-        """Checks the passed object, raises errors
+        """Checks the passed object, raises errors otherwise
 
         Args:
             datalist (list): The list provided by the user

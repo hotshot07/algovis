@@ -1,10 +1,16 @@
+"""Helper module in sorting package.
+
+This module contains 2 classes, AnimateBinarySearch and AnimateLinearSearch
+which contain methods that help in producing the visulization. These classes
+are exported to respective modules and when instantiated, the self method
+calls the AnimateAlgorithm function(each class has it's own).
+"""
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from matplotlib.ticker import MaxNLocator
-import random
 
 
-class AnimateBinarySearch():
+class _AnimateBinarySearch():
     def __init__(self, passed_list, number, interval):
         self.AnimateAlgorithm(passed_list, number, interval)
 
@@ -74,11 +80,38 @@ class AnimateBinarySearch():
         plt.show()
 
 
-class AnimateLinearSearch():
+class _AnimateLinearSearch():
+    """Class to animate Linear Search
+
+    Attributes:
+        color_list (list): List of colors that determine the color of
+                           bars at any point of time
+
+    Methods:
+        AnimateAlgorithm: Initialises the figure and calls the animation
+        update_fig: Function called by animation.FuncAnimation to update the
+                    figure
+
+    Generators:
+        color_maker: Generator called by animation.FuncAnimation that yields
+
+
+
+
+    """
 
     def __init__(self, passed_list, number, interval):
+        """Instantiating the class
+
+        Args:
+            passed_list (list): The list provided by the user
+            number (int): The number we have to search
+            interval (int): delay between frames in milliseconds
+        """
+
+        # colo
         self.color_list = ['w'] * len(passed_list)
-        self.AnimateAlgorithm(passed_list, number, interval)
+        self.animate_algorithm(passed_list, number, interval)
 
     def color_maker(self, arr, x):
         for index, number in enumerate(arr):
@@ -103,7 +136,7 @@ class AnimateLinearSearch():
         else:
             value.set_text(f"value: {passed_list[index_[0]]}")
 
-    def AnimateAlgorithm(self, passed_list, x, interval):
+    def animate_algorithm(self, passed_list, x, interval):
         plt.style.use('dark_background')
         fig, ax = plt.subplots(figsize=(10, 5))
         ax.set_xlim(0, len(passed_list))

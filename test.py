@@ -4,8 +4,11 @@ import random
 
 my_list = [i + 1 for i in range(100)]
 
-bs = searching.LinearSearch(my_list)
+bs = searching.BinarySearch(my_list)
 
-# bs.evaluate(10, iterations=20)
+ls = searching.LinearSearch(my_list)
 
-bs.code()
+# help(bs)
+bs.visualize(26)
+
+# ls.visualize(5, interval=1)
