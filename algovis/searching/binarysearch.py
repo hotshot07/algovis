@@ -1,19 +1,62 @@
+"""Binary search module in sorting package.
+
+The module is used to demonstrate the working of binary search algorithm
+
+Exported methods:
+    search
+    evaluate
+    visualize
+    info
+    code
+
+Helper methods:
+    __search_helper
+    __print_steps
+
+Example usage:
+    search_object = searching.Binary(list)
+    search_object.
+"""
+import copy
+
+from rich.console import Console
+from rich.table import Table
+
 from ._base_class_search import BaseClass
 from ._timer import Timer
 from ._animate_search import AnimateBinarySearch
 
-from rich.console import Console
-from rich.table import Table
-import copy
-
 
 class BinarySearch(BaseClass):
+    """Binary Search class which is contains methods for analyzing Binary Search.
+
+    Attributes:
+        _datalist (list): List of ints provided by the user
+    """
 
     def __init__(self, datalist):
+        """Initializes Binary Search class with datalist."""
         super().__init__(datalist)
         self._datalist = sorted(datalist)
 
     def __search_helper(self, number, steps):
+        """Helper method to perform search.
+
+        It makes a deepcopy of the datalist to prevent overrides. If the optional
+        steps arguemt is true it returns a list of lists of all the iterations (multiple values)
+        else it returns a f-string in 'rich' format
+
+        Args:
+            number (int): The number that we have to search
+            steps (bool): Bool to check if we have to print number of steps
+
+        Returns:
+            If steps is true, a tuple of (list of lists, index of element) is returned else a tuple of
+            (f-string,index of element) integer is returned. If element is not found, index is -1
+
+            (list_of_iterations, index): A tuple of (list of lists, index_of_searched_element)
+            (f-string, index): A tuple of (f-string, index_of_searched_element)
+        """
         search_list = copy.deepcopy(self._datalist)
 
         if steps:
@@ -67,9 +110,19 @@ class BinarySearch(BaseClass):
                 else:
                     right_index = middle_index - 1
 
-            return f"[bold red]{number} NOT FOUND in this list [/bold red]", 0
+            return f"[bold red]{number} NOT FOUND in this list [/bold red]", -1
 
-    def __print_steps(self, list_of_iterations, result, number):
+    def __print_steps(self, list_of_iterations, index, number):
+        """Helper method to print the list_of_iterations to console
+
+        Steps are printed using the rich.table module
+
+        Args:
+            list_of_iterations (list): A list of lists containing data about every iteration
+            index (int): The index of element (number)
+            number (int): Element to be searched
+
+        """
         table = Table(title="Binary search steps")
         table.add_column("Iteration", justify="center", style="cyan")
         table.add_column("Left index", justify="center", style="cyan")
@@ -85,20 +138,21 @@ class BinarySearch(BaseClass):
             list_ = " ".join(str(i) for i in iteration[4])
             table.add_row(iter_, left_ix, middle_ix, right_ix, list_)
 
-        if result == -1:
+        # adding last row based on if we found the number or not
+        if index == -1:
             table.add_row(" ", " ", " ", " ", f"[bold red]{number} NOT FOUND in this list [/bold red]")
         else:
-            table.add_row(" ", " ", " ", " ", f"[bold green]FOUND {number} at index {result}[/bold green]")
+            table.add_row(" ", " ", " ", " ", f"[bold green]FOUND {number} at index {index}[/bold green]")
 
         console = Console()
         console.print(table)
 
     def search(self, number, steps=False):
 
-        _search_result, result = self.__search_helper(number, steps)
+        _search_result, index = self.__search_helper(number, steps)
 
         if steps:
-            return self.__print_steps(_search_result, result, number)
+            return self.__print_steps(_search_result, index, number)
         else:
             console = Console()
             return console.print(_search_result)
@@ -119,17 +173,14 @@ class BinarySearch(BaseClass):
             right_index = len(_eval_list) - 1
 
             while left_index <= right_index:
-
                 middle_index = left_index + (right_index - left_index) // 2
 
                 if _eval_list[middle_index] == number:
                     _stop = timer.stop()
                     _timing_list.append(_stop)
                     break
-
                 elif _eval_list[middle_index] < number:
                     left_index = middle_index + 1
-
                 else:
                     right_index = middle_index - 1
 

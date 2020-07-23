@@ -11,10 +11,10 @@ from rich.markdown import Markdown
 
 
 class BaseClass:
-    """Baseclass is a class inherited by every other public searching module 
+    """Baseclass is a class inherited by every other public searching module
 
     It contains all the functions that are relevent to every searching module
-    super().__init() is called by every searching module. It in itself doesn't 
+    super().__init() is called by every searching module. It in itself doesn't
     store the datalist provided by the user, just checks it.
     """
 
@@ -40,10 +40,10 @@ class BaseClass:
                 raise TypeError('Parameter can only contain int datatype')
 
     def _print_evaluate(self, eval_dict, name):
-        """Helper method to print the 'evaluation' dictionary 
+        """Helper method to print the 'evaluation' dictionary
 
         Args:
-            eval_dict (dict): The dictionary that we pass after evaluating 
+            eval_dict (dict): The dictionary that we pass after evaluating
                               the algorithm
             name (str): gives heading to the table
         """
@@ -76,7 +76,7 @@ class BaseClass:
         """Helper method to print the code in the console using rich syntax
 
         Args:
-            code_str (str): (doc)string containing code 
+            code_str (str): (doc)string containing code
 
         """
         syntax = Syntax(code_str, "python", theme="monokai", line_numbers=True)

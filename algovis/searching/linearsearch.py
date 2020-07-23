@@ -36,29 +36,28 @@ class LinearSearch(BaseClass):
     """
 
     def __init__(self, datalist):
-        """Initializes Linear Search class with datalist to perform operations on"""
+        """Initializes Linear Search class with datalist."""
         super().__init__(datalist)
         self._datalist = datalist
 
     def __search_helper(self, number, steps):
         """Helper method to perform search.
 
-        It makes a deepcopy of the datalist to prevent overrides. If the optional 
+        It makes a deepcopy of the datalist to prevent overrides. If the optional
         steps arguemt is true it returns a dict of all the iterations else it returns
         a f-string in 'rich' format
 
         Args:
             number (int): The number that we have to search
-            steps (bool): Optional;
+            steps (bool): bool to check if we have to print number of steps
 
         Returns:
             If steps is true, a dictionary is retured else a string is returned
 
             search_dict (dict): A dictionary of iterations mapped to where
                                 search is in that iteration
-            search_str (str): f-string in rich format that is printed to the 
+            search_str (str): f-string in rich format that is printed to the
                               console
-
         """
         search_list = copy.deepcopy(self._datalist)
 
@@ -97,7 +96,6 @@ class LinearSearch(BaseClass):
 
         Args:
             step_dict (dict): The dict to be printed
-
         """
 
         table = Table(title=" Linear search steps")
@@ -132,10 +130,10 @@ class LinearSearch(BaseClass):
         return console.print(_search_result)
 
     def evaluate(self, number, iterations=1):
-        """Prints the time taken to perform linear search in nanoseconds and seconds 
+        """Prints the time taken to perform linear search in nanoseconds and seconds
            to the console.
 
-        Set optional parameter 'iterations' to the number of times you want to 
+        Set optional parameter 'iterations' to the number of times you want to
         perform linear search on the list
 
         Args:
@@ -146,11 +144,11 @@ class LinearSearch(BaseClass):
             TypeError: When user inputs anything other than an int for number
                        or iteration
         """
-        if not isinstance(iterations, int):
-            raise TypeError('Iteration can only be int datatype')
-
         if not isinstance(number, int):
             raise TypeError('Number can only be int datatype')
+
+        if not isinstance(iterations, int):
+            raise TypeError('Iterations can only be int datatype')
 
         _eval_list = copy.deepcopy(self._datalist)
         _length_of_list = len(_eval_list)
@@ -198,8 +196,8 @@ class LinearSearch(BaseClass):
     def visualize(self, number, interval=50):
         """Shows a matplotlib visualization of linear search
 
-        Set optional parameter 'interval' to the number of times you want to 
-        perform linear search on the list 
+        Set optional parameter 'interval' to the number of times you want to
+        perform linear search on the list
 
         Args:
             number (int): The number to be searched
@@ -214,7 +212,7 @@ class LinearSearch(BaseClass):
             raise TypeError('Number can only be int datatype')
 
         if not isinstance(interval, int):
-            raise TypeError('interval can only be int datatype')
+            raise TypeError('Interval can only be int datatype')
 
         # Instantiating the AnimateLinearSearch class whose init method calls the
         # AnimateAlgorithm function which performs the animation

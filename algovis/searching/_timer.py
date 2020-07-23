@@ -1,4 +1,8 @@
-# timer.py from realpython tutorial
+""" Helper module in searching package
+
+From https://realpython.com/python-timer/#a-python-timer-class
+Changed a bit to return nanoseconds instead of seconds
+"""
 import time
 
 
