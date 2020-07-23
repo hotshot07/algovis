@@ -35,9 +35,17 @@ class BinarySearch(BaseClass):
     """
 
     def __init__(self, datalist):
-        """Initializes Binary Search class with datalist."""
+        """Initializes Binary Search class with datalist.
+
+        Args:
+            datalist (list): The list provided by the user. If the list is unsorted,
+                             it is automatically sorted
+        """
         super().__init__(datalist)
         self._datalist = sorted(datalist)
+
+    def __repr__(self):
+        return f'algovis.searching.binarysearch.BinarySearch({self._datalist})'
 
     def __search_helper(self, number, steps):
         """Helper method to perform search.
@@ -55,8 +63,8 @@ class BinarySearch(BaseClass):
             If steps is true, a tuple of (list of lists, index of element) is returned else a tuple of
             (f-string,index of element) is returned. If element is not found, index is -1
 
-            (list_of_iterations, index): A tuple of (list of lists, index_of_searched_element)
-            (f-string, index): A tuple of (f-string, index_of_searched_element)
+            list_of_iterations, index: A tuple of (list of lists, index_of_searched_element)
+            f-string, index: A tuple of (f-string, index_of_searched_element)
         """
         search_list = copy.deepcopy(self._datalist)
 

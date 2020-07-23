@@ -1,7 +1,32 @@
-from ._base_class import BaseClass
+"""Insertion sort module in sorting package.
+
+The module is used to demonstrate the working of bubble sort algorithm
+
+Exported methods:
+    sort
+    evaluate
+    visualize
+    info
+    code
+
+Helper methods:
+    __sort_it
+    __time_eval_asc
+    __time_eval_desc
+
+Helper generators:
+    __ascending_sort_algo
+    __descending_sort_algo
+
+Example usage:
+    bs_object = sorting.BubbleSort(datalist)
+    bs_object.sort(reverse = True, steps = True)
+"""
+import copy
+
+from ._base_sorting import BaseClass
 from ._timer import Timer
 from ._animation import AnimateAlgorithm
-import copy
 
 
 class InsertionSort(BaseClass):

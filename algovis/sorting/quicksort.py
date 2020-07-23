@@ -1,4 +1,4 @@
-from ._base_class import BaseClass
+from ._base_sorting import BaseClass
 from ._timer import Timer
 from ._animation import AnimateAlgorithm
 

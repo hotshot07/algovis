@@ -3,6 +3,7 @@ site_author: Mayank
 copyright: © Copyright 2020, Mayank Arora
 
 repo_url: https://github.com/hotshot07/algovis
+edit_uri: edit/master/docs/docs/
 
 nav:
     - Algovis:
@@ -21,7 +22,17 @@ nav:
       - Author: 'about/about.md'
       - License : 'about/license.md'
 
-theme: material
+theme:
+  name: material
+  palette:
+    scheme: default
+    primary: blue
+    accent: light blue
+  favicon: img/favicon.ico
+  logo: img/favicon.ico
+  google_analytics:
+    - UA-149605585-2
+    - auto
 
 markdown_extensions:
   - codehilite

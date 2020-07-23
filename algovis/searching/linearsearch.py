@@ -35,7 +35,9 @@ class LinearSearch(BaseClass):
     """
 
     def __init__(self, datalist):
-        """Initializes Linear Search class with datalist."""
+        """Initializes Linear Search class with datalist.
+        Args:
+            datalist (list): The list provided by the user"""
         super().__init__(datalist)
         self._datalist = datalist
 

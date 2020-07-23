@@ -1,14 +1,12 @@
 from algovis import sorting
-from algovis import searching
+#from algovis import searching
 import random
 
-my_list = [i + 1 for i in range(100)]
+my_list = [random.randint(0, 1000) for i in range(100)]
 
-bs = searching.BinarySearch(my_list)
+bs = sorting.BubbleSort(my_list)
 
-ls = searching.LinearSearch(my_list)
+# bs.evaluate(iterations=1000)
 
-help(ls)
-
-
+help(bs)
 # ls.visualize(5, interval=1)
