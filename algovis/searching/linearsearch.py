@@ -17,7 +17,6 @@ Example usage:
     search_object = searching.LinearSearch(list)
     search_object.search(7)
 """
-
 import copy
 
 from rich.console import Console
@@ -29,7 +28,7 @@ from ._animate_search import _AnimateLinearSearch
 
 
 class LinearSearch(BaseClass):
-    """Linear Search class which is contains methods for analyzing Linear Search.
+    """Linear Search class which contains methods for analyzing Linear Search.
 
     Attributes:
         _datalist (list): List of ints provided by the user
@@ -131,7 +130,7 @@ class LinearSearch(BaseClass):
 
     def evaluate(self, number, iterations=1):
         """Performs linear search on the list and prints the result to the
-           console.
+        console.
 
         Set optional parameter 'iterations' to the number of times you want to
         perform linear search on the list
@@ -194,8 +193,8 @@ class LinearSearch(BaseClass):
         return super()._print_evaluate(_eval_dict, "Linear Search")
 
     def visualize(self, number, interval=50):
-        """Shows a matplotlib visualization of linear search on the list
-           user passed
+        """Shows a visualization using matplotlib of linear search performed on
+        the list user passed.
 
         Set optional parameter 'interval' to change the delay between frames
         in milliseconds.

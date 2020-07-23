@@ -28,7 +28,7 @@ from ._animate_search import _AnimateBinarySearch
 
 
 class BinarySearch(BaseClass):
-    """Binary Search class which is contains methods for analyzing Binary Search.
+    """Binary Search class which contains methods for analyzing Binary Search.
 
     Attributes:
         _datalist (list): List of ints provided by the user
@@ -114,7 +114,7 @@ class BinarySearch(BaseClass):
             return f"[bold red]{number} NOT FOUND in this list [/bold red]", -1
 
     def __print_steps(self, list_of_iterations, index, number):
-        """Helper method to print the list_of_iterations to console
+        """Helper method to print the list_of_iterations to console.
 
         Steps are printed using the rich.table module
 
@@ -237,8 +237,8 @@ class BinarySearch(BaseClass):
         return super()._print_evaluate(_eval_dict, "Binary Search")
 
     def visualize(self, number, interval=1000):
-        """Shows a matplotlib visualization of binary search performed on the list
-        user passed
+        """Shows a visualization using matplotlib of binary search performed on
+        the list user passed.
 
         Set optional parameter 'interval' to change the delay between frames
         in milliseconds.
@@ -252,6 +252,11 @@ class BinarySearch(BaseClass):
             TypeError: An error when user inputs anything other than int for number
                        or interval
         """
+        if not isinstance(number, int):
+            raise TypeError('Number can only be int datatype')
+
+        if not isinstance(interval, int):
+            raise TypeError('Interval can only be int datatype')
 
         # Instantiating the AnimateBinarySearch class whose init method calls the
         # AnimateAlgorithm function which performs the animation

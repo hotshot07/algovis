@@ -8,7 +8,7 @@ bs = searching.BinarySearch(my_list)
 
 ls = searching.LinearSearch(my_list)
 
-# help(bs)
-bs.visualize(26)
+help(ls)
+
 
 # ls.visualize(5, interval=1)

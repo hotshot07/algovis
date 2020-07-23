@@ -1,4 +1,4 @@
-""" Helper module in searching package
+"""Helper module in searching package.
 
 From https://realpython.com/python-timer/#a-python-timer-class
 Changed a bit to return nanoseconds in int instead of seconds by
