@@ -1,23 +1,66 @@
+"""Selection sort module in sorting package.
+
+The module is used to demonstrate the working of selection sort algorithm
+
+Exported methods from SelectionSort class:
+    sort
+    evaluate
+    visualize
+    info
+    code
+
+Helper methods:
+    __sort_it
+    __time_eval_asc
+    __time_eval_desc
+
+Helper generators:
+    __ascending_sort_algo
+    __descending_sort_algo
+
+Example usage:
+    bs_object = sorting.SelectionSort(datalist)
+    bs_object.sort(reverse = True, steps = True)
+"""
+
+import copy
+
 from ._base_sorting import BaseClass
 from ._timer import Timer
 from ._animation import AnimateAlgorithm
-import copy
 
 
 class SelectionSort(BaseClass):
+    """SelectionSort class which contains methods for analyzing selection sort algorithm.
+
+    Attributes:
+        _datalist (list): List of ints provided by the user
+    """
 
     def __init__(self, datalist):
+        """Initializes SelectionSort class with datalist.
+
+        Args:
+            datalist (list): The list provided by the user
+        """
         super().__init__(datalist)
         self._datalist = datalist
 
     def __repr__(self):
+        """__repr__ for SelectionSort class"""
         return f'algovis.sorting.selectionsort.SelectionSort({self._datalist})'
 
-    # A generator for the ascending selection sort algorithm
-    # self is passed and it yields list after every iteration
-    # till the list is sorted
-
     def __ascending_sort_algo(self):
+        """Helper generator for the ascending selection sort algorithm.
+
+        It yields list after every iteration of selection sort till the
+        list is sorted
+
+        Yields:
+              asc_list (list): yields complete list after each iteration of
+                               the algorithm
+
+        """
         asc_list = copy.deepcopy(self._datalist)
         length_of_list = len(asc_list)
 
@@ -33,10 +76,17 @@ class SelectionSort(BaseClass):
             asc_list[i], asc_list[min_idx] = asc_list[min_idx], asc_list[i]
             yield asc_list
 
-    # A generator for the descending selection sort algorithm
-    # works in same way as the ascending sort algorithm
-
     def __descending_sort_algo(self):
+        """Helper generator for the descending selection sort algorithm.
+
+        It yields list after every iteration of selection sort till the
+        list is sorted
+
+        Yields:
+              asc_list (list): yields complete list after each iteration of
+                               the algorithm
+
+        """
         asc_list = copy.deepcopy(self._datalist)
         length_of_list = len(asc_list)
 
@@ -60,6 +110,21 @@ class SelectionSort(BaseClass):
     # function returns iteration_dict
 
     def __sort_it(self, reverse, steps):
+        """Helper method for 'sort' method
+
+        It checks which generator to call based on reverse. Then it stores every
+        iteration of yielded list in a dictionary. If steps is true, then _print_steps
+        is called from BaseClass and the dictionary iteration_dict is passed to it which
+        prints the steps
+
+        Args:
+            reverse (bool): based on reverse, we call the generator to either sort the list
+                            in ascending or descending order
+            steps (bool): If true, it calls function to print steps
+
+        Returns:
+            iteration_dict (dict):
+        """
         iteration_dict = {}
         iterations = 0
 
@@ -80,7 +145,7 @@ class SelectionSort(BaseClass):
 
         return iteration_dict
 
-    # Evaluating time of ascending bubble sort
+    # Evaluating time of ascending selection sort
     # Didn't use generators as I dont want to waste time in
     # function overheads
     # returns a list of time taken to sort the list
@@ -88,6 +153,17 @@ class SelectionSort(BaseClass):
     # default number of iterations is 1
 
     def __time_eval_asc(self, iterations):
+        """Helper method for 'evaluate' method
+
+        Evaluating time of ascending selection sort algorithm.Takes in the
+        'iterations' provided by the user and performs sorting that many times.
+
+        Args:
+            iterations (int): Number of times to perform sorting on this algo
+
+        Returns:
+            timing_list (list): A list of time taken for fully sorting the list
+        """
         time_list = copy.deepcopy(self._datalist)
         length_of_list = len(time_list)
         timing_list = []
@@ -119,6 +195,17 @@ class SelectionSort(BaseClass):
     # works in same way as __time_eval_asc method
 
     def __time_eval_desc(self, iterations):
+        """Helper method for 'evaluate' method
+
+        Evaluating time of descending selection sort algorithm. Works in similar way
+        to __time_eval_asc
+
+        Args:
+            iterations (int): Number of times to perform sorting on this algo
+
+        Returns:
+            timing_list (list): A list of time taken for fully sorting the list
+        """
         time_list = copy.deepcopy(self._datalist)
         length_of_list = len(time_list)
         timing_list = []
@@ -146,29 +233,47 @@ class SelectionSort(BaseClass):
 
         return timing_list
 
-    # Sort method
-    # Takes in 2 arguments reverse and steps
-    # if reverse is true, it sorts it in reverse order
-    # if steps is true, it shows the steps of every iteration
-    # it returns the last element in the dictionary, which
-    # is the sorted list
-
     def sort(self, reverse=False, steps=False):
-        _sorted_object = self.__sort_it(reverse, steps)
-        return list(_sorted_object.values())[-1]
+        """Performs selection sort on the list provided by the user.
 
-    # Evauate method
-    # Takes in 2 arguments reverse and iterations
-    # if reverse is true, it sorts it in reverse order
-    # default of iterations is 1
-    # default of reverse is false
-    # it uses the __time_eval_asc or __time_eval_desc
-    # accordingly and gets a _timing list consisting
-    # of time(in nanosecond) it took to sort the list
-    # the dictionary _eval_dict is passed to _print_evaluate
-    # present in BaseClass to print it
+        Args:
+            reverse (bool): Optional; (default: False)
+                            If True, sorts the list in descending order
+            steps (bool): Optional; (default: False)
+                            If set to True, shows iteration of each pass of
+                            bubblesort on the list
+
+        Returns:
+            sorted_list (list): sorted list
+        """
+        _sorted_object = self.__sort_it(reverse, steps)
+
+        sorted_list = list(_sorted_object.values())[-1]
+
+        return sorted_list
 
     def evaluate(self, reverse=False, iterations=1):
+        """Prints the time taken to perform selection sort in nanoseconds and
+        seconds to the console.
+
+        Set optional parameter 'iterations' to the number of times you want to
+        perform selection sort on the list. After every iteration, the list is reset to
+        it's original unsorted state.
+
+        Set optional parameter 'reverse' to True to sort the list in descending order.
+
+        Args:
+            reverse (bool): Optional; (default: False)
+                            If True, sorts the list in descending order
+            iterations (int): Optional; (default: 1)
+                              Number of times to perform selection sort on list
+
+        Raises:
+            TypeError: When user inputs anything other than an int for iteration
+        """
+        if not isinstance(iterations, int):
+            raise TypeError('Iterations can only be int datatype')
+
         if reverse:
             _timing_list = self.__time_eval_desc(iterations)
         else:
@@ -186,13 +291,26 @@ class SelectionSort(BaseClass):
 
         return super()._print_evaluate(_eval_dict, "Selection Sort")
 
-    # visualize method to visualise the sorting happeneing
-    # Takes in 2 arguments reverse and interval
-    # AnimateAlgorithm from _animation is used to generate figures
-    # if reverse is true, AnimateAlgorithm calls the  __descending_sort_algo() generator
-    # interval is used to set the speed of visualization, 250 is default.
-
     def visualize(self, reverse=False, interval=250):
+        """Shows a visualization using matplotlib of selection sort performed on
+        the list user passed.
+
+        Set optional parameter 'interval' to change the delay between frames
+        in milliseconds.
+
+        Args:
+            reverse (bool): Optional; (default: False)
+                            If True, sorts the list in descending order
+            interval (int): Optional; (default: 250)
+                            Delay between frames in milliseconds
+
+        Raises:
+            TypeError: An error when user inputs anything other than int for
+                       interval
+        """
+        if not isinstance(interval, int):
+            raise TypeError('Interval can only be int datatype')
+
         _vis_list = copy.deepcopy(self._datalist)
 
         if not reverse:
@@ -200,11 +318,8 @@ class SelectionSort(BaseClass):
         else:
             AnimateAlgorithm("Selection Sort", _vis_list, self.__descending_sort_algo(), interval)
 
-    # info class method
-    # path to the markdown file is passed here
-    # and _print_info from BaseClass is used to render it
-
     @classmethod
     def info(cls):
+        """Class method that provides information on selection sort."""
         path_to_information = "algovis/sorting/_markdown_files/selectionsort.md"
         return super()._print_info(path_to_information)

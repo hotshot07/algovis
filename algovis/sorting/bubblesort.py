@@ -303,12 +303,12 @@ class BubbleSort(BaseClass):
         Args:
             reverse (bool): Optional; (default: False)
                             If True, sorts the list in descending order
-            interval (int): Optional; (default: 1000)
+            interval (int): Optional; (default: 250)
                             Delay between frames in milliseconds
 
         Raises:
-            TypeError: An error when user inputs anything other than int for number
-                       or interval
+            TypeError: An error when user inputs anything other than int for
+                       interval
         """
 
         if not isinstance(interval, int):
