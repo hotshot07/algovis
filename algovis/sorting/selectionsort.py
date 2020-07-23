@@ -8,17 +8,17 @@ class SelectionSort(BaseClass):
 
     def __init__(self, datalist):
         super().__init__(datalist)
-        self.__datalist = datalist
+        self._datalist = datalist
 
     def __repr__(self):
-        return f'algovis.sorting.selectionsort.SelectionSort({self.__datalist})'
+        return f'algovis.sorting.selectionsort.SelectionSort({self._datalist})'
 
     # A generator for the ascending selection sort algorithm
     # self is passed and it yields list after every iteration
     # till the list is sorted
 
     def __ascending_sort_algo(self):
-        asc_list = copy.deepcopy(self.__datalist)
+        asc_list = copy.deepcopy(self._datalist)
         length_of_list = len(asc_list)
 
         for i in range(length_of_list):
@@ -37,7 +37,7 @@ class SelectionSort(BaseClass):
     # works in same way as the ascending sort algorithm
 
     def __descending_sort_algo(self):
-        asc_list = copy.deepcopy(self.__datalist)
+        asc_list = copy.deepcopy(self._datalist)
         length_of_list = len(asc_list)
 
         for i in range(length_of_list):
@@ -64,7 +64,7 @@ class SelectionSort(BaseClass):
         iterations = 0
 
         # the 0th iteration is basically the passed list
-        iteration_dict[iterations] = self.__datalist
+        iteration_dict[iterations] = self._datalist
 
         if not reverse:
             for yielded_list in self.__ascending_sort_algo():
@@ -88,7 +88,7 @@ class SelectionSort(BaseClass):
     # default number of iterations is 1
 
     def __time_eval_asc(self, iterations):
-        time_list = copy.deepcopy(self.__datalist)
+        time_list = copy.deepcopy(self._datalist)
         length_of_list = len(time_list)
         timing_list = []
 
@@ -111,7 +111,7 @@ class SelectionSort(BaseClass):
             stop = timer.stop()
             timing_list.append(stop)
             iterations -= 1
-            time_list = copy.deepcopy(self.__datalist)
+            time_list = copy.deepcopy(self._datalist)
 
         return timing_list
 
@@ -119,7 +119,7 @@ class SelectionSort(BaseClass):
     # works in same way as __time_eval_asc method
 
     def __time_eval_desc(self, iterations):
-        time_list = copy.deepcopy(self.__datalist)
+        time_list = copy.deepcopy(self._datalist)
         length_of_list = len(time_list)
         timing_list = []
 
@@ -142,7 +142,7 @@ class SelectionSort(BaseClass):
             stop = timer.stop()
             timing_list.append(stop)
             iterations -= 1
-            time_list = copy.deepcopy(self.__datalist)
+            time_list = copy.deepcopy(self._datalist)
 
         return timing_list
 
@@ -193,7 +193,7 @@ class SelectionSort(BaseClass):
     # interval is used to set the speed of visualization, 250 is default.
 
     def visualize(self, reverse=False, interval=250):
-        _vis_list = copy.deepcopy(self.__datalist)
+        _vis_list = copy.deepcopy(self._datalist)
 
         if not reverse:
             AnimateAlgorithm("Selection Sort", _vis_list, self.__ascending_sort_algo(), interval)

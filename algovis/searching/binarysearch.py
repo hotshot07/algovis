@@ -11,10 +11,10 @@ class BinarySearch(BaseClass):
 
     def __init__(self, datalist):
         super().__init__(datalist)
-        self.__datalist = sorted(datalist)
+        self._datalist = sorted(datalist)
 
     def __search_helper(self, number, steps):
-        search_list = copy.deepcopy(self.__datalist)
+        search_list = copy.deepcopy(self._datalist)
 
         if steps:
             list_of_iterations = []
@@ -105,7 +105,7 @@ class BinarySearch(BaseClass):
 
     def evaluate(self, number, iterations=1):
 
-        _eval_list = copy.deepcopy(self.__datalist)
+        _eval_list = copy.deepcopy(self._datalist)
 
         _timing_list = []
 
@@ -156,4 +156,4 @@ class BinarySearch(BaseClass):
         return super()._print_evaluate(_eval_dict, "Binary Search")
 
     def visualize(self, number, interval=1000):
-        AnimateBinarySearch(self.__datalist, number, interval)
+        AnimateBinarySearch(self._datalist, number, interval)

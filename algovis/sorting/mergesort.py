@@ -7,10 +7,10 @@ import copy
 class MergeSort(BaseClass):
     def __init__(self, datalist):
         super().__init__(datalist)
-        self.__datalist = datalist
+        self._datalist = datalist
 
     def __repr__(self):
-        return f'algovis.sorting.mergesort.MergeSort({self.__datalist})'
+        return f'algovis.sorting.mergesort.MergeSort({self._datalist})'
 
     def __ascending_sort_merge_algo(self, passed_list, start, mid, end):
         merged = []
@@ -80,17 +80,17 @@ class MergeSort(BaseClass):
     # generator passed to visualize method, yields a list after every iteration
 
     def __animate_sort_it(self, reverse=False):
-        passed_list = copy.deepcopy(self.__datalist)
+        passed_list = copy.deepcopy(self._datalist)
         for i in self.__merge_algo(passed_list, 0, len(passed_list) - 1, reverse):
             yield i
 
     def __sort_it(self, reverse, steps):
-        passed_list = copy.deepcopy(self.__datalist)
+        passed_list = copy.deepcopy(self._datalist)
         iteration_dict = {}
         iterations = 0
 
         # the 0th iteration is basically the passed list
-        iteration_dict[iterations] = self.__datalist
+        iteration_dict[iterations] = self._datalist
 
         for yielded_list in self.__merge_algo(passed_list, 0, len(passed_list) - 1, reverse):
             iterations += 1
@@ -146,7 +146,7 @@ class MergeSort(BaseClass):
         timing_list = []
 
         while iterations:
-            time_list = copy.deepcopy(self.__datalist)
+            time_list = copy.deepcopy(self._datalist)
 
             timer = Timer()
             timer.start()
@@ -187,7 +187,7 @@ class MergeSort(BaseClass):
     # visualize method in quicksort calls __animate_sort_it
 
     def visualize(self, reverse=False, interval=250):
-        _vis_list = copy.deepcopy(self.__datalist)
+        _vis_list = copy.deepcopy(self._datalist)
 
         AnimateAlgorithm("Merge Sort", _vis_list, self.__animate_sort_it(reverse), interval, operations=True)
 

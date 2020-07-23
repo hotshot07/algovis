@@ -1,3 +1,9 @@
+"""Helper module in sorting package.
+
+This module contains the BaseClass class which all the sorting algorithms
+inherit. Rich library is used to print out to the console
+"""
+
 from rich.console import Console
 from rich.table import Table
 from rich.syntax import Syntax

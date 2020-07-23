@@ -12,10 +12,10 @@ import random
 class QuickSort(BaseClass):
     def __init__(self, datalist):
         super().__init__(datalist)
-        self.__datalist = datalist
+        self._datalist = datalist
 
     def __repr__(self):
-        return f'algovis.sorting.quicksort.QuickSort({self.__datalist})'
+        return f'algovis.sorting.quicksort.QuickSort({self._datalist})'
 
     def __choose_pivot(self, arr, start, end, choice):
 
@@ -77,7 +77,7 @@ class QuickSort(BaseClass):
     def __sort_it(self, reverse, steps, pivot, eval_=False):
 
         if not eval_:
-            passed_list = copy.deepcopy(self.__datalist)
+            passed_list = copy.deepcopy(self._datalist)
 
             iteration_list = []
             iterations = 0
@@ -98,7 +98,7 @@ class QuickSort(BaseClass):
 
             return iteration_list
         else:
-            passed_list = copy.deepcopy(self.__datalist)
+            passed_list = copy.deepcopy(self._datalist)
 
             for elem_pivot, array_in_cons, array in self.__quicksort(passed_list, 0, len(passed_list) - 1, pivot, reverse):
                 pass
@@ -163,7 +163,7 @@ class QuickSort(BaseClass):
         return super()._print_evaluate(_eval_dict, "Quick Sort")
 
     def visualize(self, reverse=False, interval=50, pivot="first"):
-        _vis_list = copy.deepcopy(self.__datalist)
+        _vis_list = copy.deepcopy(self._datalist)
 
         AnimateAlgorithm("Quick Sort", _vis_list, self.__quicksort(_vis_list, 0, len(_vis_list) - 1, pivot, reverse, vis=True), interval, operations=True)
 
