@@ -296,7 +296,7 @@ class MergeSort(BaseClass):
         return sorted_list
 
     def evaluate(self, reverse=False, iterations=1):
-        """Prints the time taken to perform selection sort in nanoseconds and
+        """Prints the time taken to perform merge sort in nanoseconds and
         seconds to the console.
 
         Set optional parameter 'iterations' to the number of times you want to
@@ -364,6 +364,7 @@ class MergeSort(BaseClass):
 
     @classmethod
     def code(cls):
+        """Class method that prints code to the console."""
         my_code = """
 
         """

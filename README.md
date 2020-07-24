@@ -1,8 +1,8 @@
-[![CodeFactor](https://www.codefactor.io/repository/github/hotshot07/algovis/badge/master?s=197e9c6e50413744c0a2c43785a6dee096ee1a4d)](https://www.codefactor.io/repository/github/hotshot07/algovis/overview/master) ![PyPI](https://img.shields.io/pypi/v/algovis) [![Downloads](https://pepy.tech/badge/algovis)](https://pepy.tech/project/algovis) <!-- ![PyPI - Downloads](https://img.shields.io/pypi/dm/algovis) --> ![GitHub last commit](https://img.shields.io/github/last-commit/hotshot07/algovis) ![PyPI - License](https://img.shields.io/pypi/l/algovis) ![Twitter Follow](https://img.shields.io/twitter/follow/gamesetmatch07?style=social) [![Netlify Status](https://api.netlify.com/api/v1/badges/f4cede18-f2c6-4299-abc1-92b8a8ef9995/deploy-status)](https://app.netlify.com/sites/algovisdocs/deploys)
+[![CodeFactor](https://www.codefactor.io/repository/github/hotshot07/algovis/badge/master?s=197e9c6e50413744c0a2c43785a6dee096ee1a4d)](https://www.codefactor.io/repository/github/hotshot07/algovis/overview/master)  ![PyPI](https://img.shields.io/pypi/v/algovis) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/algovis) [![Downloads](https://pepy.tech/badge/algovis)](https://pepy.tech/project/algovis) <!-- ![PyPI - Downloads](https://img.shields.io/pypi/dm/algovis) --> ![GitHub last commit](https://img.shields.io/github/last-commit/hotshot07/algovis)  ![PyPI - License](https://img.shields.io/pypi/l/algovis) ![Netlify](https://img.shields.io/netlify/f4cede18-f2c6-4299-abc1-92b8a8ef9995) ![Twitter Follow](https://img.shields.io/twitter/follow/gamesetmatch07?style=social)
 
 ![Algovis](img/algovis_img.PNG?raw=true)
 
-Algovis is a python library made for visualizing algorithms
+Algovis is a python library made for visualizing algorithms. You can access the documentation [here](https://algovisdocs.netlify.app/)
 
 Currently the library has these algorithms
 
@@ -68,7 +68,7 @@ from algovis import sorting
 import random
 
 # Making a list of 100 integers from 1-100
-# using list comprehension 
+# using list comprehension
 my_list = [i+1 for i in range(100)]
 
 # shuffling the list using random module
@@ -81,7 +81,7 @@ bs_object = sorting.BubbleSort(my_list)
 bs_object.visualize(interval= 100)
 ```
 ##### Output
-![gif](https://media.giphy.com/media/j3nLvYXv8BIlBkrcAq/giphy.gif)
+![gif](https://media.giphy.com/media/SWiSRxnbbHiJ4u90Ye/giphy.gif)
 
 
 
@@ -131,7 +131,7 @@ bs_object.evaluate(iterations = 100)
 #assuming you already have any sorting object, just call
 bs_object.info()
 
-# here i've used the bs_object used earlier in the code 
+# here i've used the bs_object used earlier in the code
 ```
 ##### Output
 ![info-img](img/bs-info.png)
@@ -141,10 +141,7 @@ bs_object.info()
 
 #### code method
 ```python
-#assuming you already have any sorting object, just call
 bs_object.code()
-
-# here i've used the bs_object used earlier in the code
 ```
 ###### Output
 ![code-img](img/bs-code.png)
@@ -157,22 +154,19 @@ My terminal config is iTerm2 + ohmyzsh + powerlevel10k with dark backgroud. Colo
 ### Built With
 
 * [Poetry](https://python-poetry.org/) - Python packaging and dependency management tool
-* [Matplotlib](https://pypi.org/project/matplotlib/) - Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python.  
-* [Rich](https://pypi.org/project/rich/) - Rich is a Python library for rich text and beautiful formatting in the terminal.
+* [Matplotlib](https://pypi.org/project/matplotlib/) - Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python.
+* [Rich](https://pypi.org/project/rich/) - Rich is a Python library for rich text and beautiful formatting in the terminal made by @willmcgugan
 
 ### Doumentation
-The documentation is built with MKdocs using material theme and is hosted on netlify. You can access is from [here](https://algovisdocs.netlify.app/) 
+The documentation is built with MKdocs using material theme and is hosted on netlify. You can access it [here](https://algovisdocs.netlify.app/)
 
 ### Author
 
-* **Mayank Arora** *(hotshot07)* 
+* **Mayank Arora** *(hotshot07)*
 
 ### Acknowledgements
-* my caffeine addiction
+*
 
 ### License
 
 This project is licensed under the GNU Affero General Public License v3 (AGPL-3.0) - see the [LICENSE](LICENSE) file for details
-
-
-    [Last updated on 17th July, 2020]

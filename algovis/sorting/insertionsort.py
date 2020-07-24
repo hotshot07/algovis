@@ -2,7 +2,7 @@
 
 The module is used to demonstrate the working of insertion sort algorithm
 
-Exported methods from InsertionSort class:
+Exported methods:
     sort
     evaluate
     visualize

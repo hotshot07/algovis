@@ -1,4 +1,30 @@
+"""Quick sort module in sorting package.
 
+The module is used to demonstrate the working of quick sort algorithm. This module
+is significantly differently designed than other sorting modules currently in package,
+trading readibility for complexity, although the API is same.
+
+Exported methods from QuickSort class:
+    sort
+    evaluate
+    visualize
+    info
+    code
+
+Helper methods:
+    __choose_pivot
+    __sort_it
+    __print_steps_quick
+    __eval_helper
+
+
+Helper generators:
+    __quicksort
+
+Example usage:
+    qs_object = sorting.QuickSort(datalist)
+    qs_object.sort(pivot = "random", reverse = True, steps = True)
+"""
 
 import copy
 import random
@@ -12,15 +38,42 @@ from ._animation import animate_algorithm
 
 
 class QuickSort(BaseClass):
+    """Quick Sort class which contains methods for analyzing quick sort algorithm.
+
+    Attributes:
+        _datalist (list): List of ints provided by the user
+    """
+
     def __init__(self, datalist):
+        """Initializes Quick Sort class with datalist.
+
+        Args:
+            datalist (list): The list provided by the user
+        """
         super().__init__(datalist)
         self._datalist = datalist
 
     def __repr__(self):
+        """__repr__ for QuickSort class"""
         return f'algovis.sorting.quicksort.QuickSort({self._datalist})'
 
-    def __choose_pivot(self, arr, start, end, choice):
+    # The next two functions are based on Lomuto partition sceheme quicksort
+    # inspired by
+    # https://www.geeksforgeeks.org/quicksort-using-random-pivoting/
 
+    def __choose_pivot(self, arr, start, end, choice):
+        """Helper method called by __quicksort to choose a pivot
+
+        It chooses a pivot based on user input and what is basically does
+        is that it swaps the 'pivot' with the first element and returns the
+        modded array
+
+        Args:
+            arr (list): The list passed by __quicksort
+            start (int): Index of first element of the array
+            end (int): Index of last element of the array
+            choice (str): User input
+        """
         if choice == 'first':
             return arr
         elif choice == 'last':
@@ -38,6 +91,26 @@ class QuickSort(BaseClass):
             return arr
 
     def __quicksort(self, arr, start, stop, choice, reverse, vis=False):
+        """The helper generator called by __sort_it
+
+        Args:
+            arr (list): The list passed by __quicksort
+            start (int): Index of first element of the array
+            stop (int): Index of last element of the array
+            choice (str): User input
+            reverse (bool): If true, sorts the list in descending order
+            vis (bool): Set to true for animate_algorithm, yields array at
+                        different places throughout the generator
+
+        Yields:
+            arr (list): If vis == True, it yields strategically placed arrays
+                        throughout the generator
+
+            elem_pivot, arr[start:stop + 1], arr (int, list, list):
+                        Yields a tuple of pivot element, list modified and total list
+                        which help make the print steps
+
+        """
         if start < stop:
             arr = self.__choose_pivot(arr, start, stop, choice)
             pivot = start
@@ -76,8 +149,25 @@ class QuickSort(BaseClass):
             yield from self.__quicksort(arr, start, pivot - 1, choice, reverse, vis)
             yield from self.__quicksort(arr, pivot + 1, stop, choice, reverse, vis)
 
+    # OPTIMIZE IT by using a dictionary in next patch
     def __sort_it(self, reverse, steps, pivot, eval_=False):
+        """ Function called by both, __eval_helper and __sort_it
 
+        If the function is used for evaluation, then it just calls __quicksort
+        and does nothing with returned tuple, waits for calls to finish and then
+        returns None.
+
+        If the function is called by __sort_it, then it creates a list of lists of
+        every iteration and stores the data in it. If the steps == True, it calls
+        __print_steps to display the evaluation on the terminal. It returns the
+        iteration_list.
+
+        Args:
+        reverse (bool): bool passed to __quicksort
+        steps (bool): print steps if it's true
+        pivot (str): pivot chosen by the user
+        eval (bool): (default: False)
+        """
         if not eval_:
             passed_list = copy.deepcopy(self._datalist)
 
@@ -108,6 +198,7 @@ class QuickSort(BaseClass):
             return
 
     def __print_steps_quick(self, list_of_iterations):
+        """Helper method to print the list containg data about all the iterations"""
         table = Table(title="Quick Sort steps")
         table.add_column("Iteration", justify="center", style="cyan")
         table.add_column("Pivot", justify="center", style="cyan")
@@ -125,6 +216,19 @@ class QuickSort(BaseClass):
         console.print(table)
 
     def __eval_helper(self, reverse, pivot, iterations):
+        """Helper method for 'evaluate' method
+
+        Evaluating time of ascending quick sort algorithm. Takes in the
+        'iterations' provided by the user and performs sorting that many times.
+
+        Args:
+            iterations (int): Number of times to perform sorting on this algo
+            reverse (bool): check if user wants to reverse the list
+
+        Returns:
+            timing_list (list): A list of time taken for fully sorting the
+                                list 'iterations' number of times
+        """
         timing_list = []
         steps = False
         while iterations:
@@ -142,12 +246,50 @@ class QuickSort(BaseClass):
         return timing_list
 
     def sort(self, reverse=False, steps=False, pivot="first"):
+        """Performs quicksort (lomuto partiton scheme) on the list
+        provided by the user.
+
+        Args:
+            reverse (bool): Optional; (default: False)
+                            If True, sorts the list in descending order
+            steps (bool): Optional; (default: False)
+                            If set to True, shows iteration of each pass of
+                            quicksort on the list
+
+        Returns:
+            sorted_list (list): sorted list
+        """
         pivot = pivot.lower()
 
         _sorted_object = self.__sort_it(reverse, steps, pivot)
+
+        # the sorted list is the last list of the last element of
+        # sorted obect
         return _sorted_object[-1][-1]
 
     def evaluate(self, reverse=False, pivot="first", iterations=1):
+        """Prints the time taken to perform quick sort in nanoseconds and
+        seconds to the console.
+
+        Set optional parameter 'iterations' to the number of times you want to
+        perform selection sort on the list. After every iteration, the list is reset to
+        it's original unsorted state.
+
+        Set optional parameter 'reverse' to True to sort the list in descending order.
+
+        Args:
+            reverse (bool): Optional; (default: False)
+                            If True, sorts the list in descending order
+            iterations (int): Optional; (default: 1)
+                              Number of times to perform selection sort on list
+
+        Raises:
+            TypeError: When user inputs anything other than an int for iteration
+        """
+
+        if not isinstance(iterations, int):
+            raise TypeError('Iterations can only be int datatype')
+
         pivot = pivot.lower()
 
         _timing_list = self.__eval_helper(reverse, pivot, iterations)
@@ -162,16 +304,35 @@ class QuickSort(BaseClass):
             "Average Time": _average_time
         }
 
-        return _timing_list
-        # return super()._print_evaluate(_eval_dict, "Quick Sort")
+        return super()._print_evaluate(_eval_dict, "Quick Sort")
 
     def visualize(self, reverse=False, interval=50, pivot="first"):
+        """Shows a visualization using matplotlib of merge sort performed on
+        the list user passed.
+
+        Set optional parameter 'interval' to change the delay between frames
+        in milliseconds.
+
+        Args:
+            reverse (bool): Optional; (default: False)
+                            If True, sorts the list in descending order
+            interval (int): Optional; (default: 250)
+                            Delay between frames in milliseconds
+
+        Raises:
+            TypeError: An error when user inputs anything other than int for
+                       interval
+        """
+        if not isinstance(interval, int):
+            raise TypeError('Interval can only be int datatype')
+
         _vis_list = copy.deepcopy(self._datalist)
 
         animate_algorithm("Quick Sort", _vis_list, self.__quicksort(_vis_list, 0, len(_vis_list) - 1, pivot, reverse, vis=True), interval, operations=True)
 
     @classmethod
     def info(cls):
+        """Class method that provides information on merge sort."""
         path_to_information = "algovis/sorting/_markdown_files/quicksort.md"
         return super()._print_info(path_to_information)
 
