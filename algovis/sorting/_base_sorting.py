@@ -57,6 +57,13 @@ class BaseClass:
         console.print(table)
 
     def _print_evaluate(self, eval_dict, name):
+        """Helper method to print the 'evaluate' dictionary
+
+        Args:
+            eval_dict (dict): The dictionary that we pass after evaluating
+                              the algorithm
+            name (str): gives heading to the table
+        """
         table = Table(title=name + " Evaluation")
         table.add_column("Metric", justify="center", style="cyan")
         table.add_column("Time (ns)", style="magenta", justify="center", no_wrap=False)

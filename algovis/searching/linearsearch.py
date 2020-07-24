@@ -69,7 +69,7 @@ class LinearSearch(BaseClass):
                 string_num = string_num + str(value) + " "
                 search_dict[index] = string_num
                 if value == number:
-                    search_dict["[bold green] FOUND [/bold green] "] = f"[bold green]FOUND {number} at index {index}[/bold green]"
+                    search_dict["[bold green] FOUND [/bold green]"] = f"[bold green]FOUND {number} at index {index}[/bold green]"
                     break
 
                 elif index == len(search_list) - 1 and search_list[index] != number:

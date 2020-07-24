@@ -5,7 +5,7 @@ which contain methods that help in producing the visulization. These classes
 are exported to respective modules and when instantiated, the self method
 calls the animate_algorithm function(each class has it's own).
 
-Read more about it here
+Read more about FuncAnimation here
 https://matplotlib.org/3.2.1/api/_as_gen/matplotlib.animation.FuncAnimation.html#matplotlib.animation.FuncAnimation
 """
 import matplotlib.pyplot as plt

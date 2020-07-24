@@ -36,14 +36,35 @@ from ._animation import animate_algorithm
 
 
 class MergeSort(BaseClass):
+    """Merge Sort class which contains methods for analyzing merge sort algorithm.
+
+    Attributes:
+        _datalist (list): List of ints provided by the user
+    """
+
     def __init__(self, datalist):
+        """Initializes Merge Sort class with datalist.
+
+        Args:
+            datalist (list): The list provided by the user
+        """
         super().__init__(datalist)
         self._datalist = datalist
 
     def __repr__(self):
+        """__repr__ for MergeSort class"""
         return f'algovis.sorting.mergesort.MergeSort({self._datalist})'
 
     def __ascending_sort_merge_algo(self, passed_list, start, mid, end):
+        """Helper generator for the ascending merge sort algorithm.
+
+        It is called by __merge_algo
+
+        Yields:
+              asc_list (list): yields list after each pass of merge sort on
+                               the list
+
+        """
         merged = []
         leftIdx = start
         rightIdx = mid + 1
@@ -70,6 +91,15 @@ class MergeSort(BaseClass):
         yield passed_list
 
     def __descending_sort_merge_algo(self, passed_list, start, mid, end):
+        """Helper generator for the descending merge sort algorithm.
+
+        It is called by __merge_algo
+
+        Yields:
+              desc_list (list): yields list after each pass of merge sort on
+                               the list
+
+        """
         merged = []
         leftIdx = start
         rightIdx = mid + 1
@@ -96,6 +126,15 @@ class MergeSort(BaseClass):
         yield passed_list
 
     def __merge_algo(self, passed_list, start, end, reverse):
+        """Helper method for merge sort
+
+        It calls the __ascend... or __descen... recursively to perform
+        merge sort algo on the list.
+
+        Yields:
+            passed_list (list): list on which we're performing the algo is
+                                yielded after each iteration
+        """
         if end <= start:
             return
 
@@ -108,14 +147,35 @@ class MergeSort(BaseClass):
             yield from self.__descending_sort_merge_algo(passed_list, start, mid, end)
         yield passed_list
 
-    # generator passed to visualize method, yields a list after every iteration
-
     def __animate_sort_it(self, reverse=False):
+        """The generator passed to _animate_algorithm.
+
+        Args:
+            reverse (bool): Boolean to sort list in reverse
+
+        Yields:
+            iter_list (list): List after each iteration of Merge sort
+        """
         passed_list = copy.deepcopy(self._datalist)
-        for i in self.__merge_algo(passed_list, 0, len(passed_list) - 1, reverse):
-            yield i
+        for iter_list in self.__merge_algo(passed_list, 0, len(passed_list) - 1, reverse):
+            yield iter_list
 
     def __sort_it(self, reverse, steps):
+        """Helper method for 'sort' method
+
+        It checks which generator to call based on reverse. Then it stores every
+        iteration of yielded list in a dictionary. If steps is true, then _print_steps
+        is called from BaseClass and the dictionary iteration_dict is passed to it which
+        prints the steps
+
+        Args:
+            reverse (bool): based on reverse, we call the generator to either sort the list
+                            in ascending or descending order
+            steps (bool): If true, it calls function to print steps
+
+        Returns:
+            iteration_dict (dict):
+        """
         passed_list = copy.deepcopy(self._datalist)
         iteration_dict = {}
         iterations = 0
@@ -132,13 +192,13 @@ class MergeSort(BaseClass):
 
         return iteration_dict
 
-    # for evaluation
-    # using https://stackoverflow.com/questions/7063697/why-is-my-mergesort-so-slow-in-python
-    # Making mergesort faster
-    # I have used this as I wanted the methods above to be 'cleaner'
-    # but this one to be as fast as possible
-    # breaking the DRY principle as it just wasn't working for some reason
     def __fast_merge_asc(self, array1, array2):
+        """Helper method for 'evaluate'
+
+        using https://stackoverflow.com/questions/7063697/why-is-my-mergesort-so-slow-in-python
+        Merge Sort with optimizations for making it much faster
+
+        """
         merged_array = []
         while array1 or array2:
             if not array1:
@@ -151,6 +211,11 @@ class MergeSort(BaseClass):
         return merged_array
 
     def __fast_merge_desc(self, array1, array2):
+        """Helper method for 'evaluate'.
+
+        Similar to above method, in descending order
+
+        """
         merged_array = []
         while array1 or array2:
             if not array1:
@@ -163,6 +228,13 @@ class MergeSort(BaseClass):
         return merged_array
 
     def __no_len_ms(self, array, reverse):
+        """Helper method for 'evaluate'.
+
+        It calls __fast-merge which is optimized version of mergesort for evaluation
+
+        Returns:
+            A sorted array, which is not used anywhere
+        """
         n = len(array)
         if n <= 1:
             return array
@@ -174,6 +246,19 @@ class MergeSort(BaseClass):
         return self.__fast_merge_desc(self.__no_len_ms(left, reverse), self.__no_len_ms(right, reverse))
 
     def __eval_helper(self, reverse, iterations):
+        """Helper method for 'evaluate' method
+
+        Evaluating time of ascending merge sort algorithm.Takes in the
+        'iterations' provided by the user and performs sorting that many times.
+
+        Args:
+            iterations (int): Number of times to perform sorting on this algo
+            reverse (bool): check if user wants to reverse the list
+
+        Returns:
+            timing_list (list): A list of time taken for fully sorting the
+                                list 'iterations' number of times
+        """
         timing_list = []
 
         while iterations:
@@ -192,10 +277,47 @@ class MergeSort(BaseClass):
         return timing_list
 
     def sort(self, reverse=False, steps=False):
+        """Performs selection sort on the list provided by the user.
+
+        Args:
+            reverse (bool): Optional; (default: False)
+                            If True, sorts the list in descending order
+            steps (bool): Optional; (default: False)
+                            If set to True, shows iteration of each pass of
+                            bubblesort on the list
+
+        Returns:
+            sorted_list (list): sorted list
+        """
         _sorted_object = self.__sort_it(reverse, steps)
-        return list(_sorted_object.values())[-1]
+
+        sorted_list = list(_sorted_object.values())[-1]
+
+        return sorted_list
 
     def evaluate(self, reverse=False, iterations=1):
+        """Prints the time taken to perform selection sort in nanoseconds and
+        seconds to the console.
+
+        Set optional parameter 'iterations' to the number of times you want to
+        perform selection sort on the list. After every iteration, the list is reset to
+        it's original unsorted state.
+
+        Set optional parameter 'reverse' to True to sort the list in descending order.
+
+        Args:
+            reverse (bool): Optional; (default: False)
+                            If True, sorts the list in descending order
+            iterations (int): Optional; (default: 1)
+                              Number of times to perform selection sort on list
+
+        Raises:
+            TypeError: When user inputs anything other than an int for iteration
+        """
+
+        if not isinstance(iterations, int):
+            raise TypeError('Iterations can only be int datatype')
+
         _timing_list = self.__eval_helper(reverse, iterations)
 
         _minimum_time = min(_timing_list)
@@ -211,12 +333,32 @@ class MergeSort(BaseClass):
         return super()._print_evaluate(_eval_dict, "Merge Sort")
 
     def visualize(self, reverse=False, interval=250):
+        """Shows a visualization using matplotlib of merge sort performed on
+        the list user passed.
+
+        Set optional parameter 'interval' to change the delay between frames
+        in milliseconds.
+
+        Args:
+            reverse (bool): Optional; (default: False)
+                            If True, sorts the list in descending order
+            interval (int): Optional; (default: 250)
+                            Delay between frames in milliseconds
+
+        Raises:
+            TypeError: An error when user inputs anything other than int for
+                       interval
+        """
+        if not isinstance(interval, int):
+            raise TypeError('Interval can only be int datatype')
+
         _vis_list = copy.deepcopy(self._datalist)
 
         animate_algorithm("Merge Sort", _vis_list, self.__animate_sort_it(reverse), interval, operations=True)
 
     @classmethod
     def info(cls):
+        """Class method that provides information on merge sort."""
         path_to_information = "algovis/sorting/_markdown_files/mergesort.md"
         return super()._print_info(path_to_information)
 
@@ -225,5 +367,4 @@ class MergeSort(BaseClass):
         my_code = """
 
         """
-
         return super()._print_code(my_code)

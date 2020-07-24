@@ -5,7 +5,7 @@ from algovis import searching
 
 
 def test_version():
-    assert __version__ == '0.1.4'
+    assert __version__ == '0.2.0'
 
 
 def test_sorting():
@@ -17,4 +17,4 @@ def test_sorting():
 def test_searching():
     mylist = [1, 2, 3, 4, 5]
     bs = searching.BinarySearch(mylist)
-    assert bs.search(3) == None
+    assert bs.search(3) is None
