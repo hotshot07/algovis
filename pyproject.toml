@@ -8,8 +8,8 @@ authors = ["hotshot07 <aroram@tcd.ie>"]
 maintainers = ["hotshot07 <aroram@tcd.ie>"]
 repository = "https://github.com/hotshot07/algovis"
 license = "AGPL-3.0"
-keywords = ["Poetry",
-            "Visualization",
+keywords = ["Visualization",
+            "Analyzing",
             "Algorithms",
             "Sorting",
             "Searching"]
