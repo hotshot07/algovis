@@ -1,7 +1,38 @@
+"""Merge sort module in sorting package.
+
+The module is used to demonstrate the working of merge sort algorithm
+
+Exported methods from MergeSort class:
+    sort
+    evaluate
+    visualize
+    info
+    code
+
+Helper methods:
+    __sort_it
+    __eval_helper
+    __fast_merge_asc
+    __fast_merge_desc
+    __no_len_ms
+
+
+Helper generators:
+    __ascending_sort_merge_algo
+    __descending_sort_merge_algo
+    __merge_algo
+    __animate_sort_it
+
+Example usage:
+    bs_object = sorting.SelectionSort(datalist)
+    bs_object.sort(reverse = True, steps = True)
+"""
+
+import copy
+
 from ._base_sorting import BaseClass
 from ._timer import Timer
-from ._animation import AnimateAlgorithm
-import copy
+from ._animation import animate_algorithm
 
 
 class MergeSort(BaseClass):
@@ -160,11 +191,6 @@ class MergeSort(BaseClass):
 
         return timing_list
 
-    # sort method calls __sort_it, which works more or less like the ones in bubble
-    # or insertion, the difference being that the reverse option is passed to
-    # __merge_algo, which decides based on reverse which generator to call
-    # __ascending_sort_merge_algo or __descending_sort_merge_algo
-
     def sort(self, reverse=False, steps=False):
         _sorted_object = self.__sort_it(reverse, steps)
         return list(_sorted_object.values())[-1]
@@ -184,12 +210,10 @@ class MergeSort(BaseClass):
 
         return super()._print_evaluate(_eval_dict, "Merge Sort")
 
-    # visualize method in quicksort calls __animate_sort_it
-
     def visualize(self, reverse=False, interval=250):
         _vis_list = copy.deepcopy(self._datalist)
 
-        AnimateAlgorithm("Merge Sort", _vis_list, self.__animate_sort_it(reverse), interval, operations=True)
+        animate_algorithm("Merge Sort", _vis_list, self.__animate_sort_it(reverse), interval, operations=True)
 
     @classmethod
     def info(cls):

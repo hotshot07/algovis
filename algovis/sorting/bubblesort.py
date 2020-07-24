@@ -26,7 +26,7 @@ import copy
 
 from ._base_sorting import BaseClass
 from ._timer import Timer
-from ._animation import AnimateAlgorithm
+from ._animation import animate_algorithm
 
 
 class BubbleSort(BaseClass):
@@ -56,8 +56,8 @@ class BubbleSort(BaseClass):
         list is sorted
 
         Yields:
-              asc_list (list): yields complete list after each iteration of
-                               the algorithm
+              asc_list (list): yields list after each pass of bubble sort on
+                               the list
 
         """
         asc_list = copy.deepcopy(self._datalist)
@@ -83,8 +83,8 @@ class BubbleSort(BaseClass):
         list is sorted
 
         Yields:
-              asc_list (list): yields complete list after each iteration of
-                               the algorithm
+              desc_list (list): yields list after each pass of bubble sort on
+                               the list
 
         """
         desc_list = copy.deepcopy(self._datalist)
@@ -317,9 +317,9 @@ class BubbleSort(BaseClass):
         _vis_list = copy.deepcopy(self._datalist)
 
         if not reverse:
-            AnimateAlgorithm("Bubble Sort", _vis_list, self.__ascending_sort_algo(), interval)
+            animate_algorithm("Bubble Sort", _vis_list, self.__ascending_sort_algo(), interval)
         else:
-            AnimateAlgorithm("Bubble Sort", _vis_list, self.__descending_sort_algo(), interval)
+            animate_algorithm("Bubble Sort", _vis_list, self.__descending_sort_algo(), interval)
 
     @classmethod
     def info(cls):

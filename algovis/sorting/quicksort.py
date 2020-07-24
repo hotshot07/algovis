@@ -1,12 +1,14 @@
-from ._base_sorting import BaseClass
-from ._timer import Timer
-from ._animation import AnimateAlgorithm
+
+
+import copy
+import random
 
 from rich.console import Console
 from rich.table import Table
 
-import copy
-import random
+from ._base_sorting import BaseClass
+from ._timer import Timer
+from ._animation import animate_algorithm
 
 
 class QuickSort(BaseClass):
@@ -160,12 +162,13 @@ class QuickSort(BaseClass):
             "Average Time": _average_time
         }
 
-        return super()._print_evaluate(_eval_dict, "Quick Sort")
+        return _timing_list
+        # return super()._print_evaluate(_eval_dict, "Quick Sort")
 
     def visualize(self, reverse=False, interval=50, pivot="first"):
         _vis_list = copy.deepcopy(self._datalist)
 
-        AnimateAlgorithm("Quick Sort", _vis_list, self.__quicksort(_vis_list, 0, len(_vis_list) - 1, pivot, reverse, vis=True), interval, operations=True)
+        animate_algorithm("Quick Sort", _vis_list, self.__quicksort(_vis_list, 0, len(_vis_list) - 1, pivot, reverse, vis=True), interval, operations=True)
 
     @classmethod
     def info(cls):
@@ -177,5 +180,4 @@ class QuickSort(BaseClass):
         my_code = """
 
         """
-
         return super()._print_code(my_code)

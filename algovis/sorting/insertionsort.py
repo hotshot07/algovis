@@ -20,13 +20,13 @@ Helper generators:
 
 Example usage:
     bs_object = sorting.InsertionSort(datalist)
-    bs_object.sort(reverse = True, steps = True)
+    bs_object.evaluate(iterations = 20, reverse = True)
 """
 import copy
 
 from ._base_sorting import BaseClass
 from ._timer import Timer
-from ._animation import AnimateAlgorithm
+from ._animation import animate_algorithm
 
 
 class InsertionSort(BaseClass):
@@ -296,9 +296,9 @@ class InsertionSort(BaseClass):
         _vis_list = copy.deepcopy(self._datalist)
 
         if not reverse:
-            AnimateAlgorithm("Insertion Sort", _vis_list, self.__ascending_sort_algo(), interval)
+            animate_algorithm("Insertion Sort", _vis_list, self.__ascending_sort_algo(), interval)
         else:
-            AnimateAlgorithm("Insertion Sort", _vis_list, self.__descending_sort_algo(), interval)
+            animate_algorithm("Insertion Sort", _vis_list, self.__descending_sort_algo(), interval)
 
     @classmethod
     def info(cls):

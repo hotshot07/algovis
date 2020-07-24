@@ -1,6 +1,6 @@
-"""Helper module in sorting package.
+"""Helper base class module in sorting package.
 
-This module contains the BaseClass class which all the sorting algorithms
+This module contains the BaseClass class which all the searching algorithms
 inherit. Rich library is used to print out to the console
 """
 
@@ -14,7 +14,7 @@ class BaseClass:
     """Baseclass is a class inherited by every other public searching module
 
     It contains all the functions that are relevent to every searching module
-    super().__init() is called by every searching module. It in itself doesn't
+    super().__init()__ is called by every searching module. It in itself doesn't
     store the datalist provided by the user, just checks it.
     """
 
@@ -40,7 +40,7 @@ class BaseClass:
                 raise TypeError('Parameter can only contain int datatype')
 
     def _print_evaluate(self, eval_dict, name):
-        """Helper method to print the 'evaluation' dictionary
+        """Helper method to print the 'evaluate' dictionary
 
         Args:
             eval_dict (dict): The dictionary that we pass after evaluating
@@ -64,7 +64,6 @@ class BaseClass:
 
         Args:
             path_to_information (str): path to the markdown file (in _markdown_files folder)
-
         """
         console = Console()
         with open(path_to_information) as readme:
@@ -77,7 +76,6 @@ class BaseClass:
 
         Args:
             code_str (str): (doc)string containing code
-
         """
         syntax = Syntax(code_str, "python", theme="monokai", line_numbers=True)
         console = Console()

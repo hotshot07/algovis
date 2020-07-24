@@ -2,11 +2,12 @@ from algovis import sorting
 #from algovis import searching
 import random
 
-my_list = [random.randint(0, 1000) for i in range(100)]
+my_list = [i + 1 for i in range(1000)]
 
-bs = sorting.InsertionSort(my_list)
+random.shuffle(my_list)
 
-# bs.evaluate(iterations=1000)
-
-help(bs)
-# ls.visualize(5, interval=1)
+bs = sorting.BubbleSort(my_list)
+iss = sorting.InsertionSort(my_list)
+ss = sorting.SelectionSort(my_list)
+ms = sorting.MergeSort(my_list)
+qs = sorting.QuickSort(my_list)

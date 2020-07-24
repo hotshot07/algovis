@@ -27,7 +27,7 @@ import copy
 
 from ._base_sorting import BaseClass
 from ._timer import Timer
-from ._animation import AnimateAlgorithm
+from ._animation import animate_algorithm
 
 
 class SelectionSort(BaseClass):
@@ -102,13 +102,6 @@ class SelectionSort(BaseClass):
             asc_list[i], asc_list[max_idx] = asc_list[max_idx], asc_list[i]
             yield asc_list
 
-    # The function that is called by sort method
-    # It checks which generator to call and if we have to show steps
-    # It stores every iteration of yielded list in a dictionary
-    # If steps is true, then _print_steps is called from BaseClass
-    # and the dictionary iteration_dict is passed to it
-    # function returns iteration_dict
-
     def __sort_it(self, reverse, steps):
         """Helper method for 'sort' method
 
@@ -144,13 +137,6 @@ class SelectionSort(BaseClass):
             super()._print_steps(iteration_dict)
 
         return iteration_dict
-
-    # Evaluating time of ascending selection sort
-    # Didn't use generators as I dont want to waste time in
-    # function overheads
-    # returns a list of time taken to sort the list
-    # the number of emelemts in the list will be equal to number of iterations
-    # default number of iterations is 1
 
     def __time_eval_asc(self, iterations):
         """Helper method for 'evaluate' method
@@ -190,9 +176,6 @@ class SelectionSort(BaseClass):
             time_list = copy.deepcopy(self._datalist)
 
         return timing_list
-
-    # Evaluating time of descending selection sort
-    # works in same way as __time_eval_asc method
 
     def __time_eval_desc(self, iterations):
         """Helper method for 'evaluate' method
@@ -314,9 +297,9 @@ class SelectionSort(BaseClass):
         _vis_list = copy.deepcopy(self._datalist)
 
         if not reverse:
-            AnimateAlgorithm("Selection Sort", _vis_list, self.__ascending_sort_algo(), interval)
+            animate_algorithm("Selection Sort", _vis_list, self.__ascending_sort_algo(), interval)
         else:
-            AnimateAlgorithm("Selection Sort", _vis_list, self.__descending_sort_algo(), interval)
+            animate_algorithm("Selection Sort", _vis_list, self.__descending_sort_algo(), interval)
 
     @classmethod
     def info(cls):

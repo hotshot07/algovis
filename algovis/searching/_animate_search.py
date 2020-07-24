@@ -1,4 +1,4 @@
-"""Helper module in sorting package.
+"""Helper animation module in searching package.
 
 This module contains 2 classes, AnimateBinarySearch and AnimateLinearSearch
 which contain methods that help in producing the visulization. These classes

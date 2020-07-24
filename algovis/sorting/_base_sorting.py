@@ -1,7 +1,8 @@
-# This module contains the functions
-# common to all sorting algorithms
+"""Helper sorting module in sorting package.
 
-# rich library is used to print data in terminal
+This module contains the BaseClass class which all the sorting algorithms
+inherit. Rich library is used to print out to the console.
+"""
 from rich.console import Console
 from rich.table import Table
 from rich.syntax import Syntax
@@ -9,21 +10,43 @@ from rich.markdown import Markdown
 
 
 class BaseClass:
-    # checks for the datalist passed
+    """Baseclass is a class inherited by every other public sorting module
+
+    It contains all the functions that are relevent to every sorting module.
+    super().__init()__ is called by every sorting module.
+    """
+
     def __init__(self, datalist):
+        """Checks the passed object, raises errors otherwise
+
+        Args:
+            datalist (list): The list provided by the user
+
+        Raises:
+            TypeError: If object passed is not a list or doesn't contain only integers
+            ValueError: If the list is empty
+
+        """
         if not isinstance(datalist, list):
-            raise TypeError('parameter must be a list datatype')
+            raise TypeError('Parameter must be a list datatype')
 
         if not datalist:
-            raise ValueError('parameter has invalid value')
+            raise ValueError('Parameter has invalid value')
 
         for _element in datalist:
             if not isinstance(_element, int):
-                raise TypeError('parameter can only contain int datatype')
+                raise TypeError('Parameter can only contain int datatype')
 
-    # _print_steps takes in dictionary and prints the table of iterations
-    def _print_steps(self, step_dict):
-        table = Table(title="Steps")
+    def _print_steps(self, step_dict, name):
+        """Helper method to print the steps.
+
+        Uses Rich to create a table and then print it
+        Args:
+            step_dict (dict): Dictionary containing all the steps used to
+                              create a table
+            name (str): Gives title to the table
+        """
+        table = Table(title=f"{name} Steps")
         table.add_column("Iteration", justify="center", style="cyan")
         table.add_column("List", style="magenta", justify="center", no_wrap=False)
 
@@ -32,8 +55,6 @@ class BaseClass:
             table.add_row(str(iteration), str(list_x))
         console = Console()
         console.print(table)
-
-    # _print_steps takes in eval_dict dictionary and prints the different metrics
 
     def _print_evaluate(self, eval_dict, name):
         table = Table(title=name + " Evaluation")
@@ -47,16 +68,24 @@ class BaseClass:
         console = Console()
         console.print(table)
 
-    # takes in path to the markdown file and renders it
     def _print_info(path_to_information):
+        """Helper method to print the information in the console using rich markdown
+
+        Args:
+            path_to_information (str): path to the markdown file (in _markdown_files folder)
+        """
         console = Console()
         with open(path_to_information) as readme:
             information = Markdown(readme.read(), justify="full")
 
         console.print(information)
 
-    # takes in code as a string and displays it in terminal
     def _print_code(my_code):
+        """Helper method to print the code in the console using rich syntax
+
+        Args:
+            code_str (str): (doc)string containing code
+        """
         syntax = Syntax(my_code, "python", theme="monokai", line_numbers=True)
         console = Console()
         console.print(syntax)
