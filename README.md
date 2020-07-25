@@ -58,7 +58,7 @@ $pip3 install algovis
 
 
 
-### Using the library
+### Using the sorting package
 
 
 
@@ -85,12 +85,11 @@ bs_object = sorting.BubbleSort(my_list)
 bs_object.visualize(interval= 100)
 ```
 ##### Output
-![gif](https://media.giphy.com/media/SWiSRxnbbHiJ4u90Ye/giphy.gif)
+<img src="https://media.giphy.com/media/ieb13rrmvVWC02zmI8/giphy.gif" width="700">
 
 
 
-
-#### Sort method
+#### sort method
 
 ```python
 # lets work on a shorter example now
@@ -115,7 +114,7 @@ qs_object.sort(pivot = "first", steps = True, reverse = True)
 
 
 
-#### Evaluate method
+#### evaluate method
 ```python
 # calling the evaluate method and passing the optional parameter 'iterations'
 # the list is sorted 'iterations' number of times and the min, max and average time taken
@@ -128,7 +127,7 @@ bs_object.evaluate(iterations = 100)
 
 
 
-#### Info method
+#### info method
 ```python
 # This method gives us information about the algorithm
 bs_object.info()
@@ -147,8 +146,50 @@ bs_object.code()
 ###### Output
 ![code-img](img/bs-code.png)
 
+>My terminal config is iTerm2 + ohmyzsh + powerlevel10k with dark backgroud. Colors may appear different in your terminal output. It's recommended to change the terminal color to something darker
 
-My terminal config is iTerm2 + ohmyzsh + powerlevel10k with dark backgroud. Colors may appear different in your terminal output. It's recommended to change the terminal color to something darker
+### Using the searching package
+
+The searching package has the same methods, just instead of 'sort' you have 'search'
+
+#### search method
+```python
+#importing searching package
+from algovis import searching
+
+# making a list of integers from 1 to 100
+# using list comprehension
+my_list = [i+1 for i in range(100)]
+
+#making binary search object
+bin_search = searching.BinarySearch(my_list)
+
+#calling the search method
+bin_search.search(42, steps = True)
+```
+![searching-img](img/binary_search_steps.png)
+
+
+#### visualize method
+
+```python
+# calling the visualize method
+# interval is the time between two different frames of the animation
+bin_search.visualize(42, interval = 1000)
+```
+<img src ="https://media.giphy.com/media/l3Cktj8ULcjHK3c90E/giphy.gif" width ="700">
+
+```python
+# or if you want to linear search 42
+lin_search = searching.LinearSearch(my_list)
+
+# setting a less interval to make a much faster animation
+lin_search.visualize(42, interval = 100)
+```
+
+<img src ="https://media.giphy.com/media/lSbSNLD3OPaUZT4NX6/giphy.gif" width ="700">
+
+
 
 ### Built With
 

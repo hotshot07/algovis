@@ -1,4 +1,4 @@
-"""Linear search module in sorting package.
+"""Linear search module in searching package.
 
 The module is used to demonstrate the working of linear search algorithm
 
@@ -28,14 +28,14 @@ from ._animate_search import _AnimateLinearSearch
 
 
 class LinearSearch(BaseClass):
-    """Linear Search class which contains methods for analyzing Linear Search.
+    """LinearSearch class which contains methods for analyzing linear search.
 
     Attributes:
         _datalist (list): List of ints provided by the user
     """
 
     def __init__(self, datalist):
-        """Initializes Linear Search class with datalist.
+        """Initializes LinearSearch class with datalist.
         Args:
             datalist (list): The list provided by the user"""
         super().__init__(datalist)
@@ -194,7 +194,7 @@ class LinearSearch(BaseClass):
         # calling the function to print the dictionary
         return super()._print_evaluate(_eval_dict, "Linear Search")
 
-    def visualize(self, number, interval=50):
+    def visualize(self, number, interval=100):
         """Shows a visualization using matplotlib of linear search performed on
         the list user passed.
 
@@ -203,7 +203,7 @@ class LinearSearch(BaseClass):
 
         Args:
             number (int): The number to be searched
-            interval (int): Optional; (default: 50)
+            interval (int): Optional; (default: 100)
                             Delay between frames in milliseconds
 
         Raises:
@@ -233,7 +233,16 @@ class LinearSearch(BaseClass):
     def code(cls):
         """Class method that prints the function for linear search algorithm in console."""
         ls_code = """
-        for value in listi:
-            print(value)
+        # function for linear search
+        # returns the index of the element to search
+        # else returns -1
+        def linear_search(array,x):
+
+            for index, number in enumerate(array):
+                if number == x:
+                    return index
+
+            #if number is not found, we return -1
+            return -1
         """
         super()._print_code(cls, ls_code)

@@ -1,4 +1,4 @@
-"""Binary search module in sorting package.
+"""Binary search module in searching package.
 
 The module is used to demonstrate the working of binary search algorithm
 
@@ -50,9 +50,9 @@ class BinarySearch(BaseClass):
     def __search_helper(self, number, steps):
         """Helper method to perform search.
 
-        It makes a deepcopy of the datalist to prevent overrides. If the optional
+        It makes a deepcopy of the datalist to prevent accidental overrides. If the optional
         steps arguemt is true it returns a tuple of lists of list of all the iterations (multiple values)
-        and index of 'number'(if present else)-1.
+        and index of 'number'(if present) else -1.
         Else it returns a f-string in 'rich' format
 
         Args:
@@ -268,7 +268,7 @@ class BinarySearch(BaseClass):
 
         # Instantiating the AnimateBinarySearch class whose init method calls the
         # AnimateAlgorithm function which performs the animation
-        _AnimateBinarySearch(self._datalist, number, interval,"Binary Search")
+        _AnimateBinarySearch(self._datalist, number, interval, "Binary Search")
 
     @classmethod
     def info(cls):
@@ -279,6 +279,13 @@ class BinarySearch(BaseClass):
     @classmethod
     def code(cls):
         """Class method that prints the function for binary search algorithm in console."""
-        ls_code = """
-        print(i)"""
-        super()._print_code(cls, ls_code)
+        bs_code = """
+        def binary_search(arr,x):
+
+            for index, number in enumerate(array):
+                if number == x:
+                    return index
+
+            return -1
+        """
+        super()._print_code(cls, bs_code)
