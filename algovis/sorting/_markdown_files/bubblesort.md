@@ -1,6 +1,6 @@
-# Bubble Sort 
+# Bubble Sort
 
-In Bubble Sort, we look at pairs of adjacent elements in an array, one pair at a time, and swap their positions if the first element is larger than the second, or simply move on if it isn't. 
+In Bubble Sort, we look at pairs of adjacent elements in an array, one pair at a time, and swap their positions if the first element is larger than the second, or simply move on if it isn't.
 
 It is a stable sorting algorithm.
 
@@ -16,7 +16,7 @@ It is a stable sorting algorithm.
 
 
 ### Algorithm
-```R
+```C
 procedure bubbleSort(A : list of sortable items)
     n := length(A)
     repeat

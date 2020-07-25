@@ -136,7 +136,7 @@ class BubbleSort(BaseClass):
                 iteration_dict[iterations] = copy.deepcopy(yielded_list)
 
         if steps:
-            super()._print_steps(iteration_dict)
+            super()._print_steps(iteration_dict, "Bubble Sort")
 
         return iteration_dict
 
@@ -331,9 +331,10 @@ class BubbleSort(BaseClass):
     def code(cls):
         """Class method that prints the function for bubble sort in console."""
         my_code = """
-        def bubbleSort(arr):
+        # Optimized bubble sort
+        def bubble_sort(array):
 
-            length_of_list = len(arr)
+            length_of_list = len(array)
 
             # Traverse through all array elements
             for i in range(length_of_list):

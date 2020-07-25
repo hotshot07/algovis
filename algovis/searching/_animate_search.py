@@ -54,7 +54,7 @@ class _AnimateBinarySearch():
         each frame.
 
         Args:
-            color_ (list, (int, int, int)): Tuple of color_list and tuple returned by color_maker
+            tup (int, int, int): Tuple of color_list and tuple returned by color_maker
             ax : Matplotlib axes object
             passed_list (list): The list provided by the user
             low_text (str): setting the low text in every frame
@@ -119,8 +119,6 @@ class _AnimateBinarySearch():
             number (int): The number we have to search
 
         Yields:
-            A tuple of 'color_list' and 'tup'
-            color_list (list): List of all the colors for each index
             tup (tuple): Tuple returned by binary_search
         """
         for tup in self.binary_search(arr, number):
@@ -142,6 +140,7 @@ class _AnimateBinarySearch():
             passed_list (list): The list provided by the user
             number (int): The number we have to search
             interval (int): delay between frames in milliseconds
+            title(str): Heading of the visualization
         """
         plt.style.use('dark_background')
         fig, ax = plt.subplots(figsize=(13, 6.5))

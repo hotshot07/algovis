@@ -28,14 +28,14 @@ from ._animate_search import _AnimateBinarySearch
 
 
 class BinarySearch(BaseClass):
-    """Binary Search class which contains methods for analyzing Binary Search.
+    """BinarySearch class which contains methods for analyzing binary search.
 
     Attributes:
         _datalist (list): List of ints provided by the user
     """
 
     def __init__(self, datalist):
-        """Initializes Binary Search class with datalist.
+        """Initializes BinarySearch class with datalist.
 
         Args:
             datalist (list): The list provided by the user. If the list is unsorted,
@@ -280,12 +280,27 @@ class BinarySearch(BaseClass):
     def code(cls):
         """Class method that prints the function for binary search algorithm in console."""
         bs_code = """
-        def binary_search(arr,x):
+        # iterative binary search
+        def binary_search(array, low, mid, high):
 
-            for index, number in enumerate(array):
-                if number == x:
-                    return index
+            while low <= high:
 
+                mid = low + (high - low)//2
+
+                # Check if x is present at mid
+                if array[mid] == x:
+                    return mid
+
+                # If x is greater, ignore left half
+                elif array[mid] < x:
+                    low = mid + 1
+
+                # If x is smaller, ignore right half
+                else:
+                    high = mid - 1
+
+            # If we reach here, then the element
+            # was not present
             return -1
         """
         super()._print_code(cls, bs_code)

@@ -206,6 +206,9 @@ The documentation is built with [MKdocs](https://www.mkdocs.org/) using [materia
 
 ### Acknowledgements
 * My 2019 13" base MacBook Pro, which, I realised in the process of making this library is very underpowered
+* [StackAbuse](https://stackabuse.com)
+* [GeeksForGeeks](https://www.geeksforgeeks.org)
+
 
 ### License
 
