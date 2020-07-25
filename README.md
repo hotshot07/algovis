@@ -150,7 +150,8 @@ bs_object.code()
 
 ### Using the searching package
 
-The searching package has the same methods, just instead of 'sort' you have 'search'
+>The searching package has the same methods as sorting, just instead of 'sort' you have 'search'
+>Refer to the [documentation](https://algovisdocs.netlify.app/) for more info
 
 #### search method
 ```python

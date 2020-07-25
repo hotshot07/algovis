@@ -3,10 +3,12 @@ Merge sort is an efficient, general-purpose, comparison-based sorting algorithm.
 
 The subarrays are divided over and over again into halves until you end up with arrays that have only one element each. Then you combine the pairs of one-element arrays into two-element arrays, sorting them in the process. Then these sorted pairs are merged into four-element arrays, and so on until you end up with the initial array sorted.
 
+
 ### Time Complexity
 * Worst-case performance:  O(n\*log n)
 * Average performance: O(n\*log n)
 * Best-case performance: O(n\*log n) typical, O(n) natural variant
+
 
 ### Space Complexity
 * Worst-case: О(n) total with O(n) auxiliary
