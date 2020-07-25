@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from matplotlib.ticker import MaxNLocator
 
+import time
+
 
 class _AnimateBinarySearch():
     """Class to animate binary search
@@ -32,7 +34,7 @@ class _AnimateBinarySearch():
                        are indices of (low, mid, high)
     """
 
-    def __init__(self, passed_list, number, interval):
+    def __init__(self, passed_list, number, interval, title):
         """Instantiating the class.
 
         Args:
@@ -40,9 +42,11 @@ class _AnimateBinarySearch():
             number (int): The number we have to search
             interval (int): delay between frames in milliseconds
         """
-        self.animate_algorithm(passed_list, number, interval)
+        self.color_list = ['w'] * len(passed_list)
 
-    def update_fig(self, color_, ax, passed_list, low_text, mid_text, high_text):
+        self.animate_algorithm(passed_list, number, interval, title)
+
+    def update_fig(self, tup, ax, passed_list, fig, low_text, mid_text, high_text):
         """Method called by animation.FuncAnimation that updates the figure for
         each frame.
 
@@ -54,16 +58,19 @@ class _AnimateBinarySearch():
             mid_text (str): setting the mid text in every frame
             high_text (str): setting the high text in every frame
         """
-        if color_[1][0] == -1:
+
+        fig.set_tight_layout(True)
+
+        if tup[0] == -1:
             ax.bar(range(len(passed_list)), passed_list, align="edge", color=['w'] * len(passed_list))
             low_text.set_text(f"low: Not Found")
             mid_text.set_text(f"mid: Not Found")
             high_text.set_text(f"high: Not Found")
         else:
-            ax.bar(range(len(passed_list)), passed_list, align="edge", color=color_[0])
-            low_text.set_text(f"low: {passed_list[color_[1][0]]}")
-            mid_text.set_text(f"mid: {passed_list[color_[1][1]]}")
-            high_text.set_text(f"high: {passed_list[color_[1][2]]}")
+            ax.bar(range(len(passed_list)), passed_list, align="edge", color=self.color_list)
+            low_text.set_text(f"low: {passed_list[tup[0]]}")
+            mid_text.set_text(f"mid: {passed_list[tup[1]]}")
+            high_text.set_text(f"high: {passed_list[tup[2]]}")
 
     def binary_search(self, arr, number):
         """Method called by color_maker to search list
@@ -79,6 +86,10 @@ class _AnimateBinarySearch():
         low = 0
         high = len(arr) - 1
         mid = 0
+        # the first value is never shown for some reason so
+        # yielding a dummy value
+        yield low, mid, high
+
         while low <= high:
             mid = (high + low) // 2
             yield low, mid, high
@@ -105,22 +116,19 @@ class _AnimateBinarySearch():
             tup (tuple): Tuple returned by binary_search
         """
         for tup in self.binary_search(arr, number):
-            color_list = []
-            for i in range(len(arr)):
-                if i in tup:
-                    if tup[1] == i:
-                        color = "r"
-                        color_list.append(color)
-                    elif tup[0] == i or tup[2] == i:
-                        color = "b"
-                        color_list.append(color)
-                else:
-                    color = "w"
-                    color_list.append(color)
+            print(tup)
+            low = tup[0]
+            mid = tup[1]
+            high = tup[2]
+            self.color_list[low] = 'b'
+            self.color_list[high] = 'b'
+            self.color_list[mid] = 'r'
+            yield tup
+            self.color_list[low] = 'w'
+            self.color_list[mid] = 'w'
+            self.color_list[high] = 'w'
 
-            yield color_list, tup
-
-    def animate_algorithm(self, passed_list, number, interval):
+    def animate_algorithm(self, passed_list, number, interval, title):
         """Method that initializes the animation
 
         Args:
@@ -129,21 +137,29 @@ class _AnimateBinarySearch():
             interval (int): delay between frames in milliseconds
         """
         plt.style.use('dark_background')
-        fig, ax = plt.subplots(figsize=(10, 5))
+        fig, ax = plt.subplots(figsize=(13, 6.5))
+
+        fig.set_tight_layout(True)
         ax.set_xlim(0, len(passed_list))
         ax.set_ylim(0, int(1.15 * max(passed_list)))
-        color_ = ['w'] * len(passed_list)
-        ax.bar(range(len(passed_list)), passed_list, align="edge", color=color_)
+        ax.set_title(title)
+
+        ax.bar(range(len(passed_list)), passed_list, align="edge", color=self.color_list)
+
         text1 = ax.text(0.02, 0.92, "blue: max and min index \nred: mid index", transform=ax.transAxes)
         low_text = ax.text(0.02, 0.88, "low: ", transform=ax.transAxes)
         mid_text = ax.text(0.02, 0.84, "mid: ", transform=ax.transAxes)
         high_text = ax.text(0.02, 0.80, "mid: ", transform=ax.transAxes)
+
         ax.set_xlabel('index')
         ax.xaxis.set_major_locator(MaxNLocator(integer=True))
         anim = animation.FuncAnimation(fig, func=self.update_fig,
-                                       fargs=(ax, passed_list, low_text, mid_text, high_text), frames=self.color_maker(passed_list, number), interval=interval,
+                                       fargs=(ax, passed_list, fig, low_text, mid_text, high_text), frames=self.color_maker(passed_list, number), interval=interval,
                                        repeat=False)
 
+        # Writer = animation.writers['ffmpeg']
+        # writer = Writer(fps=1, metadata=dict(artist='Me'), bitrate=50000)
+        # anim.save(f"{title.split()[0]}.mp4", writer=writer)
         plt.show()
 
 
@@ -166,7 +182,7 @@ class _AnimateLinearSearch():
                      if we have found the number
     """
 
-    def __init__(self, passed_list, number, interval):
+    def __init__(self, passed_list, number, interval, title):
         """Instantiating the class.
 
         Args:
@@ -176,12 +192,11 @@ class _AnimateLinearSearch():
         """
 
         # making all white color list
-        self.color_list = ['w'] * len(passed_list)
-
+        self.passed_list = passed_list
         # calling the function and starting the animation
-        self.animate_algorithm(passed_list, number, interval)
+        self.animate_algorithm(number, interval, title)
 
-    def color_maker(self, arr, number):
+    def color_maker(self, arr, number, rect_obj_list):
         """Generator called by animation.FuncAnimation that yields the first
         paramenter being used in update_fig.
 
@@ -193,22 +208,23 @@ class _AnimateLinearSearch():
             index (int): index of where the search is
             integer : based on if we have found the element or not
         """
+        yield 0, 0
+
         for index, num in enumerate(arr):
             if num != number:
                 if index == len(arr) - 1:
                     # if we've reached last element, we make everything white
-                    self.color_list = ['w'] * len(arr)
                     yield index, -1
                     return
                 else:
-                    self.color_list[index] = 'b'
+                    rect_obj_list[index].set_color('b')
                     yield index, 0
             else:
-                self.color_list[index] = 'r'
+                rect_obj_list[index].set_color('r')
                 yield index, 1
                 return
 
-    def update_fig(self, index_, ax, passed_list, at_index, value):
+    def update_fig(self, index_, at_index, value):
         """Method called by animation.FuncAnimation that updates the figure for
         each frame.
 
@@ -219,15 +235,14 @@ class _AnimateLinearSearch():
             at_index (str): setting the text in every frame
             value (str): setting the text in every frame
         """
-
-        ax.bar(range(len(passed_list)), passed_list, align="edge", color=self.color_list)
+        #time.sleep(2)
         at_index.set_text(f"At index: {index_[0]}")
         if index_[1] == -1:
             value.set_text(f"value: NOT FOUND")
         else:
-            value.set_text(f"value: {passed_list[index_[0]]}")
+            value.set_text(f"value: {self.passed_list[index_[0]]}")
 
-    def animate_algorithm(self, passed_list, number, interval):
+    def animate_algorithm(self, number, interval, title):
         """Method that initializes the animation
 
         Args:
@@ -236,11 +251,18 @@ class _AnimateLinearSearch():
             interval (int): delay between frames in milliseconds
         """
         plt.style.use('dark_background')
-        fig, ax = plt.subplots(figsize=(10, 5))
-        ax.set_xlim(0, len(passed_list))
-        ax.set_ylim(0, int(1.15 * max(passed_list)))
-        ax.bar(range(len(passed_list)), passed_list, align="edge", color=self.color_list)
-        ax.set_xlabel('index')
+        fig, ax = plt.subplots(figsize=(13, 6.5))
+        fig.set_tight_layout(True)
+
+        # print(ax)
+        ax.set_xlim(0, len(self.passed_list))
+        ax.set_ylim(0, int(1.15 * max(self.passed_list)))
+        color_list = ['w'] * len(self.passed_list)
+        rects = ax.bar(range(len(self.passed_list)), self.passed_list, align="edge", color=color_list)
+
+        rect_obj_list = rects.get_children()
+
+        # rect_obj_list[5].set_color
         ax.xaxis.set_major_locator(MaxNLocator(integer=True))
         at_index = ax.text(0.02, 0.96, "at index: ", transform=ax.transAxes)
         value = ax.text(0.02, 0.92, "value: ", transform=ax.transAxes)
@@ -249,18 +271,22 @@ class _AnimateLinearSearch():
         # For some reason the generator and funcAnimation
         # wouldn't work if only one value is yielded and execution is
         # stopped
-        if passed_list[0] == number:
+        if self.passed_list[0] == number:
             at_index.set_text(f"At index: 0")
             value.set_text(f"value: {number}")
-            self.color_list[0] = 'r'
-            ax.bar(range(len(passed_list)), passed_list, align="edge", color=self.color_list)
+            rect_obj_list[0].set_color['r']
+            # ax.bar(range(len(self.passed_list)), self.passed_list, align="edge", color=self.color_list)
             plt.show()
             return
 
         # disabling the cache frame data slightly increased the speed of linear search
         # need to optimize this bit further
         anim = animation.FuncAnimation(fig, func=self.update_fig,
-                                       fargs=(ax, passed_list, at_index, value), frames=self.color_maker(passed_list, number), interval=interval,
-                                       repeat=False, cache_frame_data=False)
+                                       fargs=(at_index, value), frames=self.color_maker(self.passed_list, number, rect_obj_list), interval=interval,
+                                       repeat=False, cache_frame_data=True)
+
+        # Writer = animation.writers['ffmpeg']
+        # writer = Writer(fps=2, metadata=dict(artist='Me'), bitrate=50000)
+        # anim.save(f"{title.split()[0]}.mp4", writer=writer)
 
         plt.show()

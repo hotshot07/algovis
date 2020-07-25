@@ -59,8 +59,8 @@ def animate_algorithm(title, passed_list, passed_generator, interval, operations
 
     plt.style.use('dark_background')
 
-    fig, ax = plt.subplots(figsize=(10, 5))
-
+    fig, ax = plt.subplots(figsize=(13, 6.5))
+    # fig.set_tight_layout(True)
     ax.set_title(title)
 
     # setting the x and y limits
@@ -83,7 +83,7 @@ def animate_algorithm(title, passed_list, passed_generator, interval, operations
 
     # saving figures
     # Writer = animation.writers['ffmpeg']
-    # writer = Writer(fps=35, metadata=dict(artist='Me'), bitrate=20000)
-    # anim_sorting.save(f"{title}.mp4", writer=writer)
+    # writer = Writer(fps=1, metadata=dict(artist='Me'), bitrate=50000)
+    # anim_sorting.save(f"{title.split()[0]}.mp4", writer=writer)
 
     plt.show()

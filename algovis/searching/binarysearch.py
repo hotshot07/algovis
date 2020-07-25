@@ -268,7 +268,7 @@ class BinarySearch(BaseClass):
 
         # Instantiating the AnimateBinarySearch class whose init method calls the
         # AnimateAlgorithm function which performs the animation
-        _AnimateBinarySearch(self._datalist, number, interval)
+        _AnimateBinarySearch(self._datalist, number, interval,"Binary Search")
 
     @classmethod
     def info(cls):

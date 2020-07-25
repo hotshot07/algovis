@@ -221,7 +221,7 @@ class LinearSearch(BaseClass):
 
         # ISSUE: It gets extremely slow on values more than 25
         # any way to optimize??
-        _AnimateLinearSearch(self._datalist, number, interval)
+        _AnimateLinearSearch(self._datalist, number, interval, "Linear Search")
 
     @classmethod
     def info(cls):
