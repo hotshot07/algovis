@@ -134,7 +134,7 @@ class SelectionSort(BaseClass):
                 iteration_dict[iterations] = copy.deepcopy(yielded_list)
 
         if steps:
-            super()._print_steps(iteration_dict)
+            super()._print_steps(iteration_dict, "Selection Sort")
 
         return iteration_dict
 
@@ -306,3 +306,22 @@ class SelectionSort(BaseClass):
         """Class method that provides information on selection sort."""
         path_to_information = "algovis/sorting/_markdown_files/selectionsort.md"
         return super()._print_info(path_to_information)
+
+    @classmethod
+    def code(cls):
+        """Class method that prints code to the console."""
+        my_code = """
+        def selection_sort(array):
+            for index, _ in enumerate(array):
+                # Find the minimum element in remaining
+                # unsorted array
+                min_idx = index
+                for j in range(index+1, len(array)):
+                    if A[min_idx] > A[j]:
+                        min_idx = j
+
+                # Swap the found minimum element with
+                # the first element
+                A[index], A[min_idx] = A[min_idx], A[index]
+        """
+        return super()._print_code(my_code)

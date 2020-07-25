@@ -2,7 +2,7 @@
 
 ![Algovis](img/algovis_img.PNG?raw=true)
 
-Algovis is a python library made for visualizing algorithms. You can read the documentation [here](https://algovisdocs.netlify.app/)
+Algovis is a python library made for visualizing algorithms. Refer to the [documentation](https://algovisdocs.netlify.app/) for more info.
 
 Currently the library has these algorithms
 

@@ -135,7 +135,7 @@ class InsertionSort(BaseClass):
                 iteration_dict[iterations] = copy.deepcopy(yielded_list)
 
         if steps:
-            super()._print_steps(iteration_dict)
+            super()._print_steps(iteration_dict, "Insertion Sort")
 
         return iteration_dict
 
@@ -305,3 +305,25 @@ class InsertionSort(BaseClass):
         """Class method that provides information on insertion sort."""
         path_to_information = "algovis/sorting/_markdown_files/insertionsort.md"
         return super()._print_info(path_to_information)
+
+    @classmethod
+    def code(cls):
+        """Class method that prints the function for insertion sort in console."""
+        my_code = """
+        def insertion_sort(array):
+
+            # Traverse through 1 to len(array)
+            for i in range(1, len(array)):
+
+                key = arr[i]
+
+                # Move elements of arr[0..i-1], that are
+                # greater than key, to one position ahead
+                # of their current position
+                j = i-1
+                while j >= 0 and key < array[j] :
+                        array[j + 1] = array[j]
+                        j -= 1
+                array[j + 1] = key
+        """
+        return super()._print_code(my_code)

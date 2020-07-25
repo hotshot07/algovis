@@ -339,6 +339,34 @@ class QuickSort(BaseClass):
     @classmethod
     def code(cls):
         my_code = """
+        def partition(arr, low, high):
+            # pivot
+            pivot = arr[high]
+            # Index of smaller element
+            i = (low - 1)
+            for j in range(low, high):
 
+                # If current element is smaller than or
+                # equal to pivot
+                if (arr[j] <= pivot):
+
+                    # increment index of smaller element
+                    i += 1
+                    arr[i], arr[j] = arr[j], arr[i]
+            arr[i + 1], arr[high] = arr[high], arr[i + 1]
+            return (i + 1)
+
+
+        def quickSort(arr, low, high):
+            if (low < high):
+                pi = partition(arr, low, high)
+
+                # Separately sort elements before
+                # partition and after partition
+                quickSort(arr, low, pi - 1)
+                quickSort(arr, pi + 1, high)
+
+        # To give users choice of pivot, the quicksort implemented in this library
+        # is slightly different but uses lomuto partiton
         """
         return super()._print_code(my_code)

@@ -16,7 +16,7 @@ Quicksort is a divide and conquer algorithm. It first divides the input array in
 * O(n) auxiliary (naive)
 
 
-# Algorithm
+### Algorithm
 ```C
 // Using Lomuto partition
 algorithm quicksort(A, lo, hi) is
