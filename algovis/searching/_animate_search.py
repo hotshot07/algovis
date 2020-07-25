@@ -261,7 +261,6 @@ class _AnimateLinearSearch():
         fig, ax = plt.subplots(figsize=(10, 5))
         fig.set_tight_layout(True)
 
-        # print(ax)
         ax.set_xlim(0, len(self.passed_list))
         ax.set_ylim(0, int(1.15 * max(self.passed_list)))
 
