@@ -102,15 +102,7 @@ qs_object = sorting.QuickSort(my_list)
 #sorting in reverse with steps
 qs_object.sort(pivot = "first", steps = True, reverse = True)
 
-# you can see the pivot placed correctly in the 'array in consideration' column
-# the state of whole array at that iteration is shown in 'array' column
 ```
-
-##### Output
-![qs-sort](img/qs-steps.png)
-
-
-
 
 #### evaluate method
 ```python
@@ -119,10 +111,6 @@ qs_object.sort(pivot = "first", steps = True, reverse = True)
 #to sort the list is returned in form of a formatted table
 bs_object.evaluate(iterations = 100)
 ```
-##### Output
-![eval-img](img/bs-eval.png)
-
-
 
 
 #### info method
@@ -130,19 +118,12 @@ bs_object.evaluate(iterations = 100)
 # This method gives us information about the algorithm
 bs_object.info()
 ```
-##### Output
-![info-img](img/bs-info.png)
-
-
-
 
 #### code method
 ```python
 # It prints out the function for the algorithm
 bs_object.code()
 ```
-###### Output
-![code-img](img/bs-code.png)
 
 >My terminal config is iTerm2 + ohmyzsh + powerlevel10k with dark backgroud. Colors may appear different in your terminal output. It's recommended to change the terminal color to something darker
 
@@ -166,8 +147,6 @@ bin_search = searching.BinarySearch(my_list)
 #calling the search method
 bin_search.search(42, steps = True)
 ```
-![searching-img](img/binary_search_steps.png)
-
 
 #### visualize method
 
@@ -186,27 +165,12 @@ lin_search = searching.LinearSearch(my_list)
 lin_search.visualize(42, interval = 100)
 ```
 
-<img src ="https://media.giphy.com/media/lSbSNLD3OPaUZT4NX6/giphy.gif" width ="600">
-
-
-
-### Built With
-
-* [Poetry](https://python-poetry.org/) - Python packaging and dependency management tool
-* [Matplotlib](https://pypi.org/project/matplotlib/) - Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python.
-* [Rich](https://pypi.org/project/rich/) - Rich is a Python library for rich text and beautiful formatting in the terminal made by @willmcgugan
-
 ### Doumentation
 The documentation is built with [MKdocs](https://www.mkdocs.org/) using [material](https://squidfunk.github.io/mkdocs-material/) theme and is hosted on netlify. You can read it [here](https://algovisdocs.netlify.app/)
 
 ### Author
 
 * **Mayank Arora** *(hotshot07)*
-
-### Acknowledgements
-* My 2019 13" base MacBook Pro, which, I realised in the process of making this library is very underpowered
-* [StackAbuse](https://stackabuse.com)
-* [GeeksForGeeks](https://www.geeksforgeeks.org)
 
 
 ### License

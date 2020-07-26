@@ -24,6 +24,8 @@ Example usage:
 """
 
 import copy
+import os
+import sys
 
 from ._base_sorting import BaseClass
 from ._timer import Timer
@@ -304,7 +306,8 @@ class SelectionSort(BaseClass):
     @classmethod
     def info(cls):
         """Class method that provides information on selection sort."""
-        path_to_information = "algovis/sorting/_markdown_files/selectionsort.md"
+        dir = os.path.dirname(__file__)
+        path_to_information = os.path.join(dir, '_markdown_files', 'selectionsort.md')
         return super()._print_info(path_to_information)
 
     @classmethod

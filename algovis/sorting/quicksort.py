@@ -28,6 +28,8 @@ Example usage:
 
 import copy
 import random
+import os
+import sys
 
 from rich.console import Console
 from rich.table import Table
@@ -333,7 +335,8 @@ class QuickSort(BaseClass):
     @classmethod
     def info(cls):
         """Class method that provides information on quick sort."""
-        path_to_information = "algovis/sorting/_markdown_files/quicksort.md"
+        dir = os.path.dirname(__file__)
+        path_to_information = os.path.join(dir, '_markdown_files', 'quicksort.md')
         return super()._print_info(path_to_information)
 
     @classmethod

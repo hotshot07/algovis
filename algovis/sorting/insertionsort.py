@@ -23,6 +23,8 @@ Example usage:
     bs_object.evaluate(iterations = 20, reverse = True)
 """
 import copy
+import os
+import sys
 
 from ._base_sorting import BaseClass
 from ._timer import Timer
@@ -303,7 +305,8 @@ class InsertionSort(BaseClass):
     @classmethod
     def info(cls):
         """Class method that provides information on insertion sort."""
-        path_to_information = "algovis/sorting/_markdown_files/insertionsort.md"
+        dir = os.path.dirname(__file__)
+        path_to_information = os.path.join(dir, '_markdown_files', 'insertionsort.md')
         return super()._print_info(path_to_information)
 
     @classmethod

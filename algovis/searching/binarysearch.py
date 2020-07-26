@@ -18,6 +18,8 @@ Example usage:
     search_object.search(42)
 """
 import copy
+import os
+import sys
 
 from rich.console import Console
 from rich.table import Table
@@ -273,8 +275,9 @@ class BinarySearch(BaseClass):
     @classmethod
     def info(cls):
         """Class method that provides information on binary search."""
-        _path_to_information = "algovis/searching/_markdown_files/binarysearch.md"
-        super()._print_info(cls, _path_to_information)
+        dir = os.path.dirname(__file__)
+        path_to_information = os.path.join(dir, '_markdown_files', 'binarysearch.md')
+        super()._print_info(cls, path_to_information)
 
     @classmethod
     def code(cls):
