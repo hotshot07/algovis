@@ -159,7 +159,7 @@ class BinarySearch(BaseClass):
         console.print(table)
 
     def search(self, number, steps=False):
-        """Performs iterative binary search on the list and prints the result
+        """Performs iterative binary search on  the list and prints the result
         to the console.
 
         Set optional parameter 'steps' to True if you want to print the iterations

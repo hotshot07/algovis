@@ -6,15 +6,15 @@ Currently the library has
 
 #### Sorting
 
-- [Bubble Sort](sorting/bubblesort.md)
-- [Insertion Sort](sorting/insertionsort.md)
-- [Selection Sort](sorting/selectionsort.md)
-- [Merge Sort](sorting/mergesort.md)
-- [Quick Sort](sorting/quicksort.md)
+- Bubble Sort
+- Insertion Sort
+- Selection Sort
+- Merge Sort
+- Quick Sort
 
 #### Searching
-- [Linear Search](searching/linearsearch.md)
-- [Binary Search](searching/binarysearch.md)
+- Linear Search
+- Binary Search
 
 
 ### Example

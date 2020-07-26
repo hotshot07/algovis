@@ -16,5 +16,5 @@ $source envname/bin/activate
 ### Installing the library
 
 ```bash
-$pip3 install algovis
+$pip install algovis
 ```
