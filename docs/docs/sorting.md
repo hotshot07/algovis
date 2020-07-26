@@ -63,6 +63,18 @@ Args:
 
 ***
 
+> Note: sort, evaluate and visualize methods for QuickSort class have an extra 'pivot' parameter. The default is 'first' as in the first element of the list. It can be either 'first', 'last', 'middle' or "random".
+
+Example:
+```python
+>>> quick_obj = sorting.QuickSort([i +1 for i in range(100)])
+>>> quick_obj.sort(pivot = "random", reverse = True, steps = True)
+>>> quick_obj.evaluate(pivot = "last", reverse = "True" )
+>>> quick_obj.visualize(pivot = "middle", reverse = "True" )
+
+```
+***
+
 ## *info()*
 
 ```md
