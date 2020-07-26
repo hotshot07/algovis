@@ -1,7 +1,7 @@
 Every module in the sorting package has these methods
 
 To get started, import the package
-```md
+```python
 >>> from algovis import sorting
 ```
 
@@ -19,6 +19,15 @@ Args:
 
 Returns:
     A sorted list
+```
+Example
+```python
+>>> my_list = [i+1 for i in range(50)]
+>>> # creating an object of BubbleSort class
+>>> # other options are InsertionSort, SelectionSort, MergeSort, QuickSort
+>>> bs_object = sorting.BubbleSort(my_list)
+>>> #calling the sort method
+>>> bs_object.sort(reverse = True, steps = True)
 ```
 
 ***
@@ -42,7 +51,10 @@ Args:
                     Number of times to sort the list
 
 ```
-
+Example
+```python
+>>> bs_object.evaluate(iterations = 42)
+```
 ***
 
 ## *visualize(reverse=False, interval=250)*
@@ -59,6 +71,10 @@ Args:
                     If True, sorts the list in descending order
     interval (int): Optional; (default: 250)
                     Delay between frames in milliseconds
+```
+Example
+```python
+>>> bs_object.visualize(reverse = True, interval = 100)
 ```
 
 ***
@@ -79,7 +95,14 @@ Example:
 
 ```md
 Method that provides information about the sorting algorithm
+
 ```
+
+Example
+```python
+>>> bs_object.info()
+```
+
 
 ***
 
@@ -88,4 +111,9 @@ Method that provides information about the sorting algorithm
 
 ```md
 Method that prints the python function for the sorting algorithm in console
+```
+
+Example
+```python
+>>> bs_object.code()
 ```
