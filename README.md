@@ -196,7 +196,7 @@ lin_search.visualize(42, interval = 100)
 
 * [Poetry](https://python-poetry.org/) - Python packaging and dependency management tool
 * [Matplotlib](https://pypi.org/project/matplotlib/) - Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python.
-* [Rich](https://pypi.org/project/rich/) - Rich is a Python library for rich text and beautiful formatting in the terminal made by @willmcgugan
+* [Rich](https://pypi.org/project/rich/) - Rich is a Python library for rich text and beautiful formatting in the terminal made
 
 ### Doumentation
 The documentation is built with [MKdocs](https://www.mkdocs.org/) using [material](https://squidfunk.github.io/mkdocs-material/) theme and is hosted on netlify. You can read it [here](https://algovisdocs.netlify.app/)
