@@ -272,7 +272,7 @@ class QuickSort(BaseClass):
         seconds to the console.
 
         Set optional parameter 'iterations' to the number of times you want to
-        perform selection sort on the list. After every iteration, the list is reset to
+        perform quick sort on the list. After every iteration, the list is reset to
         it's original unsorted state.
 
         Set optional parameter 'reverse' to True to sort the list in descending order.
@@ -281,7 +281,7 @@ class QuickSort(BaseClass):
             reverse (bool): Optional; (default: False)
                             If True, sorts the list in descending order
             iterations (int): Optional; (default: 1)
-                              Number of times to perform selection sort on list
+                              Number of times to perform quick sort on list
 
         Raises:
             TypeError: When user inputs anything other than an int for iteration
@@ -307,7 +307,7 @@ class QuickSort(BaseClass):
         return super()._print_evaluate(_eval_dict, "Quick Sort")
 
     def visualize(self, reverse=False, interval=50, pivot="first"):
-        """Shows a visualization using matplotlib of merge sort performed on
+        """Shows a visualization using matplotlib of quick sort performed on
         the list user passed.
 
         Set optional parameter 'interval' to change the delay between frames
@@ -316,7 +316,7 @@ class QuickSort(BaseClass):
         Args:
             reverse (bool): Optional; (default: False)
                             If True, sorts the list in descending order
-            interval (int): Optional; (default: 250)
+            interval (int): Optional; (default: 50)
                             Delay between frames in milliseconds
 
         Raises:
@@ -332,7 +332,7 @@ class QuickSort(BaseClass):
 
     @classmethod
     def info(cls):
-        """Class method that provides information on merge sort."""
+        """Class method that provides information on quick sort."""
         path_to_information = "algovis/sorting/_markdown_files/quicksort.md"
         return super()._print_info(path_to_information)
 

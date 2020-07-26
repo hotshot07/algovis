@@ -24,10 +24,10 @@ Currently the library has these algorithms
 
 ### Prerequisites
 
-I would highly suggest making a virtual environment. The main purpose of a Python virtual environments is to create an isolated environment for Python projects. You can read more about them [here](https://realpython.com/python-virtual-environments-a-primer/).
+I would highly suggest creating a virtual environment. Python “Virtual Environments” allow Python packages to be installed in an isolated location for a particular application, rather than being installed globally. You can read more about them [here](https://realpython.com/python-virtual-environments-a-primer/).
 
 ```bash
-# making a test folder
+# creating a test folder
 
 $mkdir test_algovis
 
@@ -35,7 +35,7 @@ $mkdir test_algovis
 
 $cd test_algovis
 
-# making a virtual environment (you can replace envname with whatever name you like)
+# creating a virtual environment (you can replace envname with whatever name you like)
 
 $python3 -m venv envname
 

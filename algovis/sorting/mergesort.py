@@ -24,7 +24,7 @@ Helper generators:
     __animate_sort_it
 
 Example usage:
-    bs_object = sorting.SelectionSort(datalist)
+    bs_object = sorting.MergeSort(datalist)
     bs_object.sort(reverse = True, steps = True)
 """
 
@@ -277,14 +277,14 @@ class MergeSort(BaseClass):
         return timing_list
 
     def sort(self, reverse=False, steps=False):
-        """Performs selection sort on the list provided by the user.
+        """Performs merge sort on the list provided by the user.
 
         Args:
             reverse (bool): Optional; (default: False)
                             If True, sorts the list in descending order
             steps (bool): Optional; (default: False)
                             If set to True, shows iteration of each pass of
-                            bubblesort on the list
+                            mergesort on the list
 
         Returns:
             sorted_list (list): sorted list
@@ -300,7 +300,7 @@ class MergeSort(BaseClass):
         seconds to the console.
 
         Set optional parameter 'iterations' to the number of times you want to
-        perform selection sort on the list. After every iteration, the list is reset to
+        perform merge sort on the list. After every iteration, the list is reset to
         it's original unsorted state.
 
         Set optional parameter 'reverse' to True to sort the list in descending order.
@@ -309,7 +309,7 @@ class MergeSort(BaseClass):
             reverse (bool): Optional; (default: False)
                             If True, sorts the list in descending order
             iterations (int): Optional; (default: 1)
-                              Number of times to perform selection sort on list
+                              Number of times to perform merge sort on list
 
         Raises:
             TypeError: When user inputs anything other than an int for iteration

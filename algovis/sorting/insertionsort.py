@@ -223,7 +223,7 @@ class InsertionSort(BaseClass):
                             If True, sorts the list in descending order
             steps (bool): Optional; (default: False)
                             If set to True, shows iteration of each pass of
-                            bubblesort on the list
+                            insertion on the list
 
         Returns:
             sorted_list (list): sorted list

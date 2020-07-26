@@ -6,28 +6,20 @@ repo_url: https://github.com/hotshot07/algovis
 edit_uri: edit/master/docs/docs/
 
 nav:
-    - Algovis:
-      - Home: 'index.md'
-      - Installing: 'installing.md'
-    - Sorting:
-      - Bubble Sort: 'sorting/bubblesort.md'
-      - Insertion Sort: 'sorting/insertionsort.md'
-      - Selection Sort: 'sorting/selectionsort.md'
-      - Merge Sort: 'sorting/mergesort.md'
-      - Quick Sort: 'sorting/quicksort.md'
-    - Searching:
-      - Linear Search: 'searching/linearsearch.md'
-      - Binary Search: 'searching/binarysearch.md'
-    - About:
-      - Author: 'about/about.md'
-      - License : 'about/license.md'
+
+    - Home: 'index.md'
+    - Installing: 'installing.md'
+    - Sorting: 'sorting.md'
+    - Searching: 'searching.md'
+    - License : 'about/license.md'
+    - Author: 'about/about.md'
 
 theme:
   name: material
   palette:
-    scheme: default
+    scheme: slate
     primary: blue
-    accent: light blue
+    accent: green
   favicon: img/favicon.ico
   logo: img/favicon.ico
   google_analytics:

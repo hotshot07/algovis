@@ -224,7 +224,7 @@ class SelectionSort(BaseClass):
                             If True, sorts the list in descending order
             steps (bool): Optional; (default: False)
                             If set to True, shows iteration of each pass of
-                            bubblesort on the list
+                            selection sort on the list
 
         Returns:
             sorted_list (list): sorted list

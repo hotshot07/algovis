@@ -2,9 +2,9 @@
 
 Algovis is a python library made for visualizing algorithms
 
-Currently the library has 
+Currently the library has
 
-##### Sorting
+#### Sorting
 
 - [Bubble Sort](sorting/bubblesort.md)
 - [Insertion Sort](sorting/insertionsort.md)
@@ -12,7 +12,7 @@ Currently the library has
 - [Merge Sort](sorting/mergesort.md)
 - [Quick Sort](sorting/quicksort.md)
 
-##### Searching
+#### Searching
 - [Linear Search](searching/linearsearch.md)
 - [Binary Search](searching/binarysearch.md)
 
@@ -26,19 +26,19 @@ from algovis import sorting
 #importing the random module for shuffling the list
 import random
 
-# creating a list of integers from 1-100
+# creating a list of integers from 1 to 100
 my_list = [i + 1 for i in range(100)]
 
 # shuffling the list using random module
 random.shuffle(my_list)
 
 # creating an oject of the BubbleSort class and passing
-# the list we made
+# the list
 bs_object = sorting.BubbleSort(my_list)
 
-#calling the visualize method 
+#calling the visualize method
 bs_object.visualize(interval=100)
 
 ```
 
-![gif](https://media.giphy.com/media/j3nLvYXv8BIlBkrcAq/giphy.gif)
+![gif](https://media.giphy.com/media/ieb13rrmvVWC02zmI8/giphy.gif)
