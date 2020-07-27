@@ -5,7 +5,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [0.2.0] - 2020-07-26
+## [0.1.6] - 2020-07-26
+### Fixed
+- The fix wokred for both Mac and Windows so replicated the solution to all modules with the method
+
+
+## [0.1.5] - 2020-07-26
+### Fixed
+- changed the path to the markdown files for info() method by using relative instead of absolute path for bubblesort (as a test)
+
+
+## [0.1.4] - 2020-07-26
 ### Added
 - Insertion sort
 - Selection sort
