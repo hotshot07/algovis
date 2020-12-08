@@ -96,7 +96,7 @@ class _AnimateBinarySearch():
             mid = (high + low) // 2
             yield low, mid, high
 
-            if mid == high or mid == low:
+            if mid in (high, low):
                 return
 
             if arr[mid] < number:
