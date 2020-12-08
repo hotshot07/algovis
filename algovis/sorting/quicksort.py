@@ -77,19 +77,19 @@ class QuickSort(BaseClass):
         """
         if choice == 'first':
             return arr
-        elif choice == 'last':
+        if choice == 'last':
             arr[start], arr[end] = arr[end], arr[start]
             return arr
-        elif choice == 'random':
+        if choice == 'random':
             randpivot = random.randrange(start, end)
             arr[start], arr[randpivot] = arr[randpivot], arr[start]
             return arr
-        elif choice == 'middle':
+        if choice == 'middle':
             middle_pivot = start + (end - start) // 2
             arr[start], arr[middle_pivot] = arr[middle_pivot], arr[start]
             return arr
-        else:
-            return arr
+        
+        return arr
 
     def __quicksort(self, arr, start, stop, choice, reverse, vis=False):
         """The helper generator called by __sort_it

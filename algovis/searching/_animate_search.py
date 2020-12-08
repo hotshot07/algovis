@@ -222,9 +222,8 @@ class _AnimateLinearSearch():
 
                     yield index, -1
                     return
-                else:
-                    rect_obj_list[index].set_color('b')
-                    yield index, 0
+                rect_obj_list[index].set_color('b')
+                yield index, 0
             else:
                 rect_obj_list[index].set_color('r')
                 yield index, 1
