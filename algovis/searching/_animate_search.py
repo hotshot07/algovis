@@ -12,8 +12,6 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from matplotlib.ticker import MaxNLocator
 
-import time
-
 
 class _AnimateBinarySearch():
     """Class to animate binary search
