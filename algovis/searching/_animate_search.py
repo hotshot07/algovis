@@ -12,8 +12,6 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from matplotlib.ticker import MaxNLocator
 
-import time
-
 
 class _AnimateBinarySearch():
     """Class to animate binary search
@@ -98,7 +96,7 @@ class _AnimateBinarySearch():
             mid = (high + low) // 2
             yield low, mid, high
 
-            if mid == high or mid == low:
+            if mid in (high, low):
                 return
 
             if arr[mid] < number:
@@ -224,9 +222,8 @@ class _AnimateLinearSearch():
 
                     yield index, -1
                     return
-                else:
-                    rect_obj_list[index].set_color('b')
-                    yield index, 0
+                rect_obj_list[index].set_color('b')
+                yield index, 0
             else:
                 rect_obj_list[index].set_color('r')
                 yield index, 1
