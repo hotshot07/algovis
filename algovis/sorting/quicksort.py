@@ -29,6 +29,7 @@ Example usage:
 import copy
 import random
 import os
+import sys
 
 from rich.console import Console
 from rich.table import Table
@@ -77,19 +78,19 @@ class QuickSort(BaseClass):
         """
         if choice == 'first':
             return arr
-        if choice == 'last':
+        elif choice == 'last':
             arr[start], arr[end] = arr[end], arr[start]
             return arr
-        if choice == 'random':
+        elif choice == 'random':
             randpivot = random.randrange(start, end)
             arr[start], arr[randpivot] = arr[randpivot], arr[start]
             return arr
-        if choice == 'middle':
+        elif choice == 'middle':
             middle_pivot = start + (end - start) // 2
             arr[start], arr[middle_pivot] = arr[middle_pivot], arr[start]
             return arr
-        
-        return arr
+        else:
+            return arr
 
     def __quicksort(self, arr, start, stop, choice, reverse, vis=False):
         """The helper generator called by __sort_it

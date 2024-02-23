@@ -25,6 +25,7 @@ Example usage:
 
 import copy
 import os
+import sys
 
 from ._base_sorting import BaseClass
 from ._timer import Timer

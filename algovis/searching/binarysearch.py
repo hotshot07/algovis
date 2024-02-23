@@ -19,6 +19,7 @@ Example usage:
 """
 import copy
 import os
+import sys
 
 from rich.console import Console
 from rich.table import Table
@@ -94,7 +95,7 @@ class BinarySearch(BaseClass):
                 if search_list[middle_index] == number:
                     return list_of_iterations, middle_index
 
-                if search_list[middle_index] < number:
+                elif search_list[middle_index] < number:
                     left_index = middle_index + 1
 
                 else:
@@ -114,7 +115,7 @@ class BinarySearch(BaseClass):
                 if search_list[middle_index] == number:
                     return f"[bold green]FOUND {number} at index {middle_index}[/bold green]", 0
 
-                if search_list[middle_index] < number:
+                elif search_list[middle_index] < number:
                     left_index = middle_index + 1
 
                 else:
@@ -173,9 +174,9 @@ class BinarySearch(BaseClass):
 
         if steps:
             return self.__print_steps(_search_result, index, number)
-            
-        console = Console()
-        return console.print(_search_result)
+        else:
+            console = Console()
+            return console.print(_search_result)
 
     def evaluate(self, number, iterations=1):
         """Prints the time taken to perform binary search in nanoseconds and seconds
